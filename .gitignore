@@ -1,0 +1,68 @@
+# 编译输出目录
+bin/
+obj/
+
+# Visual Studio 生成的临时文件
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.vs/
+!*.vs/ProjectSettings.json  # 保留项目设置（可选）
+!*.vs/SolutionSettings.json
+
+# 调试相关文件
+*.pdb
+*.idb
+*.ilk
+*.log
+*.opensdf
+*.sdf
+*.ipch
+Debug/
+Release/
+x64/
+x86/
+AnyCPU/
+
+# 测试相关
+TestResults/
+*.vstestresults
+*.testlog
+*.trx
+
+# 发布相关
+Publish/
+app.publish/
+
+# 代码分析报告
+*.CodeAnalysisLog.xml
+*.CodeMetricsResult.xml
+
+# NuGet 相关（可选，若不忽略包文件）
+# packages/  # 若使用 PackageReference 管理依赖，可忽略此目录
+*.nupkg
+!*.nuget.props
+!*.nuget.targets
+.nuget/
+NuGet.Config
+NuGet.targets
+
+# _dotnet 工具链（若使用）
+.dotnet/
+
+# 环境配置文件（包含敏感信息）
+*.env
+*.env.local
+appsettings.Development.json
+appsettings.Test.json
+
+# 其他 IDE 相关
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# 操作系统相关
+.DS_Store
+Thumbs.db

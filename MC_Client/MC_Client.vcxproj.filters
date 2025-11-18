@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="头文件\Factory">
+      <UniqueIdentifier>{40c98133-fea3-4960-90f2-513710f1db75}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Factory">
+      <UniqueIdentifier>{437033fd-b893-4878-abe8-811f179b0f46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Interface">
+      <UniqueIdentifier>{cfff80fb-cf76-43f7-b33f-f144ee0a209d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Mannger">
+      <UniqueIdentifier>{bfba29e1-8644-4972-afd6-5793214f147c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Shape">
+      <UniqueIdentifier>{60ffb852-4ce5-4c71-9fe0-77bb2da0de1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\AssetsClass">
+      <UniqueIdentifier>{3e48cdf7-1e7f-4c45-b65c-9c8e55628e6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Manager">
+      <UniqueIdentifier>{e787cb74-183f-4d17-8683-a13f8c82b7dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\AssetsClass">
+      <UniqueIdentifier>{2bc1ac3e-b75d-448b-87ae-cc4ffddb5b0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\GameDataType">
+      <UniqueIdentifier>{4822acb3-b856-4559-b021-680ccb439043}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\GameFrameWork">
+      <UniqueIdentifier>{e1d11477-68ec-4363-962c-6ee544d80284}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\GameFrameWork">
+      <UniqueIdentifier>{59eefca7-d4c9-4e31-b716-c096d9f3f13f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\FunctionLibrary">
+      <UniqueIdentifier>{cb8de56a-436b-4679-9538-757c50bba368}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\FunctionLibrary">
+      <UniqueIdentifier>{a425efe8-6867-43bb-a54d-0b50656aa595}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Shape">
+      <UniqueIdentifier>{21cc07cb-2b02-4453-b25c-0e78a3632e13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\AssetsClass\Texture">
+      <UniqueIdentifier>{8ee13afd-b26f-420d-a06b-f579d54f8d59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Util">
+      <UniqueIdentifier>{92cf8e92-c7d3-4cb6-9e69-10efe2ec1e56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Util">
+      <UniqueIdentifier>{0c260807-d50f-4ade-8903-c1dd73d4f4ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\GameDataType">
+      <UniqueIdentifier>{e01291ba-87a8-4489-bcd4-c081b9005a9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\AssetsClass\Texture">
+      <UniqueIdentifier>{3ea545a0-cbc3-4279-b77c-7a731139f009}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Application.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Inc\glad\glad.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="IFactory.cpp">
+      <Filter>源文件\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="Asset.cpp">
+      <Filter>源文件\AssetsClass</Filter>
+    </ClCompile>
+    <ClCompile Include="GComponent.cpp">
+      <Filter>源文件\GameFrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="GObject.cpp">
+      <Filter>源文件\GameFrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStatic.cpp">
+      <Filter>源文件\FunctionLibrary</Filter>
+    </ClCompile>
+    <ClCompile Include="AssetManager.cpp">
+      <Filter>源文件\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="GScence.cpp">
+      <Filter>源文件\GameFrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="GWorld.cpp">
+      <Filter>源文件\GameFrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>源文件\AssetsClass</Filter>
+    </ClCompile>
+    <ClCompile Include="AssetRegistry.cpp">
+      <Filter>源文件\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Chunk.cpp">
+      <Filter>源文件\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="stb_image_loader.cpp">
+      <Filter>源文件\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Buffer.cpp">
+      <Filter>源文件\GameDataType</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>源文件\AssetsClass\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture2D.cpp">
+      <Filter>源文件\AssetsClass\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexArray.cpp">
+      <Filter>源文件\GameDataType</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Application.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="IGObject.h">
+      <Filter>头文件\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="AssetManager.h">
+      <Filter>头文件\Mannger</Filter>
+    </ClInclude>
+    <ClInclude Include="GShape.h">
+      <Filter>头文件\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Chunk.h">
+      <Filter>头文件\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Asset.h">
+      <Filter>头文件\AssetsClass</Filter>
+    </ClInclude>
+    <ClInclude Include="DataType.h">
+      <Filter>头文件\GameDataType</Filter>
+    </ClInclude>
+    <ClInclude Include="GComponent.h">
+      <Filter>头文件\GameFrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="GObject.h">
+      <Filter>头文件\GameFrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStatic.h">
+      <Filter>头文件\FunctionLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>头文件\GameFrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="GScence.h">
+      <Filter>头文件\GameFrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="GWorld.h">
+      <Filter>头文件\GameFrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>头文件\AssetsClass</Filter>
+    </ClInclude>
+    <ClInclude Include="AssetRegistry.h">
+      <Filter>头文件\Mannger</Filter>
+    </ClInclude>
+    <ClInclude Include="IManager.h">
+      <Filter>头文件\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Buffer.h">
+      <Filter>头文件\GameDataType</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexArray.h">
+      <Filter>头文件\GameDataType</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>头文件\AssetsClass\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture2D.h">
+      <Filter>头文件\AssetsClass\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Util.h">
+      <Filter>头文件\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Inc\stb-master\stb_image.h">
+      <Filter>头文件\Util</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
