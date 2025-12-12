@@ -70,6 +70,18 @@
     <Filter Include="源文件\AssetsClass\Texture">
       <UniqueIdentifier>{3ea545a0-cbc3-4279-b77c-7a731139f009}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\GameComponets">
+      <UniqueIdentifier>{a88c49f3-ad76-4158-8010-9f376279e56f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\EventSystem">
+      <UniqueIdentifier>{482ebe2c-54ed-4361-a170-7274530ab315}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Delegate">
+      <UniqueIdentifier>{7356fb65-40d3-4bb8-9f44-d939796f3ff6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Delegate\Instance">
+      <UniqueIdentifier>{ea42bc0a-6c05-4ccb-931f-00d02b09d3b2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -131,6 +143,9 @@
     </ClCompile>
     <ClCompile Include="VertexArray.cpp">
       <Filter>源文件\GameDataType</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraComponent.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -202,6 +217,30 @@
     </ClInclude>
     <ClInclude Include="..\Inc\stb-master\stb_image.h">
       <Filter>头文件\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraComponent.h">
+      <Filter>头文件\GameComponets</Filter>
+    </ClInclude>
+    <ClInclude Include="EventManager.h">
+      <Filter>头文件\Mannger</Filter>
+    </ClInclude>
+    <ClInclude Include="EventSystem\EventType.h">
+      <Filter>头文件\EventSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseDelegate.h">
+      <Filter>头文件\Delegate</Filter>
+    </ClInclude>
+    <ClInclude Include="DelegateInstance.h">
+      <Filter>头文件\Delegate\Instance</Filter>
+    </ClInclude>
+    <ClInclude Include="DelegateTest.h">
+      <Filter>头文件\Delegate</Filter>
+    </ClInclude>
+    <ClInclude Include="MultiDelegate.h">
+      <Filter>头文件\Delegate</Filter>
+    </ClInclude>
+    <ClInclude Include="DelegateHash.h">
+      <Filter>头文件\Delegate</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
