@@ -2,7 +2,7 @@
 #include<DataType.h>
 class Window;
 class GScence;
-class /*__declspec(dllexport)*/ Application
+class __declspec(dllexport) Application
 {
 private:
 	UPtr<Window>Win;
