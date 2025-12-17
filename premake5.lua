@@ -1,0 +1,95 @@
+workspace "DM"--解决方案名称
+	architecture"x64"--x64平台
+	configurations{--配置选项
+	
+		"Debug",
+		"Release",
+		"Dist"
+	}
+outputdir="%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
+ThirdPartBaseDir="ThirdPart/"
+ThirdPartIncludeDir={}
+ThirdPartIncludeDir["spdlog"]=ThirdPartBaseDir.."spdlog/include"
+ThirdPartIncludeDir["GLFW"]=ThirdPartBaseDir.."glfw/glfw/include"
+ThirdPartIncludeDir["GLM"]=ThirdPartBaseDir.."glm/glm/include"
+include"ThirdPart/glfw"
+include"ThirdPart/glm"
+project"DM"
+	location"DM"--项目所放的位置(相对于解决方案)
+	kind"SharedLib"
+	language"C++"
+	buildoptions"/utf-8"--c/c++ 命令行里添加选项
+	targetdir("bin/"..outputdir.."/%{prj.name}")--输出目录
+	objdir("bin-int/"..outputdir.."/%{prj.name}")--obj文件输出目录
+	pchheader"DMPCH.h"
+	pchsource"DM/Src/DMPCH.cpp"
+	files{
+		"%{prj.name}/Src/**.h",
+		"%{prj.name}/Src/**.cpp"
+	}
+	includedirs{--附加包含目录
+		"%{ThirdPartIncludeDir.spdlog}",
+		"%{ThirdPartIncludeDir.GLFW}",
+		"%{ThirdPartIncludeDir.GLM}",
+		"%{prj.name}/Src",
+	}
+	links{
+		"GLFW",
+		"opengl32.lib"
+	}
+	filter"system:windows"
+		cppdialect"C++17"
+		staticruntime"On"
+		systemversion"latest"
+		defines{--预处理器的宏定义
+		
+			"DM_PLATFORM_WINDOWS",
+			"DM_BUILD_DLL"
+		}
+		postbuildcommands{--后构建命令
+		
+			("{COPY} %{cfg.buildtarget.relpath} ../bin/"..outputdir.."/Game")
+		}
+	filter"configurations:Debug"
+		defines"DM_DEBUG"
+		symbols"On"--开启调式
+	filter"configurations:Release"
+		defines"DM_RELEASE"
+		optimize"On"--开启优化
+	filter"configurations:Dist"
+		defines"DM_DIST"
+		optimize"On"
+project"Game"
+	location"Game"
+	kind"ConsoleApp"
+	language"C++"
+	buildoptions"/utf-8"
+	targetdir("bin/"..outputdir.."/%{prj.name}")	
+	objdir("bin-int/"..outputdir.."/%{prj.name}")
+	files{
+		"%{prj.name}/Src/**.h",
+		"%{prj.name}/Src/**.cpp"
+	}
+	includedirs{
+		"%{ThirdPartIncludeDir.spdlog}",
+		"DM/Src"
+	}
+	links{
+		"DM"
+	}
+	filter"system:windows"
+		cppdialect"C++17"
+		staticruntime"On"
+		systemversion"latest"
+		defines{
+			"DM_PLATFORM_WINDOWS"
+		}
+	filter"configurations:Debug"
+		defines"DM_DEBUG"
+		symbols"On"
+	filter"configurations:Release"
+		defines"DM_RELEASE"
+		optimize"On"
+	filter"configurations:Dist"
+		defines"DM_DIST"
+		optimize"On"

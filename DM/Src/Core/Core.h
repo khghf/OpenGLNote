@@ -1,0 +1,19 @@
+#pragma once
+#ifdef DM_PLATFORM_WINDOWS
+	#ifdef DM_BUILD_DLL
+		#define DM_API __declspec(dllexport)
+	#else
+		#define DM_API __declspec(dllimport)
+	#endif // DM_BUILD_DLL
+#else 
+	#error DM only support Windows
+#endif // DM_PLATFORM_WINDOWS
+
+
+#ifdef DM_ENABLE_ASSERT
+	#define DM_ASSERT(x,...){if(!(x)){LOG_ERROR("Assertion Failed:",__VA_ARGS_);__debugbreak();}}
+	#define DM_CORE_ASSERT(x,...){if(!(x)){LOG_Core_ERROR("Assertion Failed:",__VA_ARGS_);__debugbreak();}}
+#else
+	#define DM_ASSERT(x,...)
+	#define DM_CORE_ASSERT(x,...)
+#endif // DM_ENABLE_ASSERT

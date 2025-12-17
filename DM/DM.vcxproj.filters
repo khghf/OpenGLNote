@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Core">
+      <UniqueIdentifier>{2EB4837C-1AEB-840D-C3D7-6A10AFED000F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Container">
+      <UniqueIdentifier>{800D9E36-6CDB-913C-556F-026341DC6DA1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\DelegateSystem">
+      <UniqueIdentifier>{7D8E9C34-E9EF-7942-725D-C0F4DEBDB001}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\EventSystem">
+      <UniqueIdentifier>{E4AE7F5F-D0A7-9EB1-F9D9-8336E5317EBD}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\EventSystem\Event">
+      <UniqueIdentifier>{35CBADD9-21C5-D62B-0A32-6D3CF6CA3C98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Math">
+      <UniqueIdentifier>{C7E5BF15-3350-748C-7C8E-2532E83752E1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform">
+      <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\Window">
+      <UniqueIdentifier>{D1E05B2F-3D6C-C9F3-467D-4CE8B28725F4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Src\Application.h" />
+    <ClInclude Include="Src\Core\Container\Array.h">
+      <Filter>Core\Container</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Core\Container\UnOrderedMap.h">
+      <Filter>Core\Container</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Core\Container\UnOrderedSet.h">
+      <Filter>Core\Container</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Core\Core.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Core\DelegateSystem\BaseDelegate.h">
+      <Filter>Core\DelegateSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Core\DelegateSystem\DelegateHash.h">
+      <Filter>Core\DelegateSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Core\DelegateSystem\DelegateInstance.h">
+      <Filter>Core\DelegateSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Core\DelegateSystem\DelegateMacro.h">
+      <Filter>Core\DelegateSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Core\DelegateSystem\DelegateTest.h">
+      <Filter>Core\DelegateSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Core\DelegateSystem\MultiDelegate.h">
+      <Filter>Core\DelegateSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Core\EventSystem\Disptcher.h">
+      <Filter>Core\EventSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Core\EventSystem\Event\Event.h">
+      <Filter>Core\EventSystem\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Core\EventSystem\Event\KeyEvent.h">
+      <Filter>Core\EventSystem\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Core\EventSystem\Event\MouseEvent.h">
+      <Filter>Core\EventSystem\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Core\EventSystem\EventManager.h">
+      <Filter>Core\EventSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Core\EventSystem\Listener.h">
+      <Filter>Core\EventSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Core\Log.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Core\Math\Vector.h">
+      <Filter>Core\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Platform\Window\Window.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\DM.h" />
+    <ClInclude Include="Src\DMPCH.h" />
+    <ClInclude Include="Src\ISingletion.h" />
+    <ClInclude Include="Src\Platform\EntryPoint.h">
+      <Filter>Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Platform\Window\Win\WinWindow.h">
+      <Filter>Platform\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Core\DMType.h" />
+    <ClInclude Include="Src\Core\EventSystem\Event\WindowEvent.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Src\Application.cpp" />
+    <ClCompile Include="Src\Core\EventSystem\EventManager.cpp">
+      <Filter>Core\EventSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Core\Log.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\DMPCH.cpp" />
+    <ClCompile Include="Src\Platform\Window\Win\WinWindow.cpp">
+      <Filter>Platform\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\ISingletion.cpp" />
+    <ClCompile Include="Src\Core\EventSystem\Event\Event.cpp" />
+  </ItemGroup>
+</Project>

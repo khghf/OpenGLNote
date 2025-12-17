@@ -1,7 +1,7 @@
 # 编译输出目录
 bin/
 obj/
-
+bin-int/
 # Visual Studio 生成的临时文件
 *.suo
 *.user

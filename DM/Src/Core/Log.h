@@ -1,0 +1,30 @@
+#pragma once
+#include"DMPCH.h"
+#include<spdlog/spdlog.h>
+#include"Core/Core.h"
+namespace DM
+{
+	class DM_API Log
+	{
+	public:
+		Log();
+		~Log();
+		static void Init();
+		inline static std::shared_ptr<spdlog::logger>GetCoreLogger() { return CoreLogger; };
+		inline static std::shared_ptr<spdlog::logger>GetClientLogger() { return ClientLogger; }
+	private:
+		static std::shared_ptr<spdlog::logger>CoreLogger;
+		static std::shared_ptr<spdlog::logger>ClientLogger;
+	};
+}
+#define LOG_Core_TRACE(...)	::DM::Log::GetCoreLogger()->trace		(__VA_ARGS__)
+#define LOG_Core_INFO(...)	::DM::Log::GetCoreLogger()->info		(__VA_ARGS__)
+#define LOG_Core_WARN(...)	::DM::Log::GetCoreLogger()->warn		(__VA_ARGS__)
+#define LOG_Core_ERROR(...)	::DM::Log::GetCoreLogger()->error		(__VA_ARGS__)
+#define LOG_Core_FATAL(...)	::DM::Log::GetCoreLogger()->critical	(__VA_ARGS__)
+
+#define LOG_TRACE(...)		::DM::Log::GetClientLogger()->trace		(__VA_ARGS__)
+#define LOG_INFO(...)		::DM::Log::GetClientLogger()->info		(__VA_ARGS__)
+#define LOG_WARN(...)		::DM::Log::GetClientLogger()->warn		(__VA_ARGS__)
+#define LOG_ERROR(...)		::DM::Log::GetClientLogger()->error		(__VA_ARGS__)
+#define LOG_FATAL(...)		::DM::Log::GetClientLogger()->critical	(__VA_ARGS__)
