@@ -4,41 +4,47 @@
 namespace DM
 {
 	using Key = int;
-	class  MouseEvent :public Event
+	class DM_API MouseEvent :public Event
 	{
 	public:
 		static constexpr EEventType GetStaticType() { return Type; }
 		virtual EEventType GetType()const override { return Type; }
 		MouseEvent() = default;
-		enum Action
-		{
-			None,
-			Press,
-			Repate,
-			Release,
-		};
-		struct FEventData
-		{
-			Vector2<double> vec2;
-			Action KeyAction;
-			Key key;
-		};
-		FEventData Data;
 	private:
 		static constexpr EEventType Type = EEventType::MouseEvent;
 	};
-	class  MouseClick :public MouseEvent
+	class DM_API MouseClick :public MouseEvent
 	{
-	
+	public:
+		struct FEventData
+		{
+			Vector2 pos;
+			Key key;
+		};
+		FEventData Data;
 	};
-	using MouseDown = MouseClick;
-	using MouseUp = MouseClick;
-	class  MouseMove :public MouseEvent
+	class DM_API MousePress :public MouseClick
 	{
-	
 	};
-	class  MouseScroll :public MouseEvent
+	class DM_API MouseRelease :public MouseClick
 	{
-
+	};
+	class DM_API MouseMove :public MouseEvent
+	{
+	public:
+		struct FEventData
+		{
+			Vector2 pos;
+		};
+		FEventData Data;
+	};
+	class DM_API MouseScroll :public MouseEvent
+	{
+	public:
+		struct FEventData
+		{
+			Vector2 offset;
+		};
+		FEventData Data;
 	};
 }

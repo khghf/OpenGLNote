@@ -11,7 +11,6 @@
 #include<memory>
 #include<functional>
 
-#include"Core/Log.h"
 
 #ifdef DM_PLATFORM_WINDOWS
 	#include<Windows.h>

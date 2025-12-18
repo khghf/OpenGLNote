@@ -4,34 +4,35 @@
 namespace DM
 {
 	using Key = int;
-	class  KeyEvent :public Event
+	class DM_API KeyEvent :public Event
 	{
 	public:
 		
 		static constexpr EEventType GetStaticType() {return Type;}
 		virtual EEventType GetType()const override { return Type;}
 		KeyEvent() = default;
-
-	private:
-		static constexpr EEventType Type = EEventType::KeyEvent;
-	};
-	class  KeyClick :public KeyEvent
-	{
-	public:
-		enum Action
-		{
-			None=-1,
-			Release,
-			Press,
-			Repate,
-			
-		};
 		struct FEventData
 		{
 			Key key;
-			Action KeyAction = Action::None;
 		};
 		FEventData Data;
+	private:
+		static constexpr EEventType Type = EEventType::KeyEvent;
 	};
-	
+	class DM_API KeyClick :public KeyEvent
+	{
+	public:
+	};
+	class DM_API KeyPress :public KeyClick
+	{
+	public:
+	};
+	class DM_API KeyRepeat :public KeyClick
+	{
+	public:
+	};
+	class DM_API KeyRelease :public KeyClick
+	{
+	public:
+	};
 }

@@ -1,5 +1,6 @@
 #pragma once
 #include<memory>
+#include<Core/Core.h>
 namespace DM
 {
 	template<typename T>

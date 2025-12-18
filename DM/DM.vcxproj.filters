@@ -25,6 +25,9 @@
     <Filter Include="Platform\Window">
       <UniqueIdentifier>{D1E05B2F-3D6C-C9F3-467D-4CE8B28725F4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Platform\Window\Win">
+      <UniqueIdentifier>{2E272D49-9A88-0A57-23F6-50098F564116}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Application.h" />
@@ -38,6 +41,9 @@
       <Filter>Core\Container</Filter>
     </ClInclude>
     <ClInclude Include="Src\Core\Core.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Core\DMType.h">
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Src\Core\DelegateSystem\BaseDelegate.h">
@@ -70,6 +76,9 @@
     <ClInclude Include="Src\Core\EventSystem\Event\MouseEvent.h">
       <Filter>Core\EventSystem\Event</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Core\EventSystem\Event\WindowEvent.h">
+      <Filter>Core\EventSystem\Event</Filter>
+    </ClInclude>
     <ClInclude Include="Src\Core\EventSystem\EventManager.h">
       <Filter>Core\EventSystem</Filter>
     </ClInclude>
@@ -82,9 +91,6 @@
     <ClInclude Include="Src\Core\Math\Vector.h">
       <Filter>Core\Math</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Platform\Window\Window.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="Src\DM.h" />
     <ClInclude Include="Src\DMPCH.h" />
     <ClInclude Include="Src\ISingletion.h" />
@@ -92,13 +98,20 @@
       <Filter>Platform</Filter>
     </ClInclude>
     <ClInclude Include="Src\Platform\Window\Win\WinWindow.h">
+      <Filter>Platform\Window\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Platform\Window\Window.h">
       <Filter>Platform\Window</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Core\DMType.h" />
-    <ClInclude Include="Src\Core\EventSystem\Event\WindowEvent.h" />
+    <ClInclude Include="Src\Core\Layer\Layer.h" />
+    <ClInclude Include="Src\Core\Layer\LayerStack.h" />
+    <ClInclude Include="Src\Core\Util\Util.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Application.cpp" />
+    <ClCompile Include="Src\Core\EventSystem\Event\Event.cpp">
+      <Filter>Core\EventSystem\Event</Filter>
+    </ClCompile>
     <ClCompile Include="Src\Core\EventSystem\EventManager.cpp">
       <Filter>Core\EventSystem</Filter>
     </ClCompile>
@@ -106,10 +119,12 @@
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="Src\DMPCH.cpp" />
-    <ClCompile Include="Src\Platform\Window\Win\WinWindow.cpp">
-      <Filter>Platform\Window</Filter>
-    </ClCompile>
     <ClCompile Include="Src\ISingletion.cpp" />
-    <ClCompile Include="Src\Core\EventSystem\Event\Event.cpp" />
+    <ClCompile Include="Src\Platform\Window\Win\WinWindow.cpp">
+      <Filter>Platform\Window\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Core\Layer\Layer.cpp" />
+    <ClCompile Include="Src\Core\Layer\LayerStack.cpp" />
+    <ClCompile Include="Src\Core\Util\Util.cpp" />
   </ItemGroup>
 </Project>

@@ -1,3 +1,4 @@
+--[[
 project"GLM"
     kind "HeaderOnly"       -- 声明为仅头文件库（无编译目标）
     language "C++"
@@ -12,3 +13,4 @@ project"GLM"
         symbols "On"
     filter "configurations:Release"
         optimize "On"
+]]--

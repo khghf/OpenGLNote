@@ -1,26 +1,28 @@
 #include<DMPCH.h>
+#include<Core/Core.h>
 #include"Event.h"
 #include"KeyEvent.h"
 #include"MouseEvent.h"
 #include"WindowEvent.h"
+#define EventGetDataSpawn(EventClass) \
+template<>\
+DM_API const EventClass::FEventData*Event::GetData<EventClass>()const\
+{\
+	const EventClass* e = static_cast<const EventClass*>(this);\
+	return &e->Data;\
+}
 namespace DM
 {
-	template<>
-	DM_API const KeyClick::FEventData* Event::GetData<KeyClick>()const
-	{
-		const KeyClick* e = static_cast<const KeyClick*>(this);
-		return &e->Data;
-	}
-	template<>
-	DM_API const MouseClick::FEventData* Event::GetData<MouseClick>()const
-	{
-		const MouseClick* e = static_cast<const MouseClick*>(this);
-		return &e->Data;
-	}
-	template<>
-	DM_API const WindowResizeEvent::FEventData* Event::GetData<WindowResizeEvent>()const
-	{
-		const WindowResizeEvent* e = static_cast<const WindowResizeEvent*>(this);
-		return &e->Data;
-	}
+	EventGetDataSpawn(Event);
+	//**************************KeyEvent
+	EventGetDataSpawn(KeyClick);
+	EventGetDataSpawn(KeyPress);
+	EventGetDataSpawn(KeyRepeat);
+	EventGetDataSpawn(KeyRelease);
+	//**************************MouseEvent
+	EventGetDataSpawn(MouseClick);
+	EventGetDataSpawn(MousePress);
+	EventGetDataSpawn(MouseRelease);
+	//**************************WindowEvent
+	EventGetDataSpawn(WindowResizeEvent);
 }

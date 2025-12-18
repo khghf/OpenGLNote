@@ -1,10 +1,8 @@
 #pragma once
+#include<glm/glm.hpp>
 namespace DM
 {
-	template<class T>
-	using Vector = T;
-	template<class T>
-	using Vector2 = T;
-	template<class T>
-	using Vector4 = T;
+	using Vector2 = glm::vec2;
+	using Vector = glm::vec3;
+	using Vector4 = glm::vec4;
 }

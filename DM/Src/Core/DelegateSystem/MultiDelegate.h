@@ -5,6 +5,7 @@
 #include<Core/DMType.h>
 #include"BaseDelegate.h"
 #include"DelegateHash.h"
+#include<Core/Log.h>
 namespace DM
 {
 	template<typename FunType, typename T = void>
@@ -64,6 +65,10 @@ namespace DM
 				return;
 			}
 			Delegates[BD.Key()] = std::move(BD);
+		}
+		void Remove(BaseDelegate<Ret(Args...)>BD)
+		{
+			Delegates.erase(BD.Key());
 		}
 		void BroadCast(Args...arg)
 		{

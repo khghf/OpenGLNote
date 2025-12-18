@@ -11,9 +11,9 @@ ThirdPartBaseDir="ThirdPart/"
 ThirdPartIncludeDir={}
 ThirdPartIncludeDir["spdlog"]=ThirdPartBaseDir.."spdlog/include"
 ThirdPartIncludeDir["GLFW"]=ThirdPartBaseDir.."glfw/glfw/include"
-ThirdPartIncludeDir["GLM"]=ThirdPartBaseDir.."glm/glm/include"
+ThirdPartIncludeDir["GLM"]=ThirdPartBaseDir.."glm/glm"
 include"ThirdPart/glfw"
-include"ThirdPart/glm"
+--include"ThirdPart/glm"
 project"DM"
 	location"DM"--项目所放的位置(相对于解决方案)
 	kind"SharedLib"
@@ -72,6 +72,7 @@ project"Game"
 	}
 	includedirs{
 		"%{ThirdPartIncludeDir.spdlog}",
+		"%{ThirdPartIncludeDir.GLM}",
 		"DM/Src"
 	}
 	links{

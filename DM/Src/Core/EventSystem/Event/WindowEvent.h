@@ -3,7 +3,7 @@
 #include<DM.h>
 namespace DM
 {
-	class  WindowEvent :public Event
+	class DM_API WindowEvent :public Event
 	{
 	public:
 		static constexpr EEventType GetStaticType() { return Type; }
@@ -12,12 +12,12 @@ namespace DM
 	private:
 		static constexpr EEventType Type = EEventType::WindowEvent;
 	};
-	class  WindowResizeEvent :public WindowEvent
+	class DM_API WindowResizeEvent :public WindowEvent
 	{
 	public:
 		struct FEventData
 		{
-			Vector2<double> Size;
+			Vector2 size;
 		};
 		FEventData Data;
 	};

@@ -18,52 +18,84 @@ namespace DM
 		EventManager();
 		void Init();
 	public:
-		void OnEvent(const Event* const e);
+		void OnEvent(Event* const e);
 		template<class EventClass, class Class>
-		void RegisterMebFun(SPtr<Class>Obj, void(Class::* MebFunType)(const Event* const));
+		void Register(SPtr<Class>Obj, void(Class::* MebFunType)( Event* const));
 		template<class EventClass>
-		void RegisterFun(void(*MebFunType)(const Event* const));
+		void Register(void(*FunType)( Event* const));
 		template<class EventClass,class LambdaType>
-		void RegisterLam(LambdaType&& lam);
+		void Register(LambdaType&& lam);
+
+		template<class EventClass, class Class>
+		void UnRegister(SPtr<Class>Obj, void(Class::* MebFunType)(Event* const));
 		template<class EventClass>
-		void UnRegister();
+		void UnRegister(void(*FunType)(Event* const));
+		template<class EventClass, class LambdaType>
+		void UnRegister(LambdaType&& lam);
 	private:
 		template<class EventClass>
-		void RegisterInternal(BaseDelegate<void(const Event* const)>&&BD);
+		void RegisterInternal(Listener&&Lis);
+		template<class EventClass>
+		void UnRegisterInternal(Listener Lis);
 	private:
 		UnOrderedMap<EEventType, Disptcher>Disptchers;
 	};
 	template<class EventClass, class Class>
-	inline void EventManager::RegisterMebFun(SPtr<Class>Obj, void(Class::* MebFunType)(const Event* const))
+	inline void EventManager::Register(SPtr<Class>Obj, void(Class::* MebFunType)( Event* const))
 	{
-		BaseDelegate<void(const Event* const)>BD;
-		BD.BindMebFun(Obj, MebFunType);
-		this->RegisterInternal<EventClass>(std::move(BD));
+		Listener lis;
+		lis.BindMebFun(Obj, MebFunType);
+		this->RegisterInternal<EventClass>(std::move(lis));
 	}
 	template<class EventClass>
-	inline void EventManager::RegisterFun(void(*MebFunType)(const Event* const))
+	inline void EventManager::Register(void(*FunType)( Event* const))
 	{
-		BaseDelegate<void(const Event* const)>BD;
-		BD.BindFun(MebFunType);
-		this->RegisterInternal<EventClass>(std::move(BD));
+		Listener lis;
+		lis.BindFun(FunType);
+		this->RegisterInternal<EventClass>(std::move(lis));
 	}
 	template<class EventClass,class LambdaType>
-	inline void EventManager::RegisterLam(LambdaType&&lam)
+	inline void EventManager::Register(LambdaType&&lam)
 	{
-		BaseDelegate<void(const Event* const)>BD;
-		BD.BindLamFun(std::move(lam));
-		this->RegisterInternal<EventClass>(std::move(BD));
+		Listener lis;
+		lis.BindLamFun(std::forward<LambdaType>(lam));
+		this->RegisterInternal<EventClass>(std::move(lis));
 	}
-	template<class EventClass>
-	inline void EventManager::UnRegister()
-	{
 
+	template<class EventClass, class Class>
+	inline void EventManager::UnRegister(SPtr<Class>Obj, void(Class::* MebFunType)(Event* const))
+	{
+		Listener lis;
+		lis.BindMebFun(Obj, MebFunType);
+		this->UnRegisterInternal<EventClass>(lis);
 	}
 	template<class EventClass>
-	inline void EventManager::RegisterInternal(BaseDelegate<void(const Event* const)>&& BD)
+	inline void EventManager::UnRegister(void(*FunType)(Event* const))
+	{
+		Listener lis;
+		lis.BindFun(FunType);
+		this->UnRegisterInternal<EventClass>(lis);
+	}
+	template<class EventClass, class LambdaType>
+	inline void EventManager::UnRegister(LambdaType&& lam)
+	{
+		Listener lis;
+		lis.BindLamFun(std::forward<LambdaType>(lam));
+		this->UnRegisterInternal<EventClass>(lis);
+	}
+	
+	template<class EventClass>
+	inline void EventManager::RegisterInternal(Listener&& Lis)
 	{
 		if (EventClass::GetStaticType() == EEventType::None)return;
 		if (Disptchers.find(EventClass::GetStaticType()) == Disptchers.end())return;
-		Disptchers[EventClass::GetStaticType()].AddListener(Listener(std::move(BD)));
+		Disptchers[EventClass::GetStaticType()].AddListener(std::move(Lis));
+	}
+	template<class EventClass>
+	inline void EventManager::UnRegisterInternal(Listener Lis)
+	{
+		if (EventClass::GetStaticType() == EEventType::None)return;
+		if (Disptchers.find(EventClass::GetStaticType()) == Disptchers.end())return;
+		Disptchers[EventClass::GetStaticType()].RemoveListener(Lis);
 	}
 }

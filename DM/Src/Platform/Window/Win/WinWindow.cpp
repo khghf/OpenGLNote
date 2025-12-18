@@ -39,41 +39,132 @@ namespace DM
 		}
 		glfwMakeContextCurrent(GL_Window);
 		{
+			//窗口大小回调
 			glfwSetWindowSizeCallback
 			(GL_Window, 
 				[](GLFWwindow* window, int width, int height) 
 				{ 
 					static WindowResizeEvent e;
-					e.Data.Size = width * height / 100;
+					e.Data.size.x = width;
+					e.Data.size.y = height;
 					EventManager::GetInst()->OnEvent(&e);
 				}
 			);
+			//鼠标按键回调
 			glfwSetMouseButtonCallback
 			(GL_Window,
 				[](GLFWwindow* window, int button, int action, int mods)
 				{
-					static MouseClick e;
-					e.Data.KeyAction = static_cast<MouseClick::Action>(action);
-					e.Data.key = button;
-					glfwGetCursorPos(window, &e.Data.vec2, &e.Data.vec2);
-					EventManager::GetInst()->OnEvent(&e);
+					static MouseClick ec;
+					static MousePress ep;
+					static MouseRelease er;
+					static int LastAction = -1;
+					static double x = 0;
+					static double y = 0;
+					glfwGetCursorPos(window,&x,&y);
+					auto set = [&](MouseClick*e) {
+							e->Data.key = button;
+							e->Data.pos.x = x;
+							e->Data.pos.y = y;
+						};
+					if (LastAction == GLFW_PRESS && action == GLFW_RELEASE)
+					{
+						set(&er);
+						set(&ec);
+						EventManager::GetInst()->OnEvent(&er);
+						EventManager::GetInst()->OnEvent(&ec);
+					}
+					else
+					{
+						switch (action)
+						{
+						case GLFW_PRESS:
+						{
+							set(&ep);
+							EventManager::GetInst()->OnEvent(&ep);
+							break;
+						}
+						case GLFW_RELEASE:
+						{
+							set(&er);
+							EventManager::GetInst()->OnEvent(&er);
+							break;
+						}
+						default:
+							break;
+						}
+					}
+					LastAction = action;
 				}
 			);
+			//鼠标滚轮回调
 			glfwSetScrollCallback
 			(GL_Window,
 				[](GLFWwindow* window, double xoffset, double yoffset)
 				{
 					static MouseScroll e;
+					e.Data.offset.x = xoffset;
+					e.Data.offset.y = yoffset;
 					EventManager::GetInst()->OnEvent(&e);
 				}
 			);
+			//键盘按键回调
 			glfwSetKeyCallback
 			(GL_Window,
 				[](GLFWwindow* window, int key, int scancode, int action, int mods)
 				{
-					static KeyClick e;
-					e.Data.KeyAction = static_cast<KeyClick::Action>(action);
-					e.Data.key = key;
+					static KeyClick ec;
+					static KeyPress ep;
+					static KeyRepeat ert;
+					static KeyRelease ere;
+					static int LastAction = -1;
+					auto set = [&](KeyClick* e) {
+						e->Data.key = key;
+						};
+					if (LastAction == GLFW_PRESS&&action==GLFW_RELEASE)
+					{
+						set(&ere);
+						set(&ec);
+						EventManager::GetInst()->OnEvent(&ere);
+						EventManager::GetInst()->OnEvent(&ec);
+					}
+					else
+					{
+						switch (action)
+						{
+						case GLFW_PRESS:
+						{
+							set(&ep);
+							EventManager::GetInst()->OnEvent(&ep);
+							break;
+						}
+						case GLFW_REPEAT:
+						{
+							set(&ert);
+							EventManager::GetInst()->OnEvent(&ert);
+							break;
+						}
+						case GLFW_RELEASE:
+						{
+							set(&ere);
+							EventManager::GetInst()->OnEvent(&ere);
+							break;
+						}
+						default:
+							break;
+						}
+					}
+					LastAction = action;
+				}
+			);
+			//光标移动回调
+			glfwSetCursorPosCallback
+			(GL_Window,
+				[](GLFWwindow* window, double xpos, double ypos)
+				{
+					static MouseMove e;
+					e.Data.pos.x = xpos;
+					e.Data.pos.x = ypos;
 					EventManager::GetInst()->OnEvent(&e);
 				}
 			);

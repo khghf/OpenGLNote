@@ -4,18 +4,21 @@
 #include"Listener.h"
 namespace DM
 {
-	class Disptcher
+	class Disptcher:public MultiDelegate<void(Event*const)>
 	{
 		friend class EventManager;
 	private:
-		MultiDelegate<void(const Event* const)>Listeners;
-		void OnEvent(const Event* const e)
+		void Disptch( Event* const e)
 		{
-			Listeners.BroadCast(e);
+			this->BroadCast(e);
 		}
 		void AddListener(Listener&&l)
 		{
-			Listeners.Add(std::move(l.CallObj));
+			this->Add(static_cast<BaseDelegate<void(Event* const)>>(l));
+		}
+		void RemoveListener(Listener l)
+		{
+			this->Remove(l);
 		}
 	};
 }

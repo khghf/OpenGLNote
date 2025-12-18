@@ -1,5 +1,6 @@
 #pragma once
 #include<DMPCH.h>
+#include<assert.h>
 namespace DM
 {
 	template<typename Ret, typename...Args>
@@ -7,7 +8,8 @@ namespace DM
 	{
 	public:
 		~IDelegateInstance() = default;
-		virtual Ret Execute(Args...arg)const = 0;
+		virtual Ret Execute(Args...arg) = 0;
+		virtual IDelegateInstance<Ret, Args...>* Clone() = 0;
 	};
 	//ÆÕÍ¨º¯Êý
 	template<typename Ret, typename...Args>
@@ -18,9 +20,13 @@ namespace DM
 		FunType Fun;
 	public:
 		FunDelegateInst(FunType Fun) :Fun(Fun) {}
-		virtual Ret Execute(Args...arg)const override
+		virtual Ret Execute(Args...arg) override
 		{
 			return Fun(std::forward<Args>(arg)...);
+		}
+		virtual IDelegateInstance<Ret, Args...>* Clone()
+		{
+			return new FunDelegateInst(Fun);
 		}
 	};
 	//¾²Ì¬º¯Êý
@@ -36,7 +42,7 @@ namespace DM
 		FunType Fun;
 	public:
 		MebFunDelegateInst(std::shared_ptr<Class>Obj, FunType Fun) :Obj(Obj), Fun(Fun) {}
-		virtual Ret Execute(Args...arg)const override
+		virtual Ret Execute(Args...arg) override
 		{
 			if (const auto& element = Obj.lock())
 			{
@@ -48,6 +54,10 @@ namespace DM
 			}
 			return Ret{};
 		}
+		virtual IDelegateInstance<Ret, Args...>* Clone()
+		{
+			return new MebFunDelegateInst(Obj.lock(), Fun);
+		}
 	};
 	template<typename CallObj, typename Ret, typename...Args>
 	class LambdaDelegateInst :public IDelegateInstance<Ret, Args...>
@@ -56,9 +66,13 @@ namespace DM
 		CallObj Obj;
 	public:
 		LambdaDelegateInst(CallObj&& Obj) :Obj(std::forward<CallObj>(Obj)) {}
-		virtual Ret Execute(Args...arg)const override
+		virtual Ret Execute(Args...arg) override
 		{
 			return Obj(std::forward<Args>(arg)...);
+		}
+		virtual IDelegateInstance<Ret, Args...>* Clone()
+		{
+			return new LambdaDelegateInst(std::forward<CallObj>(Obj));
 		}
 	};
 }
