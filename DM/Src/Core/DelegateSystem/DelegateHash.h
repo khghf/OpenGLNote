@@ -45,22 +45,17 @@ namespace DM
             static_assert(std::is_trivially_copyable_v<MebFunType>,
                 "Member function pointer must be trivially copyable");
             const unsigned char* ptr = reinterpret_cast<const unsigned char*>(&MebFun);
-            for (size_t i = 0; i < sizeof(MebFunType); ++i) {
-                hash_combine(seed, ptr[i]);
-            }
+            hash_combine(seed, *ptr);
             return seed;
         }
         // 重载：支持const成员函数
         size_t operator()(Ret(Class::* MebFun)(Args...) const) const {
             size_t seed = FTypeHash<Class>()();
-
             using MebFunType = Ret(Class::*)(Args...) const;
             static_assert(std::is_trivially_copyable_v<MebFunType>,
                 "Const member function pointer must be trivially copyable");
             const unsigned char* ptr = reinterpret_cast<const unsigned char*>(&MebFun);
-            for (size_t i = 0; i < sizeof(MebFunType); ++i) {
-                hash_combine(seed, ptr[i]);
-            }
+            hash_combine(seed, *ptr);
             return seed;
         }
     };

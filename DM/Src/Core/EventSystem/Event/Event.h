@@ -1,9 +1,15 @@
 #pragma once
 #include<Core/Core.h>
-
 namespace DM
 {
 	enum class EEventType
+	{
+		Event,
+		MouseClick,MousePress,MouseRelease,MouseMove,MouseScroll,
+		KeyClick,KeyPress,KeyRelease,KeyRepeat,KeyTyped,
+		WindowResize,WindowClose,
+	};
+	enum class EEventCategory
 	{
 		None,
 		Event,
@@ -16,19 +22,19 @@ namespace DM
 	public:
 		struct FEventData {};
 		FEventData Data;
+		std::string_view Name = "Event";
+		bool bHandled = false;
+
 		template<class EventClass>
 		typename const EventClass::FEventData* GetData()const;
- 		static constexpr EEventType GetStaticType(){ 
-			return Type; 
-		}
+ 		inline static constexpr EEventType GetStaticType(){return Type;}
 		virtual EEventType GetType()const = 0;
-		std::string_view Name = "BaseEvent";
+		inline static constexpr EEventCategory GetStaticCategory(){ return EEventCategory::Event; }
+		virtual EEventCategory GetCategory()const{ return GetStaticCategory(); }
 		virtual ~Event()=default;
-		bool bHandled = false;
 	protected:
-		static constexpr EEventType Type=EEventType::Event;
+		static constexpr EEventType Type = EEventType::Event;
 	};
-
 }
 
 

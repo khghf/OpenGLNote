@@ -3,15 +3,12 @@
 #include<DM.h>
 namespace DM
 {
-	using Key = int;
 	class DM_API MouseEvent :public Event
 	{
 	public:
-		static constexpr EEventType GetStaticType() { return Type; }
-		virtual EEventType GetType()const override { return Type; }
 		MouseEvent() = default;
-	private:
-		static constexpr EEventType Type = EEventType::MouseEvent;
+		inline static constexpr EEventCategory GetStaticCategory() { return EEventCategory::MouseEvent; }
+		virtual EEventCategory GetCategory()const { return GetStaticCategory(); }
 	};
 	class DM_API MouseClick :public MouseEvent
 	{
@@ -19,15 +16,32 @@ namespace DM
 		struct FEventData
 		{
 			Vector2 pos;
-			Key key;
+			int button;
+			int action;
+			int mods;
 		};
 		FEventData Data;
+	public:
+		inline static constexpr EEventType GetStaticType() { return Type; }
+		virtual EEventType GetType()const override { return GetStaticType(); }
+	private:
+		static constexpr EEventType Type = EEventType::MouseClick;
 	};
 	class DM_API MousePress :public MouseClick
 	{
+	public:
+		inline static constexpr EEventType GetStaticType() { return Type; }
+		virtual EEventType GetType()const override { return GetStaticType(); }
+	private:
+		static constexpr EEventType Type = EEventType::MousePress;
 	};
 	class DM_API MouseRelease :public MouseClick
 	{
+	public:
+		inline static constexpr EEventType GetStaticType() { return Type; }
+		virtual EEventType GetType()const override { return GetStaticType(); }
+	private:
+		static constexpr EEventType Type = EEventType::MouseRelease;
 	};
 	class DM_API MouseMove :public MouseEvent
 	{
@@ -37,6 +51,11 @@ namespace DM
 			Vector2 pos;
 		};
 		FEventData Data;
+	public:
+		inline static constexpr EEventType GetStaticType() { return Type; }
+		virtual EEventType GetType()const override { return GetStaticType(); }
+	private:
+		static constexpr EEventType Type = EEventType::MouseMove;
 	};
 	class DM_API MouseScroll :public MouseEvent
 	{
@@ -46,5 +65,10 @@ namespace DM
 			Vector2 offset;
 		};
 		FEventData Data;
+	public:
+		inline static constexpr EEventType GetStaticType() { return Type; }
+		virtual EEventType GetType()const override { return GetStaticType(); }
+	private:
+		static constexpr EEventType Type = EEventType::MouseScroll;
 	};
 }

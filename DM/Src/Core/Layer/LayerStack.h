@@ -14,6 +14,7 @@ namespace DM
 		void PushOverlay(Layer* layer);
 		void PopLayer(Layer* layer);
 		void PopOverlay(Layer* layer);
+		void Update();
 		Array<Layer*>::iterator begin() { return m_Layers.begin(); }
 		Array<Layer*>::iterator end() { return m_Layers.end(); }
 		int Size()const { return m_Layers.size();}

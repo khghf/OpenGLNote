@@ -15,14 +15,20 @@ namespace DM {
 	public:
 		virtual ~Application();
 		void Run();
+		inline static Application* GetInst(){ return s_Inst; }
+		inline Window* GetWindow()const { return m_Win; }
 	private:
 		virtual void Start();
 		virtual void Update(float DeltaTime);
 		virtual void OnExit();
-		void OnEvent(const Event* const e);
-	private:
-		std::unique_ptr<Window>m_Win;
+		void OnEvent(Event* const e);
+	protected:
 		UPtr<LayerStack>m_LayerStack;
+	private:
+		Window*m_Win;
+		static Application* s_Inst;
+		GLFWwindow* m_GlWindow = nullptr;
+		bool m_bRunning = true;
 	};
 	Application*CreateApplication();
 }

@@ -6,10 +6,12 @@
 #include<Core/EventSystem/Event/MouseEvent.h>
 #include<Core/EventSystem/Event/KeyEvent.h>
 #include<Core/EventSystem/EventManager.h>
+
 namespace DM
 {
 	WinWindow::WinWindow(const WindowProps& Props)
 	{
+		m_WindowProps = Props;
 		Init(Props);
 	}
 
@@ -21,32 +23,46 @@ namespace DM
 	void WinWindow::Update(float DeltaTime)
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_STENCIL_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		glfwSwapBuffers(GL_Window);
-		glfwPollEvents();
+		/*glfwSwapBuffers(GL_Window);
+		glfwPollEvents();*/
 	}
 
 	void WinWindow::Init(const WindowProps& Props)
 	{
 		glfwInit();
-		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 		GL_Window = glfwCreateWindow(Props.Width, Props.Height, Props.Title.c_str(), nullptr, nullptr);
+		m_NativeWindow = GL_Window;
 		if (GL_Window == nullptr)
 		{
-			DM_CORE_ASSERT("Failed to Create GLFW Window");
+			DM_CORE_ASSERT(false,"Failed to Create GLFW Window");
 			glfwTerminate();
 		}
 		glfwMakeContextCurrent(GL_Window);
+		int GladStatus = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		glfwSetInputMode(GL_Window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+		DM_CORE_ASSERT(GladStatus, "Failed to initialze Glad");
 		{
 			//窗口大小回调
 			glfwSetWindowSizeCallback
 			(GL_Window, 
 				[](GLFWwindow* window, int width, int height) 
 				{ 
-					static WindowResizeEvent e;
+					static WindowResize e;
 					e.Data.size.x = width;
 					e.Data.size.y = height;
+					EventManager::GetInst()->OnEvent(&e);
+				}
+			);
+			glfwSetWindowCloseCallback
+			(GL_Window,
+				[](GLFWwindow* window)
+				{
+					//LOG_Core_INFO("WindowClose");
+					WindowClose e;
+					e.Data.window = window;
 					EventManager::GetInst()->OnEvent(&e);
 				}
 			);
@@ -63,7 +79,9 @@ namespace DM
 					static double y = 0;
 					glfwGetCursorPos(window,&x,&y);
 					auto set = [&](MouseClick*e) {
-							e->Data.key = button;
+							e->Data.button = button;
+							e->Data.action = action;
+							e->Data.mods = mods;
 							e->Data.pos.x = x;
 							e->Data.pos.y = y;
 						};
@@ -120,6 +138,9 @@ namespace DM
 					static int LastAction = -1;
 					auto set = [&](KeyClick* e) {
 						e->Data.key = key;
+						e->Data.action = action;
+						e->Data.mods = mods;
+						e->Data.scancode = scancode; 
 						};
 					if (LastAction == GLFW_PRESS&&action==GLFW_RELEASE)
 					{
@@ -157,6 +178,16 @@ namespace DM
 					LastAction = action;
 				}
 			);
+			//
+			glfwSetCharCallback
+			(GL_Window,
+				[](GLFWwindow* window, unsigned int codepoint)
+				{
+					static KeyTyped e;
+					e.Data.KeyCode = codepoint;
+					EventManager::GetInst()->OnEvent(&e);
+				}
+			);
 			//光标移动回调
 			glfwSetCursorPosCallback
 			(GL_Window,
@@ -164,7 +195,7 @@ namespace DM
 				{
 					static MouseMove e;
 					e.Data.pos.x = xpos;
-					e.Data.pos.x = ypos;
+					e.Data.pos.y = ypos;
 					EventManager::GetInst()->OnEvent(&e);
 				}
 			);

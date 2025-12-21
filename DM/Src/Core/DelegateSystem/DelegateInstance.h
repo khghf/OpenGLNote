@@ -29,9 +29,6 @@ namespace DM
 			return new FunDelegateInst(Fun);
 		}
 	};
-	//静态函数
-	template<typename FunObj, typename Ret, typename...Args>
-	using StaticFunDelegateInst = FunDelegateInst<FunObj, Ret, Args...>;
 	//成员函数
 	template<typename Class, typename Ret, typename...Args>
 	class MebFunDelegateInst :public IDelegateInstance<Ret, Args...>
@@ -50,7 +47,7 @@ namespace DM
 			}
 			else
 			{
-				assert(false && "Delegate:Bound Object was destroied");
+				assert(false && "Delegate:Bound Object was destroyed");
 			}
 			return Ret{};
 		}

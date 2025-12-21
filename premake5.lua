@@ -1,61 +1,69 @@
-workspace "DM"--½â¾ö·½°¸Ãû³Æ
+workspace "DM"--ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	architecture"x64"--x64Æ½Ì¨
-	configurations{--ÅäÖÃÑ¡Ïî
-	
+	configurations{--ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½
 		"Debug",
 		"Release",
 		"Dist"
 	}
 outputdir="%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
-ThirdPartBaseDir="ThirdPart/"
+ThirdPartBaseDir="DM/ThirdPart/"
 ThirdPartIncludeDir={}
 ThirdPartIncludeDir["spdlog"]=ThirdPartBaseDir.."spdlog/include"
 ThirdPartIncludeDir["GLFW"]=ThirdPartBaseDir.."glfw/glfw/include"
+ThirdPartIncludeDir["GLAD"]=ThirdPartBaseDir.."glad/glad/include"
+ThirdPartIncludeDir["IMGUI"]=ThirdPartBaseDir.."imgui/imgui"
 ThirdPartIncludeDir["GLM"]=ThirdPartBaseDir.."glm/glm"
-include"ThirdPart/glfw"
+include "DM/ThirdPart/glfw"
+include "DM/ThirdPart/glad"
+include "DM/ThirdPart/imgui"
 --include"ThirdPart/glm"
 project"DM"
-	location"DM"--ÏîÄ¿Ëù·ÅµÄÎ»ÖÃ(Ïà¶ÔÓÚ½â¾ö·½°¸)
+	location"DM"--ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½Åµï¿½Î»ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½Ú½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
 	kind"SharedLib"
 	language"C++"
-	buildoptions"/utf-8"--c/c++ ÃüÁîÐÐÀïÌí¼ÓÑ¡Ïî
-	targetdir("bin/"..outputdir.."/%{prj.name}")--Êä³öÄ¿Â¼
-	objdir("bin-int/"..outputdir.."/%{prj.name}")--objÎÄ¼þÊä³öÄ¿Â¼
+	buildoptions"/utf-8"--c/c++ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½
+	targetdir("bin/"..outputdir.."/%{prj.name}")--ï¿½ï¿½ï¿½Ä¿Â¼
+	objdir("bin-int/"..outputdir.."/%{prj.name}")--objï¿½Ä¼ï¿½ï¿½ï¿½ï¿½Ä¿Â¼
 	pchheader"DMPCH.h"
 	pchsource"DM/Src/DMPCH.cpp"
 	files{
 		"%{prj.name}/Src/**.h",
 		"%{prj.name}/Src/**.cpp"
 	}
-	includedirs{--¸½¼Ó°üº¬Ä¿Â¼
+	includedirs{--ï¿½ï¿½ï¿½Ó°ï¿½ï¿½ï¿½Ä¿Â¼
 		"%{ThirdPartIncludeDir.spdlog}",
 		"%{ThirdPartIncludeDir.GLFW}",
+		"%{ThirdPartIncludeDir.GLAD}",
+		"%{ThirdPartIncludeDir.IMGUI}",
 		"%{ThirdPartIncludeDir.GLM}",
 		"%{prj.name}/Src",
 	}
 	links{
 		"GLFW",
+		"GLAD",
+		"ImGui",
 		"opengl32.lib"
 	}
 	filter"system:windows"
 		cppdialect"C++17"
 		staticruntime"On"
 		systemversion"latest"
-		defines{--Ô¤´¦ÀíÆ÷µÄºê¶¨Òå
+		defines{--Ô¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Äºê¶¨ï¿½ï¿½
 		
 			"DM_PLATFORM_WINDOWS",
-			"DM_BUILD_DLL"
+			"DM_BUILD_DLL",
+			"GLFW_INCLUDE_NONE"
 		}
-		postbuildcommands{--ºó¹¹½¨ÃüÁî
+		postbuildcommands{--ï¿½ó¹¹½ï¿½ï¿½ï¿½ï¿½ï¿½
 		
 			("{COPY} %{cfg.buildtarget.relpath} ../bin/"..outputdir.."/Game")
 		}
 	filter"configurations:Debug"
 		defines"DM_DEBUG"
-		symbols"On"--¿ªÆôµ÷Ê½
+		symbols"On"--ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½
 	filter"configurations:Release"
 		defines"DM_RELEASE"
-		optimize"On"--¿ªÆôÓÅ»¯
+		optimize"On"--ï¿½ï¿½ï¿½ï¿½ï¿½Å»ï¿½
 	filter"configurations:Dist"
 		defines"DM_DIST"
 		optimize"On"
@@ -73,6 +81,8 @@ project"Game"
 	includedirs{
 		"%{ThirdPartIncludeDir.spdlog}",
 		"%{ThirdPartIncludeDir.GLM}",
+		"%{ThirdPartIncludeDir.GLFW}",
+		"%{ThirdPartIncludeDir.IMGUI}",
 		"DM/Src"
 	}
 	links{

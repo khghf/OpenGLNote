@@ -1,17 +1,17 @@
 //³ÌÐòÈë¿Ú----------------------------------
 #include"Platform/EntryPoint.h"
 //------------------------------------------
+#include<Tool/Imgui/ImguiLayer.h>
 class APP :public DM::Application
 {
 public:
-	APP() = default;
+	APP()
+	{
+		//m_LayerStack->PushOverlay(new DM::ImguiLayer());
+	}
+
 };
 DM::Application* DM::CreateApplication()
 {
-	static APP* App = nullptr;
-	if (App == nullptr)
-	{
-		App = new APP();
-	}
-	return App;
+	return new APP();
 }

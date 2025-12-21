@@ -5,12 +5,14 @@ namespace DM
 	class DM_API Layer
 	{
 	public:
-		Layer() = default;
-		virtual ~Layer() = default;
+		Layer(std::string_view name);
+		virtual ~Layer();
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
 		virtual void OnUpdate() {}
-		virtual void OnEvent(const Event*const e) {}
+		virtual void OnEvent(Event*const e) {}
+	private:
+		std::string_view Name;
 	};
 }
 

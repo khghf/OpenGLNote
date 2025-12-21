@@ -16,17 +16,32 @@
     <Filter Include="Core\EventSystem\Event">
       <UniqueIdentifier>{35CBADD9-21C5-D62B-0A32-6D3CF6CA3C98}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Layer">
+      <UniqueIdentifier>{7A9BAACD-6653-EC1A-CF5A-C576BB31870B}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Core\Math">
       <UniqueIdentifier>{C7E5BF15-3350-748C-7C8E-2532E83752E1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Util">
+      <UniqueIdentifier>{3B98C415-A702-798C-F040-2A325CEA56E1}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Platform">
       <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\Render">
+      <UniqueIdentifier>{59B26923-C53D-D7E7-CE4E-5ADC3A5933E8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Platform\Window">
       <UniqueIdentifier>{D1E05B2F-3D6C-C9F3-467D-4CE8B28725F4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Platform\Window\Win">
       <UniqueIdentifier>{2E272D49-9A88-0A57-23F6-50098F564116}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tool">
+      <UniqueIdentifier>{43068D7C-2F3D-8E0D-D829-7410C43F0A0F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tool\Imgui">
+      <UniqueIdentifier>{CD694068-B921-82B5-2229-5B110E001DA6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -85,11 +100,20 @@
     <ClInclude Include="Src\Core\EventSystem\Listener.h">
       <Filter>Core\EventSystem</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Core\Layer\Layer.h">
+      <Filter>Core\Layer</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Core\Layer\LayerStack.h">
+      <Filter>Core\Layer</Filter>
+    </ClInclude>
     <ClInclude Include="Src\Core\Log.h">
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Src\Core\Math\Vector.h">
       <Filter>Core\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Core\Util\Util.h">
+      <Filter>Core\Util</Filter>
     </ClInclude>
     <ClInclude Include="Src\DM.h" />
     <ClInclude Include="Src\DMPCH.h" />
@@ -97,15 +121,25 @@
     <ClInclude Include="Src\Platform\EntryPoint.h">
       <Filter>Platform</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Platform\Render\imgui_impl_glfw.h">
+      <Filter>Platform\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Platform\Render\imgui_impl_opengl3.h">
+      <Filter>Platform\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Platform\Render\imgui_impl_opengl3_loader.h">
+      <Filter>Platform\Render</Filter>
+    </ClInclude>
     <ClInclude Include="Src\Platform\Window\Win\WinWindow.h">
       <Filter>Platform\Window\Win</Filter>
     </ClInclude>
     <ClInclude Include="Src\Platform\Window\Window.h">
       <Filter>Platform\Window</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Core\Layer\Layer.h" />
-    <ClInclude Include="Src\Core\Layer\LayerStack.h" />
-    <ClInclude Include="Src\Core\Util\Util.h" />
+    <ClInclude Include="Src\Tool\Imgui\ImguiLayer.h">
+      <Filter>Tool\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Core\Input\Input.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Application.cpp" />
@@ -115,16 +149,31 @@
     <ClCompile Include="Src\Core\EventSystem\EventManager.cpp">
       <Filter>Core\EventSystem</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Core\Layer\Layer.cpp">
+      <Filter>Core\Layer</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Core\Layer\LayerStack.cpp">
+      <Filter>Core\Layer</Filter>
+    </ClCompile>
     <ClCompile Include="Src\Core\Log.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Core\Util\Util.cpp">
+      <Filter>Core\Util</Filter>
+    </ClCompile>
     <ClCompile Include="Src\DMPCH.cpp" />
     <ClCompile Include="Src\ISingletion.cpp" />
+    <ClCompile Include="Src\Platform\Render\imgui_impl_glfw.cpp">
+      <Filter>Platform\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Platform\Render\imgui_impl_opengl3.cpp">
+      <Filter>Platform\Render</Filter>
+    </ClCompile>
     <ClCompile Include="Src\Platform\Window\Win\WinWindow.cpp">
       <Filter>Platform\Window\Win</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Core\Layer\Layer.cpp" />
-    <ClCompile Include="Src\Core\Layer\LayerStack.cpp" />
-    <ClCompile Include="Src\Core\Util\Util.cpp" />
+    <ClCompile Include="Src\Tool\Imgui\ImguiLayer.cpp">
+      <Filter>Tool\Imgui</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

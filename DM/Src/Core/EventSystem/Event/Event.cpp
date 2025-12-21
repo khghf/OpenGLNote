@@ -9,6 +9,7 @@ template<>\
 DM_API const EventClass::FEventData*Event::GetData<EventClass>()const\
 {\
 	const EventClass* e = static_cast<const EventClass*>(this);\
+	assert(e->GetType()==EventClass::GetStaticType(),"不能获取其它类型的数据");\
 	return &e->Data;\
 }
 namespace DM
@@ -19,10 +20,14 @@ namespace DM
 	EventGetDataSpawn(KeyPress);
 	EventGetDataSpawn(KeyRepeat);
 	EventGetDataSpawn(KeyRelease);
+	EventGetDataSpawn(KeyTyped);
 	//**************************MouseEvent
 	EventGetDataSpawn(MouseClick);
 	EventGetDataSpawn(MousePress);
 	EventGetDataSpawn(MouseRelease);
+	EventGetDataSpawn(MouseMove); 
+	EventGetDataSpawn(MouseScroll);
 	//**************************WindowEvent
-	EventGetDataSpawn(WindowResizeEvent);
+	EventGetDataSpawn(WindowResize);
+	EventGetDataSpawn(WindowClose);
 }

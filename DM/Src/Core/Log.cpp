@@ -17,8 +17,8 @@ namespace DM
 	void Log::Init()
 	{
 		spdlog::set_pattern("%^[%T] %n:%v%$");
-		CoreLogger = spdlog::stderr_color_mt("DM");
-		ClientLogger = spdlog::stderr_color_mt("APP");
+		CoreLogger = spdlog::stderr_color_mt("Core");
+		ClientLogger = spdlog::stderr_color_mt("Clinet");
 		CoreLogger->set_level(spdlog::level::trace);
 		ClientLogger->set_level(spdlog::level::trace);
 		//LOG_Core_INFO("Core");

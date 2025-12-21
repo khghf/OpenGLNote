@@ -1,6 +1,7 @@
 #pragma once
 #include"DMPCH.h"
 #include"Core/Core.h"
+struct GLFWwindow;
 namespace DM
 {
 	struct WindowProps
@@ -17,7 +18,14 @@ namespace DM
 		virtual void Update(float DeltaTime) = 0;
 		static Window* Create(const WindowProps& Props = WindowProps());
 		virtual bool ShouldClose() = 0;
+		virtual GLFWwindow* GetGlWindow()const = 0;
+		virtual void* GetNativeWindow()const = 0;
+		inline int Width()const { return m_WindowProps.Width; }
+		inline int Height()const { return m_WindowProps.Height; }
+		inline void SetWidth(const int& val) { m_WindowProps.Width = val; }
+		inline void SetHeight(const int& val) { m_WindowProps.Height = val; }
 	protected:
 		virtual void Init(const WindowProps& Props)=0;
+		WindowProps m_WindowProps;
 	};
 }

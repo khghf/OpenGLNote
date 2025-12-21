@@ -4,10 +4,10 @@
 #include"DelegateHash.h"
 namespace DM
 {
-	template<typename FunType, typename T = void>
+	template<typename FunType>
 	class BaseDelegate;
-	template<typename Ret, typename...Args, typename T>
-	class  BaseDelegate<Ret(Args...), T>
+	template<typename Ret, typename...Args>
+	class  BaseDelegate<Ret(Args...)>
 	{
 		IDelegateInstance<Ret, Args...>*DelegateInstance=nullptr;
 		using FunType = Ret(*)(Args...);
@@ -44,26 +44,20 @@ namespace DM
 			}
 			return *this;
 		}
-		void BindFun(Ret(*Fun)(Args...))
+		void Bind(Ret(*Fun)(Args...))
 		{
 			FFunHash<FunType>hash;
 			key = hash(Fun);
 			DelegateInstance = new FunDelegateInst<Ret, Args...>(Fun);
 		}
-		void BindStaticFun(Ret(*Fun)(Args...))
-		{
-			FFunHash<FunType>hash;
-			key = hash(Fun);
-			DelegateInstance = std::make_unique<StaticFunDelegateInst<Ret, Args...>>(Fun);
-		}
 		template<typename Class>
-		void BindMebFun(std::shared_ptr<Class>Obj, Ret(Class::* MebFunType)(Args...))
+		void Bind(std::shared_ptr<Class>Obj, Ret(Class::* MebFunType)(Args...))
 		{
 			key = FMebFunHash<Class, Ret, Args...>()(MebFunType);
 			DelegateInstance = new MebFunDelegateInst<Class, Ret, Args...>(Obj, MebFunType);
 		}
 		template<typename CallObj>
-		void BindLamFun(CallObj&& Obj)
+		void Bind(CallObj&& Obj)
 		{
 			key = FLambdaHash<CallObj>()(Obj);
 			DelegateInstance = new LambdaDelegateInst<CallObj, Ret, Args...>(std::forward<CallObj>(Obj));
@@ -76,7 +70,7 @@ namespace DM
 			}
 			else
 			{
-				throw std::runtime_error("Delegate is not bound to any callable");
+				throw std::runtime_error("Delegate is not bound to any callable object");
 			}
 		}
 		bool IsValid()const

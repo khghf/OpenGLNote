@@ -23,7 +23,7 @@ namespace DM
 		void Add(FunType Fun)
 		{
 			BaseDelegate<Ret(Args...)>BD;
-			BD.BindFun(std::forward<FunType>(Fun));
+			BD.Bind(std::forward<FunType>(Fun));
 			if (Delegates.find(BD.Key()) != Delegates.end())
 			{
 				LOG_Core_INFO("MultiDelegate:repeat add");
@@ -36,7 +36,7 @@ namespace DM
 		void Add(SPtr<Class>Obj, Ret(Class::* MebFunType)(Args...))
 		{
 			BaseDelegate<Ret(Args...)>BD;
-			BD.BindMebFun(std::forward<SPtr<Class>>(Obj), std::forward<Ret(Class::*)(Args...)>(MebFunType));
+			BD.Bind(std::forward<SPtr<Class>>(Obj), std::forward<Ret(Class::*)(Args...)>(MebFunType));
 			if (Delegates.find(BD.Key()) != Delegates.end())
 			{
 				LOG_Core_INFO("MultiDelegate:repeat add");
@@ -49,7 +49,7 @@ namespace DM
 		void Add(CallObj&& Obj)
 		{
 			BaseDelegate<Ret(Args...)>BD;
-			BD.BindLamFun(std::forward<CallObj>(Obj));
+			BD.Bind(std::forward<CallObj>(Obj));
 			if (Delegates.find(BD.Key()) != Delegates.end())
 			{
 				LOG_Core_INFO("MultiDelegate:repeat add");

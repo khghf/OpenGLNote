@@ -38,27 +38,27 @@ namespace DM
 		template<class EventClass>
 		void UnRegisterInternal(Listener Lis);
 	private:
-		UnOrderedMap<EEventType, Disptcher>Disptchers;
+		UnOrderedMap<EEventCategory, Disptcher>Disptchers;
 	};
 	template<class EventClass, class Class>
 	inline void EventManager::Register(SPtr<Class>Obj, void(Class::* MebFunType)( Event* const))
 	{
 		Listener lis;
-		lis.BindMebFun(Obj, MebFunType);
+		lis.Bind(Obj, MebFunType);
 		this->RegisterInternal<EventClass>(std::move(lis));
 	}
 	template<class EventClass>
 	inline void EventManager::Register(void(*FunType)( Event* const))
 	{
 		Listener lis;
-		lis.BindFun(FunType);
+		lis.Bind(FunType);
 		this->RegisterInternal<EventClass>(std::move(lis));
 	}
 	template<class EventClass,class LambdaType>
 	inline void EventManager::Register(LambdaType&&lam)
 	{
 		Listener lis;
-		lis.BindLamFun(std::forward<LambdaType>(lam));
+		lis.Bind(std::forward<LambdaType>(lam));
 		this->RegisterInternal<EventClass>(std::move(lis));
 	}
 
@@ -66,36 +66,34 @@ namespace DM
 	inline void EventManager::UnRegister(SPtr<Class>Obj, void(Class::* MebFunType)(Event* const))
 	{
 		Listener lis;
-		lis.BindMebFun(Obj, MebFunType);
+		lis.Bind(Obj, MebFunType);
 		this->UnRegisterInternal<EventClass>(lis);
 	}
 	template<class EventClass>
 	inline void EventManager::UnRegister(void(*FunType)(Event* const))
 	{
 		Listener lis;
-		lis.BindFun(FunType);
+		lis.Bind(FunType);
 		this->UnRegisterInternal<EventClass>(lis);
 	}
 	template<class EventClass, class LambdaType>
 	inline void EventManager::UnRegister(LambdaType&& lam)
 	{
 		Listener lis;
-		lis.BindLamFun(std::forward<LambdaType>(lam));
+		lis.Bind(std::forward<LambdaType>(lam));
 		this->UnRegisterInternal<EventClass>(lis);
 	}
 	
 	template<class EventClass>
 	inline void EventManager::RegisterInternal(Listener&& Lis)
 	{
-		if (EventClass::GetStaticType() == EEventType::None)return;
-		if (Disptchers.find(EventClass::GetStaticType()) == Disptchers.end())return;
-		Disptchers[EventClass::GetStaticType()].AddListener(std::move(Lis));
+		if (Disptchers.find(EventClass::GetStaticCategory()) == Disptchers.end())return;
+		Disptchers[EventClass::GetStaticCategory()].AddListener(std::move(Lis));
 	}
 	template<class EventClass>
 	inline void EventManager::UnRegisterInternal(Listener Lis)
 	{
-		if (EventClass::GetStaticType() == EEventType::None)return;
-		if (Disptchers.find(EventClass::GetStaticType()) == Disptchers.end())return;
-		Disptchers[EventClass::GetStaticType()].RemoveListener(Lis);
+		if (Disptchers.find(EventClass::GetStaticCategory()) == Disptchers.end())return;
+		Disptchers[EventClass::GetStaticCategory()].RemoveListener(Lis);
 	}
 }
