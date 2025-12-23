@@ -5,6 +5,7 @@ workspace "DM"--�����������
 		"Release",
 		"Dist"
 	}
+	startproject"Game"
 outputdir="%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 ThirdPartBaseDir="DM/ThirdPart/"
 ThirdPartIncludeDir={}
@@ -19,8 +20,9 @@ include "DM/ThirdPart/imgui"
 --include"ThirdPart/glm"
 project"DM"
 	location"DM"--��Ŀ���ŵ�λ��(����ڽ������)
-	kind"SharedLib"
+	kind"StaticLib"
 	language"C++"
+	staticruntime"on"
 	buildoptions"/utf-8"--c/c++ ������������ѡ��
 	targetdir("bin/"..outputdir.."/%{prj.name}")--���Ŀ¼
 	objdir("bin-int/"..outputdir.."/%{prj.name}")--obj�ļ����Ŀ¼
@@ -46,7 +48,6 @@ project"DM"
 	}
 	filter"system:windows"
 		cppdialect"C++17"
-		staticruntime"On"
 		systemversion"latest"
 		defines{--Ԥ�������ĺ궨��
 		
@@ -54,23 +55,24 @@ project"DM"
 			"DM_BUILD_DLL",
 			"GLFW_INCLUDE_NONE"
 		}
-		postbuildcommands{--�󹹽�����
+		-- postbuildcommands{--�󹹽�����
 		
-			("{COPY} %{cfg.buildtarget.relpath} ../bin/"..outputdir.."/Game")
-		}
+		-- 	("{COPY} %{cfg.buildtarget.relpath} ../bin/"..outputdir.."/Game")
+		-- }
 	filter"configurations:Debug"
 		defines"DM_DEBUG"
-		symbols"On"--������ʽ
+		runtime"Debug"
+		symbols"on"--������ʽ
 	filter"configurations:Release"
 		defines"DM_RELEASE"
-		optimize"On"--�����Ż�
-	filter"configurations:Dist"
-		defines"DM_DIST"
-		optimize"On"
+		runtime"Release"
+		optimize"on"--�����Ż�
 project"Game"
 	location"Game"
 	kind"ConsoleApp"
 	language"C++"
+	cppdialect"C++17"
+	staticruntime"on"
 	buildoptions"/utf-8"
 	targetdir("bin/"..outputdir.."/%{prj.name}")	
 	objdir("bin-int/"..outputdir.."/%{prj.name}")
@@ -89,18 +91,17 @@ project"Game"
 		"DM"
 	}
 	filter"system:windows"
-		cppdialect"C++17"
-		staticruntime"On"
+		staticruntime"on"
 		systemversion"latest"
 		defines{
 			"DM_PLATFORM_WINDOWS"
 		}
 	filter"configurations:Debug"
 		defines"DM_DEBUG"
-		symbols"On"
+		runtime"Debug"
+		symbols"on"
 	filter"configurations:Release"
 		defines"DM_RELEASE"
-		optimize"On"
-	filter"configurations:Dist"
-		defines"DM_DIST"
-		optimize"On"
+		runtime"Release"
+		optimize"on"
+	

@@ -88,12 +88,12 @@ namespace DM
 	inline void EventManager::RegisterInternal(Listener&& Lis)
 	{
 		if (Disptchers.find(EventClass::GetStaticCategory()) == Disptchers.end())return;
-		Disptchers[EventClass::GetStaticCategory()].AddListener(std::move(Lis));
+		Disptchers[EventClass::GetStaticCategory()].AddListener<EventClass>(std::move(Lis));
 	}
 	template<class EventClass>
 	inline void EventManager::UnRegisterInternal(Listener Lis)
 	{
 		if (Disptchers.find(EventClass::GetStaticCategory()) == Disptchers.end())return;
-		Disptchers[EventClass::GetStaticCategory()].RemoveListener(Lis);
+		Disptchers[EventClass::GetStaticCategory()].RemoveListener<EventClass>(Lis);
 	}
 }

@@ -1,10 +1,10 @@
 project "GLAD"
-    kind "StaticLib"  -- ±£³Ö¾²Ì¬¿â£¨ÈôÒª¶¯Ì¬¿â¸ÄÎª SharedLib£¬ÐèÍ¬²½ÐÞ¸Äºê£©
+    kind "StaticLib"  -- ï¿½ï¿½ï¿½Ö¾ï¿½Ì¬ï¿½â£¨ï¿½ï¿½Òªï¿½ï¿½Ì¬ï¿½ï¿½ï¿½Îª SharedLibï¿½ï¿½ï¿½ï¿½Í¬ï¿½ï¿½ï¿½Þ¸Äºê£©
     language "C"
+    staticruntime "on"      -- ï¿½ï¿½Ì¬ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½ï¿½Ò»ï¿½Â£ï¿½
     targetdir("bin/" .. outputdir .. "/%{prj.name}")
     objdir("bin-int/" .. outputdir .. "/%{prj.name}")
-
-    -- ¹Ø¼ü 1£º°üº¬ GLFW ×îÐÂ°æËùÓÐºËÐÄÎÄ¼þ£¨°´Ô´ÂëÔ­Éú½á¹¹£¬²»ÒÅÂ©£©
+    -- ï¿½Ø¼ï¿½ 1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ GLFW ï¿½ï¿½ï¿½Â°ï¿½ï¿½ï¿½ï¿½Ðºï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½Ô­ï¿½ï¿½ï¿½á¹¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â©ï¿½ï¿½
     files {
        "glad/include/GLAD/glad.h",
        "glad/include/KHR/khrplatform.h",
@@ -14,11 +14,10 @@ project "GLAD"
         "glad/include"
     }
     filter "system:windows"
-        systemversion "latest"  -- Ê¹ÓÃ×îÐÂ Windows SDK
-        staticruntime "On"      -- ¾²Ì¬ÔËÐÐÊ±£¨ÓëÖ÷ÏîÄ¿±£³ÖÒ»ÖÂ£©
+        systemversion "latest"  -- Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Windows SDK
     filter "configurations:Debug"
-        symbols "On"
+        runtime"Debug"
+        symbols "on"
     filter "configurations:Release"
-        optimize "On"
-    filter{"system:windows","configurations:Release"}
-        buildoptions"/MT"
+        runtime"Release"
+        optimize "on"

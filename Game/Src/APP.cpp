@@ -2,12 +2,12 @@
 #include"Platform/EntryPoint.h"
 //------------------------------------------
 #include<Tool/Imgui/ImguiLayer.h>
+#include<imgui.h>
 class APP :public DM::Application
 {
 public:
 	APP()
 	{
-		//m_LayerStack->PushOverlay(new DM::ImguiLayer());
 	}
 
 };

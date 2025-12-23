@@ -16,6 +16,9 @@
     <Filter Include="Core\EventSystem\Event">
       <UniqueIdentifier>{35CBADD9-21C5-D62B-0A32-6D3CF6CA3C98}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Input">
+      <UniqueIdentifier>{AD4E7BCD-9906-BD1A-020E-9676EEE4570B}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Core\Layer">
       <UniqueIdentifier>{7A9BAACD-6653-EC1A-CF5A-C576BB31870B}</UniqueIdentifier>
     </Filter>
@@ -33,6 +36,9 @@
     </Filter>
     <Filter Include="Platform\Window">
       <UniqueIdentifier>{D1E05B2F-3D6C-C9F3-467D-4CE8B28725F4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\Window\Input">
+      <UniqueIdentifier>{90291948-FC95-D442-C589-6CA031B5F6AA}</UniqueIdentifier>
     </Filter>
     <Filter Include="Platform\Window\Win">
       <UniqueIdentifier>{2E272D49-9A88-0A57-23F6-50098F564116}</UniqueIdentifier>
@@ -100,6 +106,15 @@
     <ClInclude Include="Src\Core\EventSystem\Listener.h">
       <Filter>Core\EventSystem</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Core\Input\Input.h">
+      <Filter>Core\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Core\Input\KeyCode.h">
+      <Filter>Core\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Core\Input\MouseButtonCode.h">
+      <Filter>Core\Input</Filter>
+    </ClInclude>
     <ClInclude Include="Src\Core\Layer\Layer.h">
       <Filter>Core\Layer</Filter>
     </ClInclude>
@@ -130,6 +145,9 @@
     <ClInclude Include="Src\Platform\Render\imgui_impl_opengl3_loader.h">
       <Filter>Platform\Render</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Platform\Window\Input\WindowInput.h">
+      <Filter>Platform\Window\Input</Filter>
+    </ClInclude>
     <ClInclude Include="Src\Platform\Window\Win\WinWindow.h">
       <Filter>Platform\Window\Win</Filter>
     </ClInclude>
@@ -139,7 +157,6 @@
     <ClInclude Include="Src\Tool\Imgui\ImguiLayer.h">
       <Filter>Tool\Imgui</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Core\Input\Input.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Application.cpp" />
@@ -168,6 +185,9 @@
     </ClCompile>
     <ClCompile Include="Src\Platform\Render\imgui_impl_opengl3.cpp">
       <Filter>Platform\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Platform\Window\Input\WindowInput.cpp">
+      <Filter>Platform\Window\Input</Filter>
     </ClCompile>
     <ClCompile Include="Src\Platform\Window\Win\WinWindow.cpp">
       <Filter>Platform\Window\Win</Filter>

@@ -6,9 +6,10 @@
 #include<Core/EventSystem/Event/MouseEvent.h>
 #include<Core/EventSystem/Event/KeyEvent.h>
 #include<Core/EventSystem/EventManager.h>
-
+#include"../Input/WindowInput.h"
 namespace DM
 {
+	Input* Input::s_Inst = new WindowInput();
 	WinWindow::WinWindow(const WindowProps& Props)
 	{
 		m_WindowProps = Props;
@@ -25,6 +26,7 @@ namespace DM
 		glClear(GL_COLOR_BUFFER_BIT | GL_STENCIL_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		/*glfwSwapBuffers(GL_Window);
 		glfwPollEvents();*/
+		//LOG_Core_INFO("{},{}", Input::GetMousePos().x, Input::GetMousePos().y);
 	}
 
 	void WinWindow::Init(const WindowProps& Props)
@@ -60,7 +62,6 @@ namespace DM
 			(GL_Window,
 				[](GLFWwindow* window)
 				{
-					//LOG_Core_INFO("WindowClose");
 					WindowClose e;
 					e.Data.window = window;
 					EventManager::GetInst()->OnEvent(&e);

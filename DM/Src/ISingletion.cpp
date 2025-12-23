@@ -1,6 +1,7 @@
 #include"DMPCH.h"
 #include"ISingletion.h"
 #include<Core/EventSystem/EventManager.h>
+#include<Core/Input/Input.h>
 namespace DM
 {
     template <typename T>

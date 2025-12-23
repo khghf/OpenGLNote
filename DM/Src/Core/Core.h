@@ -1,12 +1,16 @@
 #pragma once
 #ifdef DM_PLATFORM_WINDOWS
-	#ifdef DM_BUILD_DLL
-		#define DM_API __declspec(dllexport)
-	#else
-		#define DM_API __declspec(dllimport)
-	#endif // DM_BUILD_DLL
-#else 
-	#error DM only support Windows
+	#if DM_DMNAMIC_LINK
+		#ifdef DM_BUILD_DLL
+			#define DM_API __declspec(dllexport)
+		#else
+			#define DM_API __declspec(dllimport)
+		#endif // DM_BUILD_DLL
+	#else 
+		#define DM_API
+	#endif // DM_DMNAMIC_LINK
+#else
+	#error DM only supports windows
 #endif // DM_PLATFORM_WINDOWS
 
 #define DM_ENABLE_ASSERT

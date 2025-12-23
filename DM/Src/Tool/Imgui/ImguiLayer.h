@@ -12,9 +12,12 @@ namespace DM
 		virtual void OnAttach()override;
 		virtual void OnDetach()override;
 		virtual void OnUpdate()override;
-		virtual void OnEvent(Event* const e)override;
+		//virtual void OnEvent(Event* const e)override;
 	protected:
-		bool OnKeyClicked(Event* const e);
+		void Begin();
+		void ImGuiRender();
+		void End();
+		/*bool OnKeyClicked(Event* const e);
 		bool OnKeyPressed(Event* const e);
 		bool OnKeyRepeated(Event* const e);
 		bool OnKeyReleased(Event* const e);
@@ -29,7 +32,7 @@ namespace DM
 		bool OnWindowResize(Event* const e);
 
 	protected:
-		void UpdateKeyModifiers(ImGuiIO& io, GLFWwindow* window);
+		void UpdateKeyModifiers(ImGuiIO& io, GLFWwindow* window);*/
 	private:
 		float m_Time = 0.f;
 	};

@@ -4,7 +4,7 @@ namespace DM
 {
 	enum class EEventType
 	{
-		Event,
+		None,Event,
 		MouseClick,MousePress,MouseRelease,MouseMove,MouseScroll,
 		KeyClick,KeyPress,KeyRelease,KeyRepeat,KeyTyped,
 		WindowResize,WindowClose,
