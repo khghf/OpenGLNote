@@ -1,7 +1,7 @@
 #pragma once
-#include<Core/DelegateSystem/DelegateTest.h>
-#include<Core/EventSystem/EventManager.h>
-//#include
+#include<Application.h>
+#include<regex>
+#include<string>
 #ifdef  DM_PLATFORM_WINDOWS
 extern DM::Application* DM::CreateApplication();
 int main(int argc, char** argv)

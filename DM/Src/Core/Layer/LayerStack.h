@@ -11,16 +11,16 @@ namespace DM
 		LayerStack();
 		~LayerStack();
 		void PushLayer(Layer* layer);
-		void PushOverlay(Layer* layer);
+		void PushOverLayer(Layer* layer);
 		void PopLayer(Layer* layer);
 		void PopOverlay(Layer* layer);
-		void Update();
+		void Update(float DeletaTime);
 		Array<Layer*>::iterator begin() { return m_Layers.begin(); }
 		Array<Layer*>::iterator end() { return m_Layers.end(); }
 		int Size()const { return m_Layers.size();}
 	private:
 		Array<Layer*>m_Layers;
-		Array<Layer*>::iterator m_LayerInsert;
+		int m_LayerInsert;
 	};
 }
 

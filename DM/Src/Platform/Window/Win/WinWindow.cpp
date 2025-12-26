@@ -7,6 +7,8 @@
 #include<Core/EventSystem/Event/KeyEvent.h>
 #include<Core/EventSystem/EventManager.h>
 #include"../Input/WindowInput.h"
+#include<Platform/Render/OpenGl/OpenGlContext.h>
+#include<GLFW/glfw3.h>
 namespace DM
 {
 	Input* Input::s_Inst = new WindowInput();
@@ -23,29 +25,34 @@ namespace DM
 
 	void WinWindow::Update(float DeltaTime)
 	{
-		glClear(GL_COLOR_BUFFER_BIT | GL_STENCIL_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		/*glfwSwapBuffers(GL_Window);
-		glfwPollEvents();*/
-		//LOG_Core_INFO("{},{}", Input::GetMousePos().x, Input::GetMousePos().y);
+		m_Context->SwapBuffers();
+	}
+
+	void WinWindow::SetVSync(bool bEnanle)
+	{
+		if (bEnanle)glfwSwapInterval(1);
+		else glfwSwapInterval(0);
+		bIsEnableVSync = bEnanle;
 	}
 
 	void WinWindow::Init(const WindowProps& Props)
 	{
 		glfwInit();
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 5);
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 		GL_Window = glfwCreateWindow(Props.Width, Props.Height, Props.Title.c_str(), nullptr, nullptr);
 		m_NativeWindow = GL_Window;
+		
 		if (GL_Window == nullptr)
 		{
-			DM_CORE_ASSERT(false,"Failed to Create GLFW Window");
+			DM_CORE_ASSERT(false, "{}", "Failed to Create GLFW Window");
 			glfwTerminate();
 		}
-		glfwMakeContextCurrent(GL_Window);
-		int GladStatus = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		m_Context = new OpenGlContext(GL_Window);
+		m_Context->Init();
+		SetVSync(true);
 		glfwSetInputMode(GL_Window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
-		DM_CORE_ASSERT(GladStatus, "Failed to initialze Glad");
 		{
 			//窗口大小回调
 			glfwSetWindowSizeCallback

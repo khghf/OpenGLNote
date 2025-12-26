@@ -11,7 +11,7 @@ namespace DM
 		virtual ~ImguiLayer();
 		virtual void OnAttach()override;
 		virtual void OnDetach()override;
-		virtual void OnUpdate()override;
+		virtual void OnUpdate(float DeltaTime)override;
 		//virtual void OnEvent(Event* const e)override;
 	protected:
 		void Begin();

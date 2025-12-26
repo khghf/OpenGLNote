@@ -14,6 +14,7 @@ ThirdPartIncludeDir["GLFW"]=ThirdPartBaseDir.."glfw/glfw/include"
 ThirdPartIncludeDir["GLAD"]=ThirdPartBaseDir.."glad/glad/include"
 ThirdPartIncludeDir["IMGUI"]=ThirdPartBaseDir.."imgui/imgui"
 ThirdPartIncludeDir["GLM"]=ThirdPartBaseDir.."glm/glm"
+ThirdPartIncludeDir["stb_image"]=ThirdPartBaseDir.."stb_image"
 include "DM/ThirdPart/glfw"
 include "DM/ThirdPart/glad"
 include "DM/ThirdPart/imgui"
@@ -30,7 +31,9 @@ project"DM"
 	pchsource"DM/Src/DMPCH.cpp"
 	files{
 		"%{prj.name}/Src/**.h",
-		"%{prj.name}/Src/**.cpp"
+		"%{prj.name}/Src/**.cpp",
+		"%{prj.name}/ThirdPart/stb_image/**.h",
+		"%{prj.name}/ThirdPart/stb_image/**.cpp",
 	}
 	includedirs{--���Ӱ���Ŀ¼
 		"%{ThirdPartIncludeDir.spdlog}",
@@ -38,6 +41,7 @@ project"DM"
 		"%{ThirdPartIncludeDir.GLAD}",
 		"%{ThirdPartIncludeDir.IMGUI}",
 		"%{ThirdPartIncludeDir.GLM}",
+		"%{ThirdPartIncludeDir.stb_image}",
 		"%{prj.name}/Src",
 	}
 	links{

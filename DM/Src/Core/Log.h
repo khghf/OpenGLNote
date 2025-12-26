@@ -1,10 +1,9 @@
 #pragma once
 #include"DMPCH.h"
 #include<spdlog/spdlog.h>
-#include"Core/Core.h"
 namespace DM
 {
-	class DM_API Log
+	class Log
 	{
 	public:
 		Log();

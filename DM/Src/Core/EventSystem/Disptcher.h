@@ -1,5 +1,5 @@
 #pragma once
-#include<DM.h>
+#include<Core/DelegateSystem/MultiDelegate.h>
 #include<ISingletion.h>
 #include"Listener.h"
 namespace DM

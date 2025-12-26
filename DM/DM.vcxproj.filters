@@ -1,199 +1,354 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Core">
-      <UniqueIdentifier>{2EB4837C-1AEB-840D-C3D7-6A10AFED000F}</UniqueIdentifier>
+    <Filter Include="Src">
+      <UniqueIdentifier>{0D23880B-792C-887C-02A8-9E7C6EB0937C}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\Container">
-      <UniqueIdentifier>{800D9E36-6CDB-913C-556F-026341DC6DA1}</UniqueIdentifier>
+    <Filter Include="Src\Core">
+      <UniqueIdentifier>{8537E246-7104-3D52-9A1D-2BFA864972E0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\DelegateSystem">
-      <UniqueIdentifier>{7D8E9C34-E9EF-7942-725D-C0F4DEBDB001}</UniqueIdentifier>
+    <Filter Include="Src\Core\Container">
+      <UniqueIdentifier>{97E9BDD1-83CD-7E27-EC2D-797AD83069A9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\EventSystem">
-      <UniqueIdentifier>{E4AE7F5F-D0A7-9EB1-F9D9-8336E5317EBD}</UniqueIdentifier>
+    <Filter Include="Src\Core\DelegateSystem">
+      <UniqueIdentifier>{F490ACFF-60C8-F496-69D2-58BAD5881B90}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\EventSystem\Event">
-      <UniqueIdentifier>{35CBADD9-21C5-D62B-0A32-6D3CF6CA3C98}</UniqueIdentifier>
+    <Filter Include="Src\Core\EventSystem">
+      <UniqueIdentifier>{BBEC0642-A77B-900B-509A-A4063C08A1B1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\Input">
-      <UniqueIdentifier>{AD4E7BCD-9906-BD1A-020E-9676EEE4570B}</UniqueIdentifier>
+    <Filter Include="Src\Core\EventSystem\Event">
+      <UniqueIdentifier>{4CCE178C-38DE-C35C-A197-287B8DC6B2F5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\Layer">
-      <UniqueIdentifier>{7A9BAACD-6653-EC1A-CF5A-C576BB31870B}</UniqueIdentifier>
+    <Filter Include="Src\Core\Input">
+      <UniqueIdentifier>{44B77A9C-3085-6EA2-1919-DFC805864A07}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\Math">
-      <UniqueIdentifier>{C7E5BF15-3350-748C-7C8E-2532E83752E1}</UniqueIdentifier>
+    <Filter Include="Src\Core\Layer">
+      <UniqueIdentifier>{1104AA9C-FDD1-9DA2-E665-0EC9D2D27907}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\Util">
-      <UniqueIdentifier>{3B98C415-A702-798C-F040-2A325CEA56E1}</UniqueIdentifier>
+    <Filter Include="Src\Core\Math">
+      <UniqueIdentifier>{7E179969-EAD7-14A0-B312-5E1D1F92597C}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Platform">
-      <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
+    <Filter Include="Src\Core\Render">
+      <UniqueIdentifier>{54CE2B40-C059-9904-C96A-1CF93575F504}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Platform\Render">
-      <UniqueIdentifier>{59B26923-C53D-D7E7-CE4E-5ADC3A5933E8}</UniqueIdentifier>
+    <Filter Include="Src\Core\Render\Camera">
+      <UniqueIdentifier>{4C7C0546-3876-2E98-21E3-C4A80D7C9404}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Platform\Window">
-      <UniqueIdentifier>{D1E05B2F-3D6C-C9F3-467D-4CE8B28725F4}</UniqueIdentifier>
+    <Filter Include="Src\Core\Render\Renderer">
+      <UniqueIdentifier>{7A7056EB-6695-A56B-8FE0-8AFB7B64A489}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Platform\Window\Input">
-      <UniqueIdentifier>{90291948-FC95-D442-C589-6CA031B5F6AA}</UniqueIdentifier>
+    <Filter Include="Src\Core\Render\Texture">
+      <UniqueIdentifier>{B407772D-203F-BFC4-2949-23E895FFE5BD}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Platform\Window\Win">
-      <UniqueIdentifier>{2E272D49-9A88-0A57-23F6-50098F564116}</UniqueIdentifier>
+    <Filter Include="Src\Platform">
+      <UniqueIdentifier>{011E97C6-ED80-266B-9606-5F218248F2ED}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Tool">
-      <UniqueIdentifier>{43068D7C-2F3D-8E0D-D829-7410C43F0A0F}</UniqueIdentifier>
+    <Filter Include="Src\Platform\Render">
+      <UniqueIdentifier>{50118522-BC72-6230-45E0-A8E2B14099EF}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Tool\Imgui">
-      <UniqueIdentifier>{CD694068-B921-82B5-2229-5B110E001DA6}</UniqueIdentifier>
+    <Filter Include="Src\Platform\Render\ImGui">
+      <UniqueIdentifier>{7A428951-E604-BDDB-2FB5-4B689BB695B9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Platform\Render\OpenGl">
+      <UniqueIdentifier>{A420F790-9030-A361-F9E9-0780E51892FA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Platform\Render\OpenGl\Buffer">
+      <UniqueIdentifier>{0D02444E-7970-99CD-C259-54CD2E078F69}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Platform\Render\OpenGl\Renderer">
+      <UniqueIdentifier>{CA5C4BF6-3616-B6A0-BF75-D07A2B2E6C10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Platform\Render\OpenGl\Texture">
+      <UniqueIdentifier>{04AA575C-F0E5-5AC6-59F8-72BD455303E1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Platform\Window">
+      <UniqueIdentifier>{C83F772E-34A1-543C-BD0E-9BEE296F8BFB}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Platform\Window\Input">
+      <UniqueIdentifier>{C7A53317-3368-67A1-7C18-F62DE819407F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Platform\Window\Win">
+      <UniqueIdentifier>{A5293D14-1161-85AB-1A6B-E9CE8621ACA4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Resource">
+      <UniqueIdentifier>{C4C3EDAD-B026-7D52-59AC-B50845EE48D5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Tool">
+      <UniqueIdentifier>{9A89EB46-8656-4652-AF6F-34FA9B9B7BE0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Tool\Imgui">
+      <UniqueIdentifier>{64D23F37-50A0-333D-3934-A46325A10FA2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Tool\Util">
+      <UniqueIdentifier>{27B1464F-9371-C285-5CAC-0B03C82B0762}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdPart">
+      <UniqueIdentifier>{B7397EC9-23A4-3240-6CE2-E3E5D88B1095}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdPart\stb_image">
+      <UniqueIdentifier>{11BB59B5-7D1C-37C3-068A-7D7572EA6D82}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Src\Application.h" />
+    <ClInclude Include="Src\Application.h">
+      <Filter>Src</Filter>
+    </ClInclude>
     <ClInclude Include="Src\Core\Container\Array.h">
-      <Filter>Core\Container</Filter>
+      <Filter>Src\Core\Container</Filter>
     </ClInclude>
     <ClInclude Include="Src\Core\Container\UnOrderedMap.h">
-      <Filter>Core\Container</Filter>
+      <Filter>Src\Core\Container</Filter>
     </ClInclude>
     <ClInclude Include="Src\Core\Container\UnOrderedSet.h">
-      <Filter>Core\Container</Filter>
+      <Filter>Src\Core\Container</Filter>
     </ClInclude>
     <ClInclude Include="Src\Core\Core.h">
-      <Filter>Core</Filter>
+      <Filter>Src\Core</Filter>
     </ClInclude>
     <ClInclude Include="Src\Core\DMType.h">
-      <Filter>Core</Filter>
+      <Filter>Src\Core</Filter>
     </ClInclude>
     <ClInclude Include="Src\Core\DelegateSystem\BaseDelegate.h">
-      <Filter>Core\DelegateSystem</Filter>
+      <Filter>Src\Core\DelegateSystem</Filter>
     </ClInclude>
     <ClInclude Include="Src\Core\DelegateSystem\DelegateHash.h">
-      <Filter>Core\DelegateSystem</Filter>
+      <Filter>Src\Core\DelegateSystem</Filter>
     </ClInclude>
     <ClInclude Include="Src\Core\DelegateSystem\DelegateInstance.h">
-      <Filter>Core\DelegateSystem</Filter>
+      <Filter>Src\Core\DelegateSystem</Filter>
     </ClInclude>
     <ClInclude Include="Src\Core\DelegateSystem\DelegateMacro.h">
-      <Filter>Core\DelegateSystem</Filter>
+      <Filter>Src\Core\DelegateSystem</Filter>
     </ClInclude>
     <ClInclude Include="Src\Core\DelegateSystem\DelegateTest.h">
-      <Filter>Core\DelegateSystem</Filter>
+      <Filter>Src\Core\DelegateSystem</Filter>
     </ClInclude>
     <ClInclude Include="Src\Core\DelegateSystem\MultiDelegate.h">
-      <Filter>Core\DelegateSystem</Filter>
+      <Filter>Src\Core\DelegateSystem</Filter>
     </ClInclude>
     <ClInclude Include="Src\Core\EventSystem\Disptcher.h">
-      <Filter>Core\EventSystem</Filter>
+      <Filter>Src\Core\EventSystem</Filter>
     </ClInclude>
     <ClInclude Include="Src\Core\EventSystem\Event\Event.h">
-      <Filter>Core\EventSystem\Event</Filter>
+      <Filter>Src\Core\EventSystem\Event</Filter>
     </ClInclude>
     <ClInclude Include="Src\Core\EventSystem\Event\KeyEvent.h">
-      <Filter>Core\EventSystem\Event</Filter>
+      <Filter>Src\Core\EventSystem\Event</Filter>
     </ClInclude>
     <ClInclude Include="Src\Core\EventSystem\Event\MouseEvent.h">
-      <Filter>Core\EventSystem\Event</Filter>
+      <Filter>Src\Core\EventSystem\Event</Filter>
     </ClInclude>
     <ClInclude Include="Src\Core\EventSystem\Event\WindowEvent.h">
-      <Filter>Core\EventSystem\Event</Filter>
+      <Filter>Src\Core\EventSystem\Event</Filter>
     </ClInclude>
     <ClInclude Include="Src\Core\EventSystem\EventManager.h">
-      <Filter>Core\EventSystem</Filter>
+      <Filter>Src\Core\EventSystem</Filter>
     </ClInclude>
     <ClInclude Include="Src\Core\EventSystem\Listener.h">
-      <Filter>Core\EventSystem</Filter>
+      <Filter>Src\Core\EventSystem</Filter>
     </ClInclude>
     <ClInclude Include="Src\Core\Input\Input.h">
-      <Filter>Core\Input</Filter>
+      <Filter>Src\Core\Input</Filter>
     </ClInclude>
     <ClInclude Include="Src\Core\Input\KeyCode.h">
-      <Filter>Core\Input</Filter>
+      <Filter>Src\Core\Input</Filter>
     </ClInclude>
     <ClInclude Include="Src\Core\Input\MouseButtonCode.h">
-      <Filter>Core\Input</Filter>
+      <Filter>Src\Core\Input</Filter>
     </ClInclude>
     <ClInclude Include="Src\Core\Layer\Layer.h">
-      <Filter>Core\Layer</Filter>
+      <Filter>Src\Core\Layer</Filter>
     </ClInclude>
     <ClInclude Include="Src\Core\Layer\LayerStack.h">
-      <Filter>Core\Layer</Filter>
+      <Filter>Src\Core\Layer</Filter>
     </ClInclude>
     <ClInclude Include="Src\Core\Log.h">
-      <Filter>Core</Filter>
+      <Filter>Src\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Core\Math\Matrix.h">
+      <Filter>Src\Core\Math</Filter>
     </ClInclude>
     <ClInclude Include="Src\Core\Math\Vector.h">
-      <Filter>Core\Math</Filter>
+      <Filter>Src\Core\Math</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Core\Util\Util.h">
-      <Filter>Core\Util</Filter>
+    <ClInclude Include="Src\Core\Render\Buffer.h">
+      <Filter>Src\Core\Render</Filter>
     </ClInclude>
-    <ClInclude Include="Src\DM.h" />
-    <ClInclude Include="Src\DMPCH.h" />
-    <ClInclude Include="Src\ISingletion.h" />
+    <ClInclude Include="Src\Core\Render\Camera\OrthoGraphicCamera.h">
+      <Filter>Src\Core\Render\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Core\Render\GraphicsContext.h">
+      <Filter>Src\Core\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Core\Render\Renderer\RenderCommand.h">
+      <Filter>Src\Core\Render\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Core\Render\Renderer\Renderer.h">
+      <Filter>Src\Core\Render\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Core\Render\Renderer\RendererAPI.h">
+      <Filter>Src\Core\Render\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Core\Render\Shader.h">
+      <Filter>Src\Core\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Core\Render\Texture\Texture.h">
+      <Filter>Src\Core\Render\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Core\Render\VertexArray.h">
+      <Filter>Src\Core\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Core\Window.h">
+      <Filter>Src\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\DM.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\DMPCH.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\ISingletion.h">
+      <Filter>Src</Filter>
+    </ClInclude>
     <ClInclude Include="Src\Platform\EntryPoint.h">
-      <Filter>Platform</Filter>
+      <Filter>Src\Platform</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Platform\Render\imgui_impl_glfw.h">
-      <Filter>Platform\Render</Filter>
+    <ClInclude Include="Src\Platform\Render\ImGui\imgui_impl_glfw.h">
+      <Filter>Src\Platform\Render\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Platform\Render\imgui_impl_opengl3.h">
-      <Filter>Platform\Render</Filter>
+    <ClInclude Include="Src\Platform\Render\ImGui\imgui_impl_opengl3.h">
+      <Filter>Src\Platform\Render\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Platform\Render\imgui_impl_opengl3_loader.h">
-      <Filter>Platform\Render</Filter>
+    <ClInclude Include="Src\Platform\Render\ImGui\imgui_impl_opengl3_loader.h">
+      <Filter>Src\Platform\Render\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Platform\Render\OpenGl\Buffer\OpenGlBuffer.h">
+      <Filter>Src\Platform\Render\OpenGl\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Platform\Render\OpenGl\OpenGlContext.h">
+      <Filter>Src\Platform\Render\OpenGl</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Platform\Render\OpenGl\OpenGlShader.h">
+      <Filter>Src\Platform\Render\OpenGl</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Platform\Render\OpenGl\OpenGlVertexArray.h">
+      <Filter>Src\Platform\Render\OpenGl</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Platform\Render\OpenGl\Renderer\OpenGlRendererAPI.h">
+      <Filter>Src\Platform\Render\OpenGl\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Platform\Render\OpenGl\Texture\OpenGlTexture.h">
+      <Filter>Src\Platform\Render\OpenGl\Texture</Filter>
     </ClInclude>
     <ClInclude Include="Src\Platform\Window\Input\WindowInput.h">
-      <Filter>Platform\Window\Input</Filter>
+      <Filter>Src\Platform\Window\Input</Filter>
     </ClInclude>
     <ClInclude Include="Src\Platform\Window\Win\WinWindow.h">
-      <Filter>Platform\Window\Win</Filter>
+      <Filter>Src\Platform\Window\Win</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Platform\Window\Window.h">
-      <Filter>Platform\Window</Filter>
+    <ClInclude Include="Src\Resource\Asset.h">
+      <Filter>Src\Resource</Filter>
     </ClInclude>
     <ClInclude Include="Src\Tool\Imgui\ImguiLayer.h">
-      <Filter>Tool\Imgui</Filter>
+      <Filter>Src\Tool\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Tool\Util\GameStatic.h">
+      <Filter>Src\Tool\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdPart\stb_image\stb_image.h">
+      <Filter>ThirdPart\stb_image</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Src\Application.cpp" />
+    <ClCompile Include="Src\Application.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
     <ClCompile Include="Src\Core\EventSystem\Event\Event.cpp">
-      <Filter>Core\EventSystem\Event</Filter>
+      <Filter>Src\Core\EventSystem\Event</Filter>
     </ClCompile>
     <ClCompile Include="Src\Core\EventSystem\EventManager.cpp">
-      <Filter>Core\EventSystem</Filter>
+      <Filter>Src\Core\EventSystem</Filter>
     </ClCompile>
     <ClCompile Include="Src\Core\Layer\Layer.cpp">
-      <Filter>Core\Layer</Filter>
+      <Filter>Src\Core\Layer</Filter>
     </ClCompile>
     <ClCompile Include="Src\Core\Layer\LayerStack.cpp">
-      <Filter>Core\Layer</Filter>
+      <Filter>Src\Core\Layer</Filter>
     </ClCompile>
     <ClCompile Include="Src\Core\Log.cpp">
-      <Filter>Core</Filter>
+      <Filter>Src\Core</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Core\Util\Util.cpp">
-      <Filter>Core\Util</Filter>
+    <ClCompile Include="Src\Core\Render\Buffer.cpp">
+      <Filter>Src\Core\Render</Filter>
     </ClCompile>
-    <ClCompile Include="Src\DMPCH.cpp" />
-    <ClCompile Include="Src\ISingletion.cpp" />
-    <ClCompile Include="Src\Platform\Render\imgui_impl_glfw.cpp">
-      <Filter>Platform\Render</Filter>
+    <ClCompile Include="Src\Core\Render\Camera\OrthoGraphicCamera.cpp">
+      <Filter>Src\Core\Render\Camera</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Platform\Render\imgui_impl_opengl3.cpp">
-      <Filter>Platform\Render</Filter>
+    <ClCompile Include="Src\Core\Render\Renderer\RenderCommand.cpp">
+      <Filter>Src\Core\Render\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Core\Render\Renderer\Renderer.cpp">
+      <Filter>Src\Core\Render\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Core\Render\Renderer\RendererAPI.cpp">
+      <Filter>Src\Core\Render\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Core\Render\Shader.cpp">
+      <Filter>Src\Core\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Core\Render\Texture\Texture.cpp">
+      <Filter>Src\Core\Render\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Core\Render\VertexArray.cpp">
+      <Filter>Src\Core\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\DMPCH.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\ISingletion.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Platform\Render\ImGui\imgui_impl_glfw.cpp">
+      <Filter>Src\Platform\Render\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Platform\Render\ImGui\imgui_impl_opengl3.cpp">
+      <Filter>Src\Platform\Render\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Platform\Render\OpenGl\Buffer\OpenGlBuffer.cpp">
+      <Filter>Src\Platform\Render\OpenGl\Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Platform\Render\OpenGl\OpenGlContext.cpp">
+      <Filter>Src\Platform\Render\OpenGl</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Platform\Render\OpenGl\OpenGlShader.cpp">
+      <Filter>Src\Platform\Render\OpenGl</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Platform\Render\OpenGl\OpenGlVertexArray.cpp">
+      <Filter>Src\Platform\Render\OpenGl</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Platform\Render\OpenGl\Renderer\OpenGlRendererAPI.cpp">
+      <Filter>Src\Platform\Render\OpenGl\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Platform\Render\OpenGl\Texture\OpenGlTexture.cpp">
+      <Filter>Src\Platform\Render\OpenGl\Texture</Filter>
     </ClCompile>
     <ClCompile Include="Src\Platform\Window\Input\WindowInput.cpp">
-      <Filter>Platform\Window\Input</Filter>
+      <Filter>Src\Platform\Window\Input</Filter>
     </ClCompile>
     <ClCompile Include="Src\Platform\Window\Win\WinWindow.cpp">
-      <Filter>Platform\Window\Win</Filter>
+      <Filter>Src\Platform\Window\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Resource\Asset.cpp">
+      <Filter>Src\Resource</Filter>
     </ClCompile>
     <ClCompile Include="Src\Tool\Imgui\ImguiLayer.cpp">
-      <Filter>Tool\Imgui</Filter>
+      <Filter>Src\Tool\Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Tool\Util\GameStatic.cpp">
+      <Filter>Src\Tool\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="ThirdPart\stb_image\stb_image.cpp">
+      <Filter>ThirdPart\stb_image</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

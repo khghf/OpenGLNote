@@ -5,13 +5,14 @@
 #include"Core/EventSystem/EventManager.h"
 #include"Tool/Imgui/ImguiLayer.h"
 #include<imgui.h>
-#include<Platform/Render/imgui_impl_opengl3.h>
-#include<Platform/Render/imgui_impl_glfw.h>
+#include<Platform/Render/ImGui/imgui_impl_glfw.h>
+#include<Platform/Render/ImGui/imgui_impl_opengl3.h>
+#include<glad/glad.h>
 namespace DM {
 	Application* Application::s_Inst = nullptr;
 	Application::Application()
 	{
-		DM_CORE_ASSERT(!s_Inst, "Application already exists");
+		DM_CORE_ASSERT(!s_Inst,"{}", "Application already exists");
 		s_Inst = this;
 		m_Win = Window::Create();
 		m_LayerStack = std::unique_ptr<LayerStack>(new LayerStack());
@@ -26,7 +27,7 @@ namespace DM {
 				LOG_Core_INFO("CloseWindow");
 			}
 		);
-		m_LayerStack->PushOverlay(new ImguiLayer());
+		m_LayerStack->PushOverLayer(new ImguiLayer());
 	}
 	Application::~Application()
 	{
@@ -35,27 +36,27 @@ namespace DM {
 	}
 	void Application::Run()
 	{
-		const float& CurrentTime = glfwGetTime();
-		float LastTime = 0.;
-		const float& DeltaTime = CurrentTime - LastTime;
-		LastTime = CurrentTime;
-		glClearColor(0.f, 0.f, 1.f, 1.f);
 		Start();
+		float CurrentTime =0.f;
+		float LastTime = 0.f;
 		while (m_bRunning)
 		{
-			glfwPollEvents();
-			m_Win->Update(DeltaTime);
+			CurrentTime = glfwGetTime();
+			const float& DeltaTime = CurrentTime - LastTime;
+			LastTime = CurrentTime;
 			Update(DeltaTime);
-			glfwSwapBuffers(m_Win->GetGlWindow());
 		}
 	}
 	void Application::Start()
 	{
+		glClearColor(0.2f, 0.2f, 0.2f, 1.f);
 
 	}
 	void Application::Update(float DeltaTime)
 	{
-		m_LayerStack->Update();
+		glfwPollEvents();
+		m_LayerStack->Update(DeltaTime);
+		m_Win->Update(DeltaTime);
 	}
 	void Application::OnExit()
 	{

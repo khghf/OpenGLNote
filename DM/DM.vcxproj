@@ -77,7 +77,7 @@
       <PrecompiledHeaderFile>DMPCH.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>DM_PLATFORM_WINDOWS;DM_BUILD_DLL;GLFW_INCLUDE_NONE;DM_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>ThirdPart\spdlog\include;ThirdPart\glfw\glfw\include;ThirdPart\glad\glad\include;ThirdPart\imgui\imgui;ThirdPart\glm\glm;Src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>ThirdPart\spdlog\include;ThirdPart\glfw\glfw\include;ThirdPart\glad\glad\include;ThirdPart\imgui\imgui;ThirdPart\glm\glm;ThirdPart\stb_image;Src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -99,7 +99,7 @@
       <PrecompiledHeaderFile>DMPCH.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>DM_PLATFORM_WINDOWS;DM_BUILD_DLL;GLFW_INCLUDE_NONE;DM_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>ThirdPart\spdlog\include;ThirdPart\glfw\glfw\include;ThirdPart\glad\glad\include;ThirdPart\imgui\imgui;ThirdPart\glm\glm;Src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>ThirdPart\spdlog\include;ThirdPart\glfw\glfw\include;ThirdPart\glad\glad\include;ThirdPart\imgui\imgui;ThirdPart\glm\glm;ThirdPart\stb_image;Src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -125,7 +125,7 @@
       <PrecompiledHeaderFile>DMPCH.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>DM_PLATFORM_WINDOWS;DM_BUILD_DLL;GLFW_INCLUDE_NONE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>ThirdPart\spdlog\include;ThirdPart\glfw\glfw\include;ThirdPart\glad\glad\include;ThirdPart\imgui\imgui;ThirdPart\glm\glm;Src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>ThirdPart\spdlog\include;ThirdPart\glfw\glfw\include;ThirdPart\glad\glad\include;ThirdPart\imgui\imgui;ThirdPart\glm\glm;ThirdPart\stb_image;Src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
@@ -165,19 +165,37 @@
     <ClInclude Include="Src\Core\Layer\Layer.h" />
     <ClInclude Include="Src\Core\Layer\LayerStack.h" />
     <ClInclude Include="Src\Core\Log.h" />
+    <ClInclude Include="Src\Core\Math\Matrix.h" />
     <ClInclude Include="Src\Core\Math\Vector.h" />
-    <ClInclude Include="Src\Core\Util\Util.h" />
+    <ClInclude Include="Src\Core\Render\Buffer.h" />
+    <ClInclude Include="Src\Core\Render\Camera\OrthoGraphicCamera.h" />
+    <ClInclude Include="Src\Core\Render\GraphicsContext.h" />
+    <ClInclude Include="Src\Core\Render\Renderer\RenderCommand.h" />
+    <ClInclude Include="Src\Core\Render\Renderer\Renderer.h" />
+    <ClInclude Include="Src\Core\Render\Renderer\RendererAPI.h" />
+    <ClInclude Include="Src\Core\Render\Shader.h" />
+    <ClInclude Include="Src\Core\Render\Texture\Texture.h" />
+    <ClInclude Include="Src\Core\Render\VertexArray.h" />
+    <ClInclude Include="Src\Core\Window.h" />
     <ClInclude Include="Src\DM.h" />
     <ClInclude Include="Src\DMPCH.h" />
     <ClInclude Include="Src\ISingletion.h" />
     <ClInclude Include="Src\Platform\EntryPoint.h" />
-    <ClInclude Include="Src\Platform\Render\imgui_impl_glfw.h" />
-    <ClInclude Include="Src\Platform\Render\imgui_impl_opengl3.h" />
-    <ClInclude Include="Src\Platform\Render\imgui_impl_opengl3_loader.h" />
+    <ClInclude Include="Src\Platform\Render\ImGui\imgui_impl_glfw.h" />
+    <ClInclude Include="Src\Platform\Render\ImGui\imgui_impl_opengl3.h" />
+    <ClInclude Include="Src\Platform\Render\ImGui\imgui_impl_opengl3_loader.h" />
+    <ClInclude Include="Src\Platform\Render\OpenGl\Buffer\OpenGlBuffer.h" />
+    <ClInclude Include="Src\Platform\Render\OpenGl\OpenGlContext.h" />
+    <ClInclude Include="Src\Platform\Render\OpenGl\OpenGlShader.h" />
+    <ClInclude Include="Src\Platform\Render\OpenGl\OpenGlVertexArray.h" />
+    <ClInclude Include="Src\Platform\Render\OpenGl\Renderer\OpenGlRendererAPI.h" />
+    <ClInclude Include="Src\Platform\Render\OpenGl\Texture\OpenGlTexture.h" />
     <ClInclude Include="Src\Platform\Window\Input\WindowInput.h" />
     <ClInclude Include="Src\Platform\Window\Win\WinWindow.h" />
-    <ClInclude Include="Src\Platform\Window\Window.h" />
+    <ClInclude Include="Src\Resource\Asset.h" />
     <ClInclude Include="Src\Tool\Imgui\ImguiLayer.h" />
+    <ClInclude Include="Src\Tool\Util\GameStatic.h" />
+    <ClInclude Include="ThirdPart\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Application.cpp" />
@@ -186,16 +204,32 @@
     <ClCompile Include="Src\Core\Layer\Layer.cpp" />
     <ClCompile Include="Src\Core\Layer\LayerStack.cpp" />
     <ClCompile Include="Src\Core\Log.cpp" />
-    <ClCompile Include="Src\Core\Util\Util.cpp" />
+    <ClCompile Include="Src\Core\Render\Buffer.cpp" />
+    <ClCompile Include="Src\Core\Render\Camera\OrthoGraphicCamera.cpp" />
+    <ClCompile Include="Src\Core\Render\Renderer\RenderCommand.cpp" />
+    <ClCompile Include="Src\Core\Render\Renderer\Renderer.cpp" />
+    <ClCompile Include="Src\Core\Render\Renderer\RendererAPI.cpp" />
+    <ClCompile Include="Src\Core\Render\Shader.cpp" />
+    <ClCompile Include="Src\Core\Render\Texture\Texture.cpp" />
+    <ClCompile Include="Src\Core\Render\VertexArray.cpp" />
     <ClCompile Include="Src\DMPCH.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Src\ISingletion.cpp" />
-    <ClCompile Include="Src\Platform\Render\imgui_impl_glfw.cpp" />
-    <ClCompile Include="Src\Platform\Render\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="Src\Platform\Render\ImGui\imgui_impl_glfw.cpp" />
+    <ClCompile Include="Src\Platform\Render\ImGui\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="Src\Platform\Render\OpenGl\Buffer\OpenGlBuffer.cpp" />
+    <ClCompile Include="Src\Platform\Render\OpenGl\OpenGlContext.cpp" />
+    <ClCompile Include="Src\Platform\Render\OpenGl\OpenGlShader.cpp" />
+    <ClCompile Include="Src\Platform\Render\OpenGl\OpenGlVertexArray.cpp" />
+    <ClCompile Include="Src\Platform\Render\OpenGl\Renderer\OpenGlRendererAPI.cpp" />
+    <ClCompile Include="Src\Platform\Render\OpenGl\Texture\OpenGlTexture.cpp" />
     <ClCompile Include="Src\Platform\Window\Input\WindowInput.cpp" />
     <ClCompile Include="Src\Platform\Window\Win\WinWindow.cpp" />
+    <ClCompile Include="Src\Resource\Asset.cpp" />
     <ClCompile Include="Src\Tool\Imgui\ImguiLayer.cpp" />
+    <ClCompile Include="Src\Tool\Util\GameStatic.cpp" />
+    <ClCompile Include="ThirdPart\stb_image\stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="ThirdPart\glfw\GLFW.vcxproj">

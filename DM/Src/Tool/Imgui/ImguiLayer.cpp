@@ -1,8 +1,8 @@
 #include "DMPCH.h"
 #include "ImguiLayer.h"
 #include<imgui.h>
-#include<Platform/Render/imgui_impl_opengl3.h>
-#include<Platform/Render/imgui_impl_glfw.h>
+#include<Platform/Render/ImGui/imgui_impl_glfw.h>
+#include<Platform/Render/ImGui/imgui_impl_opengl3.h>
 #include<GLFW/glfw3.h>
 #include<glad/glad.h>
 #include<Application.h>
@@ -31,7 +31,7 @@ namespace DM
 		io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
 		io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 		ImGui_ImplGlfw_InitForOpenGL(Application::GetInst()->GetWindow()->GetGlWindow(), true);
-		ImGui_ImplOpenGL3_Init("#version 410");
+		ImGui_ImplOpenGL3_Init("#version 450");
 		LOG_Core_INFO("ImGui version:{}", ImGui::GetVersion());
 	}
 	void ImguiLayer::OnDetach()
@@ -40,7 +40,7 @@ namespace DM
 		ImGui_ImplGlfw_Shutdown();
 		ImGui::DestroyContext();
 	}
-	void ImguiLayer::OnUpdate()
+	void ImguiLayer::OnUpdate(float DeltaTime)
 	{
 		ImGuiIO& IO = ImGui::GetIO();
 		IO.DisplaySize = ImVec2(Application::GetInst()->GetWindow()->Width(), Application::GetInst()->GetWindow()->Height());

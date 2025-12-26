@@ -1,7 +1,6 @@
 #pragma once
-#include"../Window.h"
-#include<glad/glad.h>
-#include<GLFW/glfw3.h>
+#include<Core/Window.h>
+
 #ifdef DM_PLATFORM_WINDOWS
 namespace DM
 {
@@ -13,7 +12,7 @@ namespace DM
 		virtual void Update(float DeltaTime)override;
 		virtual GLFWwindow* GetGlWindow()const { return static_cast<GLFWwindow*>(GetNativeWindow()); }
 		virtual void* GetNativeWindow()const { return m_NativeWindow; };
-
+		virtual void SetVSync(bool bEnanle) override;
 	private:
 		virtual void Init(const WindowProps& Props)override;
 		void ShutDown();
@@ -21,6 +20,7 @@ namespace DM
 	private:
 		GLFWwindow* GL_Window;
 		void* m_NativeWindow;
+		class GraphicsContext* m_Context=nullptr;
 	};
 }
 #endif // DM_PLATFORM_WINDOW
