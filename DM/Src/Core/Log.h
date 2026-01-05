@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include"DMPCH.h"
 #include<spdlog/spdlog.h>
 namespace DM
@@ -16,11 +16,11 @@ namespace DM
 		static std::shared_ptr<spdlog::logger>ClientLogger;
 	};
 }
-#define LOG_Core_TRACE(...)	::DM::Log::GetCoreLogger()->trace		(__VA_ARGS__)
-#define LOG_Core_INFO(...)	::DM::Log::GetCoreLogger()->info		(__VA_ARGS__)
-#define LOG_Core_WARN(...)	::DM::Log::GetCoreLogger()->warn		(__VA_ARGS__)
-#define LOG_Core_ERROR(...)	::DM::Log::GetCoreLogger()->error		(__VA_ARGS__)
-#define LOG_Core_FATAL(...)	::DM::Log::GetCoreLogger()->critical	(__VA_ARGS__)
+#define LOG_CORE_TRACE(...)	::DM::Log::GetCoreLogger()->trace		(__VA_ARGS__)
+#define LOG_CORE_INFO(...)	::DM::Log::GetCoreLogger()->info		(__VA_ARGS__)
+#define LOG_CORE_WARN(...)	::DM::Log::GetCoreLogger()->warn		(__VA_ARGS__)
+#define LOG_CORE_ERROR(...)	::DM::Log::GetCoreLogger()->error		(__VA_ARGS__)
+#define LOG_CORE_FATAL(...)	::DM::Log::GetCoreLogger()->critical	(__VA_ARGS__)
 
 #define LOG_TRACE(...)		::DM::Log::GetClientLogger()->trace		(__VA_ARGS__)
 #define LOG_INFO(...)		::DM::Log::GetClientLogger()->info		(__VA_ARGS__)

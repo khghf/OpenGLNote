@@ -1,5 +1,5 @@
-#pragma once
-#include<Core/Core.h>
+﻿#pragma once
+#include<string_view>
 namespace DM
 {
 	enum class EEventType
@@ -17,9 +17,10 @@ namespace DM
 		KeyEvent,
 		WindowEvent
 	};
-	class DM_API Event
+	class  Event
 	{
 	public:
+		virtual ~Event() = default;
 		struct FEventData {};
 		FEventData Data;
 		std::string_view Name = "Event";
@@ -31,7 +32,7 @@ namespace DM
 		virtual EEventType GetType()const = 0;
 		inline static constexpr EEventCategory GetStaticCategory(){ return EEventCategory::Event; }
 		virtual EEventCategory GetCategory()const{ return GetStaticCategory(); }
-		virtual ~Event()=default;
+		bool IsInCategory(EEventCategory category)const { return category == GetCategory(); }
 	protected:
 		static constexpr EEventType Type = EEventType::Event;
 	};

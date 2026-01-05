@@ -1,4 +1,4 @@
-#include<DMPCH.h>
+﻿#include<DMPCH.h>
 #include "Shader.h"
 #include"Renderer/Renderer.h"
 #include<Platform/Render/OpenGl/OpenGlShader.h>
@@ -12,39 +12,25 @@ namespace DM
 	Shader::~Shader()
 	{
 	}
-	Shader* Shader::Create(std::string_view vsCodePath, std::string_view fsCodePath)
+	Ref<Shader> Shader::Create(const std::string_view& name,const std::string_view& vsCode, const std::string_view &fsCode)
 	{
 		switch (Renderer::GetAPI())
 		{
-		case RendererAPI::EAPI::None:
-			DM_CORE_ASSERT(false, "{}", "RendererAPI::None is currently not supported!");
-			return nullptr;
-			break;
-		case RendererAPI::EAPI::OpenGl:
-			return new OpenGlShader(vsCodePath, fsCodePath);
-			break;
-		default:
-			DM_CORE_ASSERT(false, "{}", "UnKnown RendererAPI!");
-			break;
+		case RendererAPI::EAPI::None: DM_CORE_ASSERT(false, "{}", "RendererAPI::None is currently not supported!"); return nullptr;
+		case RendererAPI::EAPI::OpenGl:return std::make_shared<OpenGlShader>(name, vsCode, fsCode);
 		}
-		return nullptr;
+		DM_CORE_ASSERT(false, "{}", "UnKnown RendererAPI!");
+		return Ref<Shader>();
 	}
-	Shader* Shader::Create(std::string_view glslCodePath)
+	Ref<Shader> Shader::Create(const std::string_view& glslCodePath)
 	{
 		switch (Renderer::GetAPI())
 		{
-		case RendererAPI::EAPI::None:
-			DM_CORE_ASSERT(false, "{}", "RendererAPI::None is currently not supported!");
-			return nullptr;
-			break;
-		case RendererAPI::EAPI::OpenGl:
-			return new OpenGlShader(glslCodePath);
-			break;
-		default:
-			DM_CORE_ASSERT(false, "{}", "UnKnown RendererAPI!");
-			break;
+		case RendererAPI::EAPI::None:DM_CORE_ASSERT(false, "{}", "RendererAPI::None is currently not supported!"); return nullptr;
+		case RendererAPI::EAPI::OpenGl:return std::make_shared<OpenGlShader>(glslCodePath); break;
 		}
-		return nullptr;
+		DM_CORE_ASSERT(false, "{}", "UnKnown RendererAPI!");
+		return Ref<Shader>();
 	}
 }
 

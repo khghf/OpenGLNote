@@ -25,6 +25,9 @@
     <Filter Include="Src\Core\Layer">
       <UniqueIdentifier>{1104AA9C-FDD1-9DA2-E665-0EC9D2D27907}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Core\MMM">
+      <UniqueIdentifier>{9B89A7D4-87EC-3679-3072-6F2F1CB402FC}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Src\Core\Math">
       <UniqueIdentifier>{7E179969-EAD7-14A0-B312-5E1D1F92597C}</UniqueIdentifier>
     </Filter>
@@ -33,6 +36,9 @@
     </Filter>
     <Filter Include="Src\Core\Render\Camera">
       <UniqueIdentifier>{4C7C0546-3876-2E98-21E3-C4A80D7C9404}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Core\Render\FrameBuffer">
+      <UniqueIdentifier>{6809985A-D416-C640-5DFD-C12BC90992F7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Src\Core\Render\Renderer">
       <UniqueIdentifier>{7A7056EB-6695-A56B-8FE0-8AFB7B64A489}</UniqueIdentifier>
@@ -54,6 +60,9 @@
     </Filter>
     <Filter Include="Src\Platform\Render\OpenGl\Buffer">
       <UniqueIdentifier>{0D02444E-7970-99CD-C259-54CD2E078F69}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Platform\Render\OpenGl\FrameBuffer">
+      <UniqueIdentifier>{B853A172-A4A5-7862-8DC4-B57279B5914B}</UniqueIdentifier>
     </Filter>
     <Filter Include="Src\Platform\Render\OpenGl\Renderer">
       <UniqueIdentifier>{CA5C4BF6-3616-B6A0-BF75-D07A2B2E6C10}</UniqueIdentifier>
@@ -85,6 +94,9 @@
     <Filter Include="ThirdPart">
       <UniqueIdentifier>{B7397EC9-23A4-3240-6CE2-E3E5D88B1095}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ThirdPart\json">
+      <UniqueIdentifier>{E07BB80C-CC49-AC12-B5DD-1C39A14A8877}</UniqueIdentifier>
+    </Filter>
     <Filter Include="ThirdPart\stb_image">
       <UniqueIdentifier>{11BB59B5-7D1C-37C3-068A-7D7572EA6D82}</UniqueIdentifier>
     </Filter>
@@ -103,9 +115,6 @@
       <Filter>Src\Core\Container</Filter>
     </ClInclude>
     <ClInclude Include="Src\Core\Core.h">
-      <Filter>Src\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Core\DMType.h">
       <Filter>Src\Core</Filter>
     </ClInclude>
     <ClInclude Include="Src\Core\DelegateSystem\BaseDelegate.h">
@@ -165,6 +174,9 @@
     <ClInclude Include="Src\Core\Log.h">
       <Filter>Src\Core</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Core\MMM\Reference.h">
+      <Filter>Src\Core\MMM</Filter>
+    </ClInclude>
     <ClInclude Include="Src\Core\Math\Matrix.h">
       <Filter>Src\Core\Math</Filter>
     </ClInclude>
@@ -174,8 +186,17 @@
     <ClInclude Include="Src\Core\Render\Buffer.h">
       <Filter>Src\Core\Render</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Core\Render\Camera\Camera.h">
+      <Filter>Src\Core\Render\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Core\Render\Camera\CameraController.h">
+      <Filter>Src\Core\Render\Camera</Filter>
+    </ClInclude>
     <ClInclude Include="Src\Core\Render\Camera\OrthoGraphicCamera.h">
       <Filter>Src\Core\Render\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Core\Render\FrameBuffer\FrameBuffer.h">
+      <Filter>Src\Core\Render\FrameBuffer</Filter>
     </ClInclude>
     <ClInclude Include="Src\Core\Render\GraphicsContext.h">
       <Filter>Src\Core\Render</Filter>
@@ -186,17 +207,29 @@
     <ClInclude Include="Src\Core\Render\Renderer\Renderer.h">
       <Filter>Src\Core\Render\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Core\Render\Renderer\Renderer2D.h">
+      <Filter>Src\Core\Render\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="Src\Core\Render\Renderer\RendererAPI.h">
       <Filter>Src\Core\Render\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="Src\Core\Render\Shader.h">
       <Filter>Src\Core\Render</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Core\Render\Texture\SubTexture2D.h">
+      <Filter>Src\Core\Render\Texture</Filter>
+    </ClInclude>
     <ClInclude Include="Src\Core\Render\Texture\Texture.h">
+      <Filter>Src\Core\Render\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Core\Render\Texture\TextureAtlas.h">
       <Filter>Src\Core\Render\Texture</Filter>
     </ClInclude>
     <ClInclude Include="Src\Core\Render\VertexArray.h">
       <Filter>Src\Core\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Core\Serialization.h">
+      <Filter>Src\Core</Filter>
     </ClInclude>
     <ClInclude Include="Src\Core\Window.h">
       <Filter>Src\Core</Filter>
@@ -205,9 +238,6 @@
       <Filter>Src</Filter>
     </ClInclude>
     <ClInclude Include="Src\DMPCH.h">
-      <Filter>Src</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\ISingletion.h">
       <Filter>Src</Filter>
     </ClInclude>
     <ClInclude Include="Src\Platform\EntryPoint.h">
@@ -225,6 +255,9 @@
     <ClInclude Include="Src\Platform\Render\OpenGl\Buffer\OpenGlBuffer.h">
       <Filter>Src\Platform\Render\OpenGl\Buffer</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Platform\Render\OpenGl\FrameBuffer\OpenGlFrameBuffer.h">
+      <Filter>Src\Platform\Render\OpenGl\FrameBuffer</Filter>
+    </ClInclude>
     <ClInclude Include="Src\Platform\Render\OpenGl\OpenGlContext.h">
       <Filter>Src\Platform\Render\OpenGl</Filter>
     </ClInclude>
@@ -240,20 +273,32 @@
     <ClInclude Include="Src\Platform\Render\OpenGl\Texture\OpenGlTexture.h">
       <Filter>Src\Platform\Render\OpenGl\Texture</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Platform\Window\Input\WindowInput.h">
-      <Filter>Src\Platform\Window\Input</Filter>
-    </ClInclude>
     <ClInclude Include="Src\Platform\Window\Win\WinWindow.h">
       <Filter>Src\Platform\Window\Win</Filter>
     </ClInclude>
     <ClInclude Include="Src\Resource\Asset.h">
       <Filter>Src\Resource</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Tool\Imgui\ImguiLayer.h">
+    <ClInclude Include="Src\Resource\AssetManager.h">
+      <Filter>Src\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Resource\AssetRegistry.h">
+      <Filter>Src\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Tool\ISingletion.h">
+      <Filter>Src\Tool</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Tool\Imgui\ImGuiLayer.h">
       <Filter>Src\Tool\Imgui</Filter>
     </ClInclude>
     <ClInclude Include="Src\Tool\Util\GameStatic.h">
       <Filter>Src\Tool\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Tool\Util\TimeMeasurer.h">
+      <Filter>Src\Tool\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdPart\json\json.hpp">
+      <Filter>ThirdPart\json</Filter>
     </ClInclude>
     <ClInclude Include="ThirdPart\stb_image\stb_image.h">
       <Filter>ThirdPart\stb_image</Filter>
@@ -281,13 +326,25 @@
     <ClCompile Include="Src\Core\Render\Buffer.cpp">
       <Filter>Src\Core\Render</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Core\Render\Camera\Camera.cpp">
+      <Filter>Src\Core\Render\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Core\Render\Camera\CameraController.cpp">
+      <Filter>Src\Core\Render\Camera</Filter>
+    </ClCompile>
     <ClCompile Include="Src\Core\Render\Camera\OrthoGraphicCamera.cpp">
       <Filter>Src\Core\Render\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Core\Render\FrameBuffer\FrameBuffer.cpp">
+      <Filter>Src\Core\Render\FrameBuffer</Filter>
     </ClCompile>
     <ClCompile Include="Src\Core\Render\Renderer\RenderCommand.cpp">
       <Filter>Src\Core\Render\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="Src\Core\Render\Renderer\Renderer.cpp">
+      <Filter>Src\Core\Render\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Core\Render\Renderer\Renderer2D.cpp">
       <Filter>Src\Core\Render\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="Src\Core\Render\Renderer\RendererAPI.cpp">
@@ -296,16 +353,19 @@
     <ClCompile Include="Src\Core\Render\Shader.cpp">
       <Filter>Src\Core\Render</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Core\Render\Texture\SubTexture2D.cpp">
+      <Filter>Src\Core\Render\Texture</Filter>
+    </ClCompile>
     <ClCompile Include="Src\Core\Render\Texture\Texture.cpp">
+      <Filter>Src\Core\Render\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Core\Render\Texture\TextureAtlas.cpp">
       <Filter>Src\Core\Render\Texture</Filter>
     </ClCompile>
     <ClCompile Include="Src\Core\Render\VertexArray.cpp">
       <Filter>Src\Core\Render</Filter>
     </ClCompile>
     <ClCompile Include="Src\DMPCH.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\ISingletion.cpp">
       <Filter>Src</Filter>
     </ClCompile>
     <ClCompile Include="Src\Platform\Render\ImGui\imgui_impl_glfw.cpp">
@@ -316,6 +376,9 @@
     </ClCompile>
     <ClCompile Include="Src\Platform\Render\OpenGl\Buffer\OpenGlBuffer.cpp">
       <Filter>Src\Platform\Render\OpenGl\Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Platform\Render\OpenGl\FrameBuffer\OpenGlFrameBuffer.cpp">
+      <Filter>Src\Platform\Render\OpenGl\FrameBuffer</Filter>
     </ClCompile>
     <ClCompile Include="Src\Platform\Render\OpenGl\OpenGlContext.cpp">
       <Filter>Src\Platform\Render\OpenGl</Filter>
@@ -341,10 +404,22 @@
     <ClCompile Include="Src\Resource\Asset.cpp">
       <Filter>Src\Resource</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Tool\Imgui\ImguiLayer.cpp">
+    <ClCompile Include="Src\Resource\AssetManager.cpp">
+      <Filter>Src\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Resource\AssetRegistry.cpp">
+      <Filter>Src\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Tool\ISingletion.cpp">
+      <Filter>Src\Tool</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Tool\Imgui\ImGuiLayer.cpp">
       <Filter>Src\Tool\Imgui</Filter>
     </ClCompile>
     <ClCompile Include="Src\Tool\Util\GameStatic.cpp">
+      <Filter>Src\Tool\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Tool\Util\TimeMeasurer.cpp">
       <Filter>Src\Tool\Util</Filter>
     </ClCompile>
     <ClCompile Include="ThirdPart\stb_image\stb_image.cpp">

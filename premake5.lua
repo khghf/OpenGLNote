@@ -1,6 +1,6 @@
-workspace "DM"--�����������
+﻿workspace "DM"
 	architecture"x64"--x64ƽ̨
-	configurations{--����ѡ��
+	configurations{
 		"Debug",
 		"Release",
 		"Dist"
@@ -15,33 +15,38 @@ ThirdPartIncludeDir["GLAD"]=ThirdPartBaseDir.."glad/glad/include"
 ThirdPartIncludeDir["IMGUI"]=ThirdPartBaseDir.."imgui/imgui"
 ThirdPartIncludeDir["GLM"]=ThirdPartBaseDir.."glm/glm"
 ThirdPartIncludeDir["stb_image"]=ThirdPartBaseDir.."stb_image"
-include "DM/ThirdPart/glfw"
-include "DM/ThirdPart/glad"
-include "DM/ThirdPart/imgui"
---include"ThirdPart/glm"
+ThirdPartIncludeDir["json"]=ThirdPartBaseDir.."json"
+group "Dependencies"
+	include "DM/ThirdPart/glfw"
+	include "DM/ThirdPart/glad"
+	include "DM/ThirdPart/imgui"
+group""
 project"DM"
-	location"DM"--��Ŀ���ŵ�λ��(����ڽ������)
+	location"DM"
 	kind"StaticLib"
 	language"C++"
 	staticruntime"on"
-	buildoptions"/utf-8"--c/c++ ������������ѡ��
-	targetdir("bin/"..outputdir.."/%{prj.name}")--���Ŀ¼
-	objdir("bin-int/"..outputdir.."/%{prj.name}")--obj�ļ����Ŀ¼
-	pchheader"DMPCH.h"
+	buildoptions"/utf-8"
+	targetdir("bin/"..outputdir.."/%{prj.name}")
+	objdir("bin-int/"..outputdir.."/%{prj.name}")
+	pchheader"DMPCH.h"	
 	pchsource"DM/Src/DMPCH.cpp"
 	files{
 		"%{prj.name}/Src/**.h",
 		"%{prj.name}/Src/**.cpp",
 		"%{prj.name}/ThirdPart/stb_image/**.h",
 		"%{prj.name}/ThirdPart/stb_image/**.cpp",
+		"%{prj.name}/ThirdPart/json/**.hpp",
+		"%{prj.name}/ThirdPart/json/**.cpp",
 	}
-	includedirs{--���Ӱ���Ŀ¼
+	includedirs{
 		"%{ThirdPartIncludeDir.spdlog}",
 		"%{ThirdPartIncludeDir.GLFW}",
 		"%{ThirdPartIncludeDir.GLAD}",
 		"%{ThirdPartIncludeDir.IMGUI}",
 		"%{ThirdPartIncludeDir.GLM}",
 		"%{ThirdPartIncludeDir.stb_image}",
+		"%{ThirdPartIncludeDir.json}",
 		"%{prj.name}/Src",
 	}
 	links{
@@ -53,24 +58,61 @@ project"DM"
 	filter"system:windows"
 		cppdialect"C++17"
 		systemversion"latest"
-		defines{--Ԥ�������ĺ궨��
+		defines{
 		
 			"DM_PLATFORM_WINDOWS",
 			"DM_BUILD_DLL",
 			"GLFW_INCLUDE_NONE"
 		}
-		-- postbuildcommands{--�󹹽�����
-		
+		-- postbuildcommands{
 		-- 	("{COPY} %{cfg.buildtarget.relpath} ../bin/"..outputdir.."/Game")
 		-- }
 	filter"configurations:Debug"
 		defines"DM_DEBUG"
 		runtime"Debug"
-		symbols"on"--������ʽ
+		symbols"on"
 	filter"configurations:Release"
 		defines"DM_RELEASE"
 		runtime"Release"
-		optimize"on"--�����Ż�
+		optimize"on"
+project"Editor"
+	location"Editor"
+	kind"ConsoleApp"
+	language"C++"
+	cppdialect"C++17"
+	staticruntime"on"
+	buildoptions"/utf-8"
+	targetdir("bin/"..outputdir.."/%{prj.name}")	
+	objdir("bin-int/"..outputdir.."/%{prj.name}")
+	files{
+		"%{prj.name}/Src/**.h",
+		"%{prj.name}/Src/**.cpp"
+	}
+	includedirs{
+		"%{ThirdPartIncludeDir.spdlog}",
+		"%{ThirdPartIncludeDir.GLM}",
+		"%{ThirdPartIncludeDir.GLFW}",
+		"%{ThirdPartIncludeDir.IMGUI}",
+		"DM/Src"
+	}
+	links{
+		"DM"
+	}
+	filter"system:windows"
+		staticruntime"on"
+		systemversion"latest"
+		defines{
+			"DM_PLATFORM_WINDOWS"
+		}
+	filter"configurations:Debug"
+		defines"DM_DEBUG"
+		runtime"Debug"
+		symbols"on"
+	filter"configurations:Release"
+		defines"DM_RELEASE"
+		runtime"Release"
+		optimize"on"
+
 project"Game"
 	location"Game"
 	kind"ConsoleApp"

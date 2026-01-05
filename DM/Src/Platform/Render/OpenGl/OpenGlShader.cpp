@@ -1,4 +1,4 @@
-#include<DMPCH.h>
+ï»¿#include<DMPCH.h>
 #include "OpenGLShader.h"
 #include<glad/glad.h>
 #include<Tool/Util/GameStatic.h>
@@ -21,10 +21,14 @@ namespace DM
 	}
 	OpenGlShader::OpenGlShader(const std::string_view& glslCodePath)
 	{
-		const std::string glslCode = GameStatic::LoadText(glslCodePath.data());
+		this->m_Path = glslCodePath;
+		this->m_Name = GameStatic::ConvertPathToName(glslCodePath.data());
+
+		const std::string glslCode = GameStatic::LoadText(this->m_Path);
 		std::unordered_map<std::string, std::string>type_Code = ProcessGLSLCode(glslCode);
 		GLuint ID = glCreateProgram();
 		std::vector<GLuint>shaderIDs;
+		shaderIDs.reserve(type_Code.size());
 		for (const auto& it : type_Code)
 		{
 			shaderIDs.push_back(CreateShader(it.second, StringToOpenGlShaderType(it.first)));
@@ -39,25 +43,22 @@ namespace DM
 		}
 	}
 
-	OpenGlShader::OpenGlShader(std::string_view VsCode, std::string_view FsCode)
+	OpenGlShader::OpenGlShader(const std::string_view& name, const std::string_view& vsCode, const std::string_view& fsCode)
 	{
-		CreateShader(VsCode, EShaderType::VS);
+		this->m_Name = name;
+		CreateShader(vsCode, EShaderType::VS);
 		uint32_t VsID = this->m_Id;
-		CreateShader(FsCode, EShaderType::FS);
+		CreateShader(fsCode, EShaderType::FS);
 		uint32_t FsID = this->m_Id;
 		CreateProgram(VsID, FsID);
-		this->Type = EShaderType::PS;
+		this->m_Type = EShaderType::PS;
 	}
 
-	OpenGlShader::OpenGlShader(const unsigned int& VSID, const unsigned int& FSID, const std::string& Name)
-	{
-		this->Type = EShaderType::PS;
-		CreateProgram(VSID, FSID);
-	}
+	
 
 	OpenGlShader::~OpenGlShader()
 	{
-		if (Type == EShaderType::PS)
+		if (m_Type == EShaderType::PS)
 		{
 			glDeleteProgram(this->m_Id);
 		}
@@ -96,7 +97,7 @@ namespace DM
 	{
 		const unsigned int& Id = shader.GetID();
 		GLint Type;
-		glGetShaderiv(Id, GL_SHADER_TYPE, &Type);//²éÑ¯ÀàĞÍ
+		glGetShaderiv(Id, GL_SHADER_TYPE, &Type);//æŸ¥è¯¢ç±»å‹
 		GLint Success = GL_FALSE;
 		auto PrintLog = [=]() {
 			GLint LogLength = 0;
@@ -109,7 +110,7 @@ namespace DM
 			};
 		if (Type == GL_VERTEX_SHADER)
 		{
-			glGetShaderiv(Id, GL_COMPILE_STATUS, &Success);//»ñÈ¡±àÒë×´Ì¬
+			glGetShaderiv(Id, GL_COMPILE_STATUS, &Success);//è·å–ç¼–è¯‘çŠ¶æ€
 			if (Success == GL_FALSE)
 			{
 				PrintLog();
@@ -118,7 +119,7 @@ namespace DM
 		}
 		else if (Type == GL_FRAGMENT_SHADER)
 		{
-			glGetShaderiv(Id, GL_COMPILE_STATUS, &Success);//»ñÈ¡±àÒë×´Ì¬
+			glGetShaderiv(Id, GL_COMPILE_STATUS, &Success);//è·å–ç¼–è¯‘çŠ¶æ€
 			if (Success == GL_FALSE)
 			{
 				PrintLog();
@@ -151,7 +152,7 @@ namespace DM
 			delete[] InfoLog;
 			GLint attached;
 			glGetProgramiv(Id, GL_ATTACHED_SHADERS, &attached);
-			std::cout << "¸½¼Óºó×ÅÉ«Æ÷ÊıÁ¿£º" << attached << std::endl;
+			std::cout << "é™„åŠ åç€è‰²å™¨æ•°é‡ï¼š" << attached << std::endl;
 			return false;
 		}
 		return true;
@@ -159,19 +160,10 @@ namespace DM
 	std::unordered_map<std::string, std::string> OpenGlShader::ProcessGLSLCode(const std::string& glslCode)
 	{
 		std::string content = glslCode;
-		content = std::regex_replace(content, std::regex(R"(/\*[\s\S]*(\*/))",std::regex::nosubs), "");	//É¾³ı¶àĞĞ×¢ÊÍ  /**/
-		content = std::regex_replace(content, std::regex(R"(//.*)", std::regex::nosubs), "");					//É¾³ıµ¥ĞĞ×¢ÊÍ  //
+		content = std::regex_replace(content, std::regex(R"(/\*[\s\S]*(\*/))",std::regex::nosubs), "");	//åˆ é™¤å¤šè¡Œæ³¨é‡Š  /**/
+		content = std::regex_replace(content, std::regex(R"(//.*)", std::regex::nosubs), "");			//åˆ é™¤å•è¡Œæ³¨é‡Š  //
 		
 		std::unordered_map<std::string, std::string>res;
-		/*std::regex re(R"(#type\s+(vertex|fragment)([\s\S]*)(?!=#type|$))");
-		std::sregex_iterator it(content.begin(), content.end(), re);
-		std::sregex_iterator end;
-		while (it != end)
-		{
-			std::smatch match = *it;
-			res[match[1].str()] = match[2].str();
-			++it;
-		}*/
 		std::regex re(R"(#type\s+(vertex|fragment))");
 		std::sregex_token_iterator it_code(content.begin(), content.end(), re, -1);
 		std::sregex_token_iterator end_code;

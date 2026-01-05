@@ -1,10 +1,10 @@
-#pragma once
+﻿#pragma once
 #include<memory>
 #include<Core/Core.h>
 namespace DM
 {
 	template<typename T>
-	class DM_API ISingletion
+	class  ISingletion
 	{
 	public:
 		static T* GetInst()

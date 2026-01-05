@@ -1,4 +1,4 @@
-#include "DMPCH.h"
+﻿#include "DMPCH.h"
 #include "LayerStack.h"
 namespace DM
 {
@@ -55,13 +55,21 @@ namespace DM
 	}
 	void LayerStack::Update(float DeletaTime)
 	{
-		/*for (int i = m_Layers.size() - 1; i >= 0; --i)
-		{
-			m_Layers[i]->OnUpdate(DeletaTime);
-		}*/
 		for (const auto layer : m_Layers)
 		{
 			layer->OnUpdate(DeletaTime);
+		}
+		for (const auto layer : m_Layers)
+		{
+			layer->Begin();
+		}
+		for (const auto layer : m_Layers)
+		{
+			layer->Render();
+		}
+		for (const auto layer : m_Layers)
+		{
+			layer->End();
 		}
 	}
 }

@@ -1,4 +1,4 @@
-#include "DMPCH.h"
+ï»¿#include "DMPCH.h"
 #ifdef DM_PLATFORM_WINDOWS
 #include "WinWindow.h"
 #include"Core/Log.h"
@@ -6,12 +6,11 @@
 #include<Core/EventSystem/Event/MouseEvent.h>
 #include<Core/EventSystem/Event/KeyEvent.h>
 #include<Core/EventSystem/EventManager.h>
-#include"../Input/WindowInput.h"
 #include<Platform/Render/OpenGl/OpenGlContext.h>
 #include<GLFW/glfw3.h>
+#include<Core/Render/Renderer/RenderCommand.h>
 namespace DM
 {
-	Input* Input::s_Inst = new WindowInput();
 	WinWindow::WinWindow(const WindowProps& Props)
 	{
 		m_WindowProps = Props;
@@ -43,7 +42,6 @@ namespace DM
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 		GL_Window = glfwCreateWindow(Props.Width, Props.Height, Props.Title.c_str(), nullptr, nullptr);
 		m_NativeWindow = GL_Window;
-		
 		if (GL_Window == nullptr)
 		{
 			DM_CORE_ASSERT(false, "{}", "Failed to Create GLFW Window");
@@ -51,17 +49,18 @@ namespace DM
 		}
 		m_Context = new OpenGlContext(GL_Window);
 		m_Context->Init();
+		RenderCommand::SetViewport(Props.Width, Props.Height);
 		SetVSync(true);
 		glfwSetInputMode(GL_Window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 		{
-			//´°¿Ú´óÐ¡»Øµ÷
+			//çª—å£å¤§å°å›žè°ƒ
 			glfwSetWindowSizeCallback
 			(GL_Window, 
 				[](GLFWwindow* window, int width, int height) 
 				{ 
 					static WindowResize e;
-					e.Data.size.x = width;
-					e.Data.size.y = height;
+					e.Data.size.x = (float)width;
+					e.Data.size.y = (float)height;
 					EventManager::GetInst()->OnEvent(&e);
 				}
 			);
@@ -74,7 +73,7 @@ namespace DM
 					EventManager::GetInst()->OnEvent(&e);
 				}
 			);
-			//Êó±ê°´¼ü»Øµ÷
+			//é¼ æ ‡æŒ‰é”®å›žè°ƒ
 			glfwSetMouseButtonCallback
 			(GL_Window,
 				[](GLFWwindow* window, int button, int action, int mods)
@@ -90,8 +89,8 @@ namespace DM
 							e->Data.button = button;
 							e->Data.action = action;
 							e->Data.mods = mods;
-							e->Data.pos.x = x;
-							e->Data.pos.y = y;
+							e->Data.pos.x = (float)x;
+							e->Data.pos.y = (float)y;
 						};
 					if (LastAction == GLFW_PRESS && action == GLFW_RELEASE)
 					{
@@ -123,18 +122,18 @@ namespace DM
 					LastAction = action;
 				}
 			);
-			//Êó±ê¹öÂÖ»Øµ÷
+			//é¼ æ ‡æ»šè½®å›žè°ƒ
 			glfwSetScrollCallback
 			(GL_Window,
 				[](GLFWwindow* window, double xoffset, double yoffset)
 				{
 					static MouseScroll e;
-					e.Data.offset.x = xoffset;
-					e.Data.offset.y = yoffset;
+					e.Data.offset.x = (float)xoffset;
+					e.Data.offset.y = (float)yoffset;
 					EventManager::GetInst()->OnEvent(&e);
 				}
 			);
-			//¼üÅÌ°´¼ü»Øµ÷
+			//é”®ç›˜æŒ‰é”®å›žè°ƒ
 			glfwSetKeyCallback
 			(GL_Window,
 				[](GLFWwindow* window, int key, int scancode, int action, int mods)
@@ -196,14 +195,14 @@ namespace DM
 					EventManager::GetInst()->OnEvent(&e);
 				}
 			);
-			//¹â±êÒÆ¶¯»Øµ÷
+			//å…‰æ ‡ç§»åŠ¨å›žè°ƒ
 			glfwSetCursorPosCallback
 			(GL_Window,
 				[](GLFWwindow* window, double xpos, double ypos)
 				{
 					static MouseMove e;
-					e.Data.pos.x = xpos;
-					e.Data.pos.y = ypos;
+					e.Data.pos.x = (float)xpos;
+					e.Data.pos.y = (float)ypos;
 					EventManager::GetInst()->OnEvent(&e);
 				}
 			);

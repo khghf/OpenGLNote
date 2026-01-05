@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include<DMPCH.h>
 //#include"BaseDelegate.h"
 //#include"MultiDelegate.h"
@@ -90,12 +90,12 @@
 //	md.Add(MultiDelegateFun_Test3);
 //	auto a = []()
 //	{
-//		std::cout << "Lambda±í´ïÊ½" << std::endl;
+//		std::cout << "Lambdaè¡¨è¾¾å¼" << std::endl;
 //	};
 //	md.Add(a);
 //	md.Add(a);
-//	/*md.Add([]() {std::cout << "Lambda±í´ïÊ½" << std::endl;});
-//	md.Add([]() {std::cout << "Lambda±í´ïÊ½" << std::endl; });*/
+//	/*md.Add([]() {std::cout << "Lambdaè¡¨è¾¾å¼" << std::endl;});
+//	md.Add([]() {std::cout << "Lambdaè¡¨è¾¾å¼" << std::endl; });*/
 //	std::shared_ptr<MebFunTest>mebtest=std::make_shared<MebFunTest>();
 //	md.Add(mebtest, &MebFunTest::MultiDelegateTest);
 //	//md.Add(mebtest, &MebFunTest::MultiDelegateTest);

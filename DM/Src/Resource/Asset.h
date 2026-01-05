@@ -1,11 +1,11 @@
-#pragma once
+ï»¿#pragma once
 #include<string>
 namespace DM
 {
-	enum class EAssetsCategory :uint8_t//×ÊÔ´ÀàĞÍ
+	enum class EAssetsCategory :uint8_t//èµ„æºç±»å‹
 	{
 		Asset,
-		Texture,
+		Texture, Texture2D,
 		Shader,
 	};
 	class Asset
@@ -13,14 +13,12 @@ namespace DM
 	public:
 		Asset() = default;
 		virtual ~Asset() = default;
-		std::string GetName()const;
+		std::string GetName()const { return m_Name; };
+		std::string GetPath()const { return m_Path; };
 	public:
 		constexpr static EAssetsCategory s_AssetsCategory = EAssetsCategory::Asset;
 	protected:
 		std::string m_Name;
-		//std::string m_Path;
-	protected:
-
-
+		std::string m_Path;
 	};
 }

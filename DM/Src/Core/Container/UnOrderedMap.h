@@ -1,9 +1,9 @@
-#pragma once
+ï»¿#pragma once
 #include<DMPCH.h>
 template<
     typename Key,
     typename Val,
-    typename Hash = std::hash<Key>,        // Ä¬ÈÏ¹þÏ£º¯Êý£¨ºÍ std::unordered_map Ò»ÖÂ£©
-    typename Com = std::equal_to<Key>      // Ä¬ÈÏ¼ü±È½Ïº¯Êý£¨ºÍ std::unordered_map Ò»ÖÂ£©
+    typename Hash = std::hash<Key>,        // é»˜è®¤å“ˆå¸Œå‡½æ•°ï¼ˆå’Œ std::unordered_map ä¸€è‡´ï¼‰
+    typename Com = std::equal_to<Key>      // é»˜è®¤é”®æ¯”è¾ƒå‡½æ•°ï¼ˆå’Œ std::unordered_map ä¸€è‡´ï¼‰
 >
 using UnOrderedMap = std::unordered_map<Key, Val, Hash, Com>;

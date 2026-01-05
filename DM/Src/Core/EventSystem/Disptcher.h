@@ -1,6 +1,6 @@
-#pragma once
+ï»¿#pragma once
 #include<Core/DelegateSystem/MultiDelegate.h>
-#include<ISingletion.h>
+#include<Tool/ISingletion.h>
 #include"Listener.h"
 namespace DM
 {
@@ -10,49 +10,53 @@ namespace DM
 	public:
 		Disptcher() = default;
 		explicit Disptcher(Event* const e) :m_e(e) {}
-		//·Ö·¢¸øÖ¸¶¨ÀàĞÍÊÂ¼şµÄµ¥¸ö¼àÌım_e
-		template<class T,class LambdaType>
-		void Disptch(LambdaType&&Lam)
+		//åˆ†å‘ç»™æŒ‡å®šç±»å‹äº‹ä»¶çš„å•ä¸ªç›‘å¬DisptchTarget lambda
+		template<class SpecifiedEvent,class LambdaType>
+		void DisptchSpecifiedEvent(LambdaType&&Lam)
 		{
 			DisptchTarget.Bind(std::forward<LambdaType>(Lam));
-			if (T::GetStaticType() == m_e->GetType())
+			if (SpecifiedEvent::GetStaticType() == m_e->GetType())
 			{
-				m_e->bHandled = DisptchTarget.Execute(m_e);
+				DisptchTarget.Execute(m_e);
 			}
 		}
-		template<class T>
-		void Disptch(bool(*Fun)(Event*const))
+		//åˆ†å‘ç»™æŒ‡å®šç±»å‹äº‹ä»¶çš„å•ä¸ªç›‘å¬DisptchTarget å‡½æ•°æŒ‡é’ˆ
+		template<class SpecifiedEvent>
+		void DisptchSpecifiedEvent(void(*Fun)(Event*const))
 		{
 			DisptchTarget.Bind(Fun);
-			if (T::GetStaticType() == e->GetType())
+			if (SpecifiedEvent::GetStaticType() == e->GetType())
 			{
-				m_e->bHandled = DisptchTarget.Execute(m_e);
+				DisptchTarget.Execute(m_e);
 			}
 		}
 	private:
-		//·Ö·¢¸øÖ¸¶¨ÀàĞÍÊÂ¼şµÄËùÓĞ¼àÌıEventToMD
+		//åˆ†å‘ç»™æŒ‡å®šç±»å‹äº‹ä»¶çš„æ‰€æœ‰ç›‘å¬EventToMD
 		void OnEvent(Event* const e)
 		{
-			auto it = EventToMD.find(e->GetType());
+			/*auto it = EventToMD.find(e->GetType());
 			if (it == EventToMD.end())return;
-			it->second.BroadCast(e);
+			it->second.BroadCast(e);*/
+			MD.BroadCast(e);
 		}
-		template<class EventClass>
+		//template<class EventClass>
 		void AddListener(Listener&&l)
 		{
-			auto it = EventToMD.find(EventClass::GetStaticType());
-			EventToMD[EventClass::GetStaticType()].Add(static_cast<BaseDelegate<void(Event* const)>>(l));
+			//EventToMD[EventClass::GetStaticType()].Add(static_cast<BaseDelegate<void(Event* const)>>(l));
+			MD.Add(static_cast<BaseDelegate<void(Event* const)>>(l));
 		}
-		template<class EventClass>
+		//template<class EventClass>
 		void RemoveListener(Listener l)
 		{
-			auto it = EventToMD.find(EventClass::GetStaticType());
+			/*auto it = EventToMD.find(EventClass::GetStaticType());
 			if (it == EventToMD.end())return;
-			it->second.Remove(l);
+			it->second.Remove(l);*/
+			MD.Remove(l);
 		}
 	private:
 		Event* m_e=nullptr;
-		BaseDelegate<bool(Event* const)>DisptchTarget;
-		UnOrderedMap<EEventType, MultiDelegate<void(Event* const)>>EventToMD;
+		BaseDelegate<void(Event* const)>DisptchTarget;
+		//UnOrderedMap<EEventType, MultiDelegate<void(Event* const)>>EventToMD;
+		MultiDelegate<void(Event* const)>MD;
 	};
 }

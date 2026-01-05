@@ -1,6 +1,6 @@
 {
-  "Asset":{
-    "ShaderFolder": "../Src/Shader",
-    "TextureFolder": "../Src/Texture"
+  "Asset": {
+    "ShaderFolder": "../Assert/Shader",
+    "TextureFolder": "../Assert/Texture"
   }
 }

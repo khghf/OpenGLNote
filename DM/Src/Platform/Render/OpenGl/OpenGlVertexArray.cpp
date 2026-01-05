@@ -1,8 +1,11 @@
-#include<DMPCH.h>
+ï»¿#include<DMPCH.h>
 #include "OpenGlVertexArray.h"
 #include<Tool/Util/GameStatic.h>
 #include<Core/Log.h>
 #include<glad/glad.h>
+#include<Core/MMM/Reference.h>
+#include<Tool/Util/TimeMeasurer.h>
+
 namespace DM
 {
 	static GLenum ShaderDataTypeToOpenGlType(ShaderDataType type)
@@ -51,13 +54,27 @@ namespace DM
 		int location = 0;
 		for (const auto& Element : layout)
 		{
-			glVertexAttribPointer(
-				location,
-				Element.GetComponentCount(), 
-				ShaderDataTypeToOpenGlType(Element.Type), 
-				Element.bNormailzed ? GL_TRUE : GL_FALSE, 
-				layout.GetStride(), 
-				(void*)Element.Offset);
+			if (ShaderDataTypeToOpenGlType(Element.Type) == GL_INT)
+			{
+				glVertexAttribIPointer(
+					location,
+					Element.GetComponentCount(),
+					ShaderDataTypeToOpenGlType(Element.Type),
+					layout.GetStride(),
+					reinterpret_cast<void*>(Element.Offset)
+				);
+			}
+			else
+			{
+				glVertexAttribPointer(
+					location,
+					Element.GetComponentCount(),
+					ShaderDataTypeToOpenGlType(Element.Type),
+					Element.bNormailzed ? GL_TRUE : GL_FALSE,
+					layout.GetStride(),
+					reinterpret_cast<void*>(Element.Offset)
+				);
+			}
 			glEnableVertexAttribArray(location);
 			++location;
 		}
@@ -69,59 +86,5 @@ namespace DM
 		indexBuffer->Bind();
 		m_IndexBuffer = indexBuffer;
 	}
-	//VertexArray::VertexArray()
-	//{
-	//	glGenVertexArrays(1, &Id);
-	//}
-	//void VertexArray::Render(unsigned int DrawMode)
-	//{
-	//	if (IBO)
-	//	{
-	//		RenderIndex(DrawMode);
-	//	}
-	//	else
-	//	{
-	//		RenderVertex(DrawMode);
-	//	}
-	//}
-	//void VertexArray::RenderVertex(unsigned int DrawMode)
-	//{
-	//	DM_CORE_ASSERT(VBO, "VertexArray£ºVBO is invalid");
-	//	Bind();
-	//	glDrawArrays(DrawMode, 0, VBO->GetBufferDateSize());
-	//}
-	//void VertexArray::RenderIndex(unsigned int DrawMode)
-	//{
-	//	DM_CORE_ASSERT(IBO, "VertexArray£ºVBO is invalid");
-	//	Bind();
-	//	glDrawElements(DrawMode, IBO->GetBufferDateSize(), GL_UNSIGNED_INT, 0);
-	//}
-	//void VertexArray::AddVertexAttributeConfig(const std::vector<VertexAttribute>& Attributes)
-	//{
-	//	Bind();
-	//	for (int i = 0; i < Attributes.size(); ++i)
-	//	{
-	//		const auto& [Location, Type, ComponentCount, bNormalized, Stride, Offset] = Attributes[i];
-	//		const auto Nor = bNormalized ? GL_TRUE : GL_FALSE;
-	//		switch (Type)
-	//		{
-	//		case VertexAttribute::UShort:
-	//		case VertexAttribute::Int:
-	//		case VertexAttribute::UInt:
-	//		case VertexAttribute::Byte:
-	//			//ÅäÖÃÕûÊýÐÍ¶¥µãÊôÐÔ£¬Êý¾ÝÒÔÔ­Ê¼ÕûÊýÐÎÊ½´«µÝ¸ø×ÅÉ«Æ÷£¨²»×ª»»Îª¸¡µã£©£¬ÊÊÓÃÓÚÐèÒª±£ÁôÕûÊýÔ­ÖµµÄ³¡¾°
-	//			glVertexAttribIPointer(Location, ComponentCount, Type, Stride, reinterpret_cast<void*>(Offset));
-	//			break;
-	//		case VertexAttribute::Float:
-	//			//ÅäÖÃ¸¡µãÐÍ¶¥µãÊôÐÔ,¸æËß OpenGL ÈçºÎ´Ó VBO ÖÐ¶ÁÈ¡Êý¾Ý
-	//			glVertexAttribPointer(Location, ComponentCount, Type, Nor, Stride, reinterpret_cast<void*>(Offset));
-	//			break;
-	//		default:
-	//			break;
-	//		}
-	//		glEnableVertexAttribArray(Location); //ÆôÓÃ×´Ì¬»á±»µ±Ç°°ó¶¨µÄ VAO ¼ÇÂ¼£¬°ó¶¨ VAO Ê±»á×Ô¶¯»Ö¸´ÆôÓÃ×´Ì¬¡£
-	//	}
-	//	UnBind();
-	//}
 }
 

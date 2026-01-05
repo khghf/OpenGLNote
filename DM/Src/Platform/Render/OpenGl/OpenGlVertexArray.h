@@ -1,110 +1,8 @@
-#pragma once
+ï»¿#pragma once
 #include<Core/Render/VertexArray.h>
+#include<Core/MMM/Reference.h>
 namespace DM
 {
-	//struct VertexAttribute
-	//{
-	//	enum ComponentType {
-	//		UShort = GL_UNSIGNED_SHORT,
-	//		Int = GL_INT,
-	//		UInt = GL_UNSIGNED_INT,
-	//		Byte = GL_BYTE,
-	//		Float = GL_FLOAT,
-	//	};
-	//	unsigned int Location = -1;//¶ÔÓ¦×ÅÉ«Æ÷ÖĞµÄ location
-	//	unsigned int Type; //Êı¾İÀàĞÍ£¨Èç GL_FLOAT£©
-	//	uint8_t ComponentCount;//×ÜµÄ·ÖÁ¿Êı(1`4,vec1~vec4)
-	//	bool bNormalized = false;//ÊÇ·ñ¹éÒ»»¯
-	//	int32_t Stride;//²½³¤£¨Á½¸ö¶¥µãµÄÍ¬ÊôĞÔÖ®¼äµÄ×Ö½Ú¾àÀë£©¡£
-	//	//ÀıÈç{Î»ÖÃ1£º1£¬1£¬1£¬ÑÕÉ«£º5£¬5£¬0£¬Î»ÖÃ2£º2£¬2£¬2£¬ÑÕÉ«£º6£¬6£¬0}
-	//	//Î»ÖÃ1µ½Î»ÖÃ2¾ÍÊÇ6
-	//	uint32_t Offset;
-	//	//@Location ¶ÔÓ¦×ÅÉ«Æ÷ÖĞµÄLayout(Location=xx)
-	//	//@ComponentCount,¶¥µãÊôĞÔµÄ·ÖÁ¿¸öÊıÈçLayout(Location=xx)vec3,¾ÍÊÇ3
-	//	//@Type,¶¥µãÊôĞÔ·ÖÁ¿µÄÊı¾İÀàĞÍ£¬Èçvec3(1.0,1.0,1.0)¾ÍÊÇGL_FLOAT
-	//	//@Stride,Í¬Ò»ÀàĞÍµÄ¶¥µãÊôĞÔÖ®¼äµÄ²½³¤£¬×¢ÒâÕâÀïÖ¸µÄÊÇ×Ö½ÚÊı
-	//	//		Layout(Location=0)vec3Î»ÖÃ
-	//	//		Layout(Location=1)vec2ÎÆÀí×ø±ê
-	//	//		Èç¹ûÒ»¸öÊı×éÍ¬Ê±´æ´¢ÕâÁ½ÖÖÊı¾İÈç¹ûÊÇfloatÄÇÃ´¾ÍÓ¦¸ÃÊÇ5*sizeof(float)
-	//	//@Offset£¬Êı¾İ¿ªÊ¼Î»ÖÃ£¬
-	//	//		Layout(Location = 0)vec3Î»ÖÃ
-	//	//		Layout(Location=1)vec2ÎÆÀí×ø±ê
-	//	//		ÔÚÖ¸¶¨ÎÆÀí×ø±ê²¼¾ÖÊ±ÄÇÃ´ÆäOffsetÎª3
-	//	VertexAttribute(GLuint Location, uint8_t ComponentCount, GLenum Type, int32_t Stride, uint32_t Offset) :
-	//		Location(Location),
-	//		ComponentCount(ComponentCount),
-	//		Type(Type),
-	//		bNormalized(false),
-	//		Stride(Stride),
-	//		Offset(Offset)
-	//	{
-	//	}
-	//};
-	//class VertexArray
-	//{
-	//private:
-	//	uint32_t Id = 0;
-	//	std::shared_ptr<VertexBuffer>VBO;
-	//	std::shared_ptr<IndexBuffer>IBO;
-	//public:
-	//	VertexArray();
-	//	~VertexArray() {}
-	//	template<typename T>
-	//	explicit VertexArray(const std::vector<T>& Vertex, bool bDynamic = false);//Ö¸¶¨¶¥µãÊı¾İ
-	//	template<typename VertexT, typename IndexT>
-	//	explicit VertexArray(const std::vector<VertexT>& Vertex, const std::vector<IndexT>& Index, bool bDynamic = false);//Ö¸¶¨¶¥µã¡¢Ë÷ÒıÊı¾İ
-	//	inline void Bind()
-	//	{
-	//		glBindVertexArray(Id);
-	//		if (VBO)VBO->Bind();
-	//		if (IBO)IBO->Bind();
-	//	}
-	//	inline void UnBind()
-	//	{
-	//		glBindVertexArray(0);
-	//	}
-	//	void Render(unsigned int DrawMode = GL_TRIANGLES);
-	//	void RenderVertex(unsigned int DrawMode = GL_TRIANGLES);
-	//	void RenderIndex(unsigned int DrawMode = GL_TRIANGLES);//Ä¬ÈÏ»æÖÆÈı½ÇĞÎ
-	//	void AddVertexAttributeConfig(const std::vector<VertexAttribute>& Attributes);
-	//};
-	//template<typename T>
-	//inline VertexArray::VertexArray(const std::vector<T>& Vertex, bool bDynamic)
-	//{
-	//	glGenVertexArrays(1, &Id);
-	//	VBO = std::make_shared<VertexBuffer>(GL_ARRAY_BUFFER);
-	//	Bind();
-	//	if (bDynamic)
-	//	{
-	//		VBO->BufferDynamicData(Vertex);
-	//	}
-	//	else
-	//	{
-	//		VBO->BufferStaticData(Vertex);
-	//	}
-	//	UnBind();
-	//}
-	//template<typename VertexT, typename IndexT>
-	//inline VertexArray::VertexArray(const std::vector<VertexT>& Vertex, const std::vector<IndexT>& Index, bool bDynamic)
-	//{
-	//	glGenVertexArrays(1, &Id);
-	//	//´´½¨»º³åÇø
-	//	VBO = std::make_shared<VertexBuffer>();
-	//	IBO = std::make_shared<IndexBuffer>();
-	//	//°ó¶¨²¢Ìî³äÊı¾İ
-	//	Bind();
-	//	if (bDynamic)
-	//	{
-	//		VBO->BufferDynamicData(Vertex);
-	//		IBO->BufferDynamicData(Index);
-	//	}
-	//	else
-	//	{
-	//		VBO->BufferStaticData(Vertex);
-	//		IBO->BufferStaticData(Index);
-	//	}
-	//	UnBind();
-	//}
 	class OpenGlVertexArray :public VertexArray
 	{
 	public:
@@ -114,7 +12,7 @@ namespace DM
 		virtual void UnBind()override;
 		virtual void AddVertexBuffer(const Ref<VertexBuffer>& vertexBuffer) override;
 		virtual void SetIndexBuffer(const Ref<IndexBuffer>& indexBuffer) override;
-		virtual const Array<Ref<VertexBuffer>>& GetVertexBuffer(const Ref<VertexBuffer>& vertexBuffer)const override { return m_VertexBuffers; }
+		virtual const Array<Ref<VertexBuffer>>& GetVertexBuffer()const override { return m_VertexBuffers; }
 		virtual const Ref<IndexBuffer>& GetIndexBuffer()const override { return m_IndexBuffer; }
 	private:
 		Array<Ref<VertexBuffer>>m_VertexBuffers;

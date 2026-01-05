@@ -1,7 +1,14 @@
-#pragma once
+ï»¿#pragma once
 #include<DMPCH.h>
+#include <typeindex>
 namespace DM
 {
+    template <typename T>
+    inline size_t hash_combine(const size_t& seed, const T& val) {
+        std::hash<T> hasher;
+        size_t res = hasher(val) + 0x9e3779b9 + (seed << 6) + (seed >> 2);
+        return res;
+    }
     template<typename T>
     struct FTypeHash
     {
@@ -23,16 +30,12 @@ namespace DM
     {
         size_t operator()(const T& lambda)const
         {
-            size_t TypeHash = std::hash<std::string_view>()(typeid(T).name());
+            size_t TypeHash = FTypeHash<T>()();
             size_t Obj_Hash = std::hash<std::uintptr_t>()(reinterpret_cast<std::uintptr_t>(&lambda));
             return hash_combine(TypeHash, Obj_Hash);
         }
     };
-    template <typename T>
-    size_t hash_combine(const size_t& seed, const T& val) {
-        std::hash<T> hasher;
-        return hasher(val) + 0x9e3779b9 + (seed << 6) + (seed >> 2);
-    }
+   
 
     template<typename Class, typename Ret, typename ...Args>
     struct FMebFunHash
@@ -40,7 +43,7 @@ namespace DM
         size_t operator()(Ret(Class::* MebFun)(Args...))const
         {
             size_t seed = FTypeHash<Class>()();
-            // ¹şÏ£³ÉÔ±º¯ÊıÖ¸ÕëµÄÃ¿¸ö×Ö½ÚµØÖ·
+            // å“ˆå¸Œæˆå‘˜å‡½æ•°æŒ‡é’ˆçš„æ¯ä¸ªå­—èŠ‚åœ°å€
             using MebFunType = Ret(Class::*)(Args...);
             static_assert(std::is_trivially_copyable_v<MebFunType>,
                 "Member function pointer must be trivially copyable");
@@ -48,7 +51,7 @@ namespace DM
             hash_combine(seed, *ptr);
             return seed;
         }
-        // ÖØÔØ£ºÖ§³Öconst³ÉÔ±º¯Êı
+        // é‡è½½ï¼šæ”¯æŒconstæˆå‘˜å‡½æ•°
         size_t operator()(Ret(Class::* MebFun)(Args...) const) const {
             size_t seed = FTypeHash<Class>()();
             using MebFunType = Ret(Class::*)(Args...) const;

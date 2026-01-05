@@ -1,17 +1,17 @@
-#pragma once
+﻿#pragma once
 #include"Event.h"
 #include<Core/Math/Vector.h>
 struct GLFWwindow;
 namespace DM
 {
-	class DM_API WindowEvent :public Event
+	class  WindowEvent :public Event
 	{
 	public:
 		WindowEvent() = default;
 		inline static constexpr EEventCategory GetStaticCategory() { return EEventCategory::WindowEvent; }
 		virtual EEventCategory GetCategory()const { return GetStaticCategory(); }
 	};
-	class DM_API WindowResize :public WindowEvent
+	class  WindowResize :public WindowEvent
 	{
 	public:
 		struct FEventData
@@ -25,7 +25,7 @@ namespace DM
 	private:
 		static constexpr EEventType Type = EEventType::WindowResize;
 	};
-	class DM_API WindowClose :public WindowEvent
+	class  WindowClose :public WindowEvent
 	{
 	public:
 		struct FEventData

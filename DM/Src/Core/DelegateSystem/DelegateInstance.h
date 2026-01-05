@@ -1,6 +1,6 @@
-#pragma once
+ï»¿#pragma once
 #include<DMPCH.h>
-#include<assert.h>
+#include<Core/MMM/Reference.h>
 namespace DM
 {
 	template<typename Ret, typename...Args>
@@ -11,7 +11,7 @@ namespace DM
 		virtual Ret Execute(Args...arg) = 0;
 		virtual IDelegateInstance<Ret, Args...>* Clone() = 0;
 	};
-	//ÆÕÍ¨º¯Êı
+	//æ™®é€šå‡½æ•°
 	template<typename Ret, typename...Args>
 	class FunDelegateInst :public IDelegateInstance<Ret, Args...>
 	{
@@ -29,7 +29,7 @@ namespace DM
 			return new FunDelegateInst(Fun);
 		}
 	};
-	//³ÉÔ±º¯Êı
+	//æˆå‘˜å‡½æ•°
 	template<typename Class, typename Ret, typename...Args>
 	class MebFunDelegateInst :public IDelegateInstance<Ret, Args...>
 	{
@@ -38,7 +38,7 @@ namespace DM
 		using FunType = Ret(Class::*)(Args...);
 		FunType Fun;
 	public:
-		MebFunDelegateInst(std::shared_ptr<Class>Obj, FunType Fun) :Obj(Obj), Fun(Fun) {}
+		MebFunDelegateInst(Ref<Class>Obj, FunType Fun) :Obj(Obj), Fun(Fun) {}
 		virtual Ret Execute(Args...arg) override
 		{
 			if (const auto& element = Obj.lock())

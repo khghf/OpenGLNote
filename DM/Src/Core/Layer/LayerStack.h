@@ -1,11 +1,11 @@
-#pragma once
+ï»¿#pragma once
 namespace DM { class Layer; }
 #include"Layer.h"
 #include"../Container/Array.h"
 namespace DM
 {
-	//¹ÜÀíÓÎÏ·ÖĞµÄ²»Í¬·Ö²ã
-	class DM_API LayerStack
+	//ç®¡ç†æ¸¸æˆä¸­çš„ä¸åŒåˆ†å±‚
+	class  LayerStack
 	{
 	public:
 		LayerStack();
@@ -17,7 +17,7 @@ namespace DM
 		void Update(float DeletaTime);
 		Array<Layer*>::iterator begin() { return m_Layers.begin(); }
 		Array<Layer*>::iterator end() { return m_Layers.end(); }
-		int Size()const { return m_Layers.size();}
+		size_t Size()const { return m_Layers.size();}
 	private:
 		Array<Layer*>m_Layers;
 		int m_LayerInsert;

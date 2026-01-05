@@ -1,7 +1,8 @@
-#pragma once
+﻿#pragma once
 #include<Application.h>
 #include<regex>
 #include<string>
+#include<functional>
 #ifdef  DM_PLATFORM_WINDOWS
 extern DM::Application* DM::CreateApplication();
 int main(int argc, char** argv)

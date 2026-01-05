@@ -1,4 +1,4 @@
-#include<DMPCH.h>
+ï»¿#include<DMPCH.h>
 #include<Core/Core.h>
 #include"Event.h"
 #include"KeyEvent.h"
@@ -9,7 +9,7 @@ template<>\
 DM_API const EventClass::FEventData*Event::GetData<EventClass>()const\
 {\
 	const EventClass* e = static_cast<const EventClass*>(this);\
-	assert(e->GetType()==EventClass::GetStaticType(),"²»ÄÜ»ñÈ¡ÆäËüÀàÐÍµÄÊý¾Ý");\
+	assert(e->GetType()==EventClass::GetStaticType()&&"ä¸èƒ½èŽ·å–å…¶å®ƒç±»åž‹çš„æ•°æ®");\
 	return &e->Data;\
 }
 namespace DM

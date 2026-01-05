@@ -1,5 +1,6 @@
-#pragma once
+﻿#pragma once
 #include"Buffer.h"
+#include<Core/MMM/Reference.h>
 namespace DM
 {
 	class VertexBuffer;
@@ -12,8 +13,8 @@ namespace DM
 		virtual void UnBind() = 0;
 		virtual void AddVertexBuffer(const Ref<VertexBuffer>& vertexBuffer) = 0;
 		virtual void SetIndexBuffer(const Ref<IndexBuffer>& indexBuffer) = 0;
-		virtual const Array<Ref<VertexBuffer>>& GetVertexBuffer(const Ref<VertexBuffer>& vertexBuffer)const = 0;
+		virtual const Array<Ref<VertexBuffer>>& GetVertexBuffer()const = 0;
 		virtual const Ref<IndexBuffer>& GetIndexBuffer()const = 0;
-		static VertexArray* Create();
+		static Ref<VertexArray>Create();
 	};
 }

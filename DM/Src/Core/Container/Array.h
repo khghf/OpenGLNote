@@ -1,4 +1,3 @@
-#pragma once
-#include<DMPCH.h>
+﻿#pragma once
 template<typename T>
 using Array = std::vector<T>;

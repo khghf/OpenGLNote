@@ -1,10 +1,12 @@
-//≥Ã–Ú»Îø⁄----------------------------------
+Ôªø//Á®ãÂ∫èÂÖ•Âè£----------------------------------
 #include"Platform/EntryPoint.h"
 //------------------------------------------
 #include<Tool/Imgui/ImguiLayer.h>
 #include<imgui.h>
 #include<DM.h>
 #include<Tool/Util/GameStatic.h>
+#include<Core/Render/Camera/CameraController.h>
+#include"Renderer2DExample.h"
 class ExampleLayer:public DM::Layer
 {
 public:
@@ -12,8 +14,6 @@ public:
 	virtual ~ExampleLayer() {}
 	virtual void OnAttach() 
 	{
-		std::string vsCode = DM::GameStatic::LoadText("../Assert/Shader/Chunk/Chunk.vs");
-		std::string fsCode = DM::GameStatic::LoadText("../Assert/Shader/Chunk/Chunk.fs");
 		float vertices[] = {
 			-0.5f,0.5f,0.f,		0.f,1.f,
 			0.5f,0.5f,0.f,		1.f,1.f,
@@ -23,15 +23,15 @@ public:
 		uint32_t indices[] = {
 			0,1,2,2,3,0
 		};
-		float x = DM::Application::GetInst()->GetWindow()->Width();
-		float y = DM::Application::GetInst()->GetWindow()->Height();
-		Camera = DM::Ref<DM::OrthoGraphicCamera>(new DM::OrthoGraphicCamera(1.f, -1.f, -x / y, x / y));
-		//square = DM::Ref<DM::Shader>(DM::Shader::Create(vsCode, fsCode));
-		square = DM::Ref<DM::Shader>(DM::Shader::Create("../Assert/Shader/Chunk/Chunk.glsl"));
-		VAO = DM::Ref<DM::VertexArray>(DM::VertexArray::Create());
-		VBO = DM::Ref<DM::VertexBuffer>(DM::VertexBuffer::Create(vertices, 20));
-		IBO = DM::Ref<DM::IndexBuffer>(DM::IndexBuffer::Create(indices,6));
-		texture= DM::Ref<DM::Texture2D>(DM::Texture2D::Create("../Assert/Texture/Container/container_diffuse.png"));
+		float x = (float)DM::Application::GetInst()->GetWindow()->Width();
+		float y = (float)DM::Application::GetInst()->GetWindow()->Height();
+		m_CameraController = DM::CameraController(x/y,DM::ECameraType::Ortho);
+
+		square = DM::GameStatic::GetShader("Chunk");
+		texture = DM::GameStatic::GetTexture2D("container_diffuse");
+		VAO = DM::VertexArray::Create();
+		VBO = DM::VertexBuffer::Create(vertices, 20);
+		IBO = DM::IndexBuffer::Create(indices,6);
 		DM::BufferLayout layout = { 
 			{DM::ShaderDataType::Float3,"a_Pos"},
 			{DM::ShaderDataType::Float2,"a_TexCoord"}
@@ -45,12 +45,12 @@ public:
 	virtual void OnDetach() {}
 	virtual void OnUpdate(float DeltaTime) 
 	{
+		/*m_CameraController.OnUpdate(DeltaTime);
 		DM::RenderCommand::SetClearColor({0.1f,1.f,1.f,1.f});
 		DM::RenderCommand::Clear();
-		DM::Renderer::BeginScene(Camera);
+		DM::Renderer::BeginScene(m_CameraController.GetCamera());
 		DM::Renderer::Submit(square, VAO);
-		DM::RenderCommand::DrawIndexed(VAO);
-		DM::Renderer::EndScene();
+		DM::Renderer::EndScene();*/
 	}
 	virtual void OnEvent(DM::Event* const e) {}
 private:
@@ -59,14 +59,14 @@ private:
 	DM::Ref<DM::VertexBuffer>VBO;
 	DM::Ref<DM::IndexBuffer>IBO;
 	DM::Ref<DM::Texture2D>texture;
-	DM::Ref<DM::OrthoGraphicCamera> Camera;
+	DM::CameraController m_CameraController;
 };
 class APP :public DM::Application
 {
 public:
 	APP()
 	{
-		PushLayer(new ExampleLayer("ExampleLayer"));
+		//PushLayer(new Renderer2DExample("Renderer2DExample"));
 	}
 };
 DM::Application* DM::CreateApplication()

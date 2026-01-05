@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include<Resource/Asset.h>
 #include<Core/Render/Shader.h>
 #include<glad/glad.h>
@@ -6,37 +6,53 @@
 #include<glm/gtc/type_ptr.hpp>
 namespace DM
 {
-	enum class EShaderType :uint8_t//×ÅÉ«Æ÷ÀàĞÍ
+	enum class EShaderType :uint8_t//ç€è‰²å™¨ç±»å‹
 	{
 		None,
-		VS,//¶¥µã×ÅÉ«Æ÷
-		FS,//Æ¬¶Î×ÅÉ«Æ÷
-		PS,//×ÅÉ«³ÌĞò
+		VS,//é¡¶ç‚¹ç€è‰²å™¨
+		FS,//ç‰‡æ®µç€è‰²å™¨
+		PS,//ç€è‰²ç¨‹åº
 	};
 	class OpenGlShader :public Shader
 	{
 	public:
 		OpenGlShader(const std::string_view& glslCodePath);
-		//OpenGlShader(std::string_view Code, const EShaderType& Type);
-		OpenGlShader(std::string_view VsCode, std::string_view FsCode);
-		OpenGlShader(const unsigned int& VSID, const unsigned int& FSID, const std::string& Name);
+		OpenGlShader(const std::string_view& name, const std::string_view& vsCode, const std::string_view& fsCode);
 		~OpenGlShader();
+	
+	public:
+		inline unsigned int GetID()const { return m_Id; }
+		inline EShaderType GetShaderType()const { return m_Type; }
+		virtual void Bind()override { assert(m_Id && "Bind Invalid Shader Id"); glUseProgram(m_Id); }
+		virtual void UnBind()override { assert(m_Id && "UnBind Invalid Shader Id"); glUseProgram(0); }
+
+		virtual void SetInt(const std::string_view& name, const int32_t& val)	override					{ UploadInt(name, val); }
+		virtual void SetIntArray(std::string_view name, const int32_t* val, const uint32_t& count)	override{ UploadIntArray(name,val,count); }
+		virtual void SetFloat3(const std::string_view& name, const Vector3& val)override					{ UploadFloat3(name, val); }
+		virtual void SetFloat4(const std::string_view& name, const Vector4& val)override					{ UploadFloat4(name, val); }
+		virtual void SetMat3x3(const std::string_view& name, const Matrix3& val)override					{ UploadMat3x3(name, val); }
+		virtual void SetMat4x4(const std::string_view& name, const Matrix4& val)override					{ UploadMat4x4(name, val); }
+		
 	private:
-		unsigned int m_Id;
-		EShaderType Type = EShaderType::None;
+		inline GLint GetUniformLocation(std::string_view name) { return glGetUniformLocation(m_Id, name.data()); }
+
+		inline void UploadInt(std::string_view name, const GLint& val)							{ glUniform1i(GetUniformLocation(name), val); }
+		inline void UploadIntArray(std::string_view name, const GLint* val,const uint32_t&count){ glUniform1iv(GetUniformLocation(name), count,val); }
+		inline void UploadFloat3(const std::string_view& name, const Vector3& val)				{ glUniform3fv(GetUniformLocation(name), 1, glm::value_ptr(val)); }
+		inline void UploadFloat4(const std::string_view& name, const Vector4& val)				{ glUniform4fv(GetUniformLocation(name), 1, glm::value_ptr(val)); }
+		inline void UploadMat3x3(const std::string_view& name, const Matrix3& val)				{ glUniformMatrix3fv(GetUniformLocation(name), 1, GL_FALSE, glm::value_ptr(val)); }
+		inline void UploadMat4x4(std::string_view name, const Matrix4& val)						{ glUniformMatrix4fv(GetUniformLocation(name), 1, GL_FALSE, glm::value_ptr(val)); }
+		
+
+
 		unsigned int CreateShader(std::string_view Code, const EShaderType& Type);
 		unsigned int CreateProgram(const unsigned int& VsId, const unsigned int& FsId);
 		static bool CheckShaderCompStatus(const OpenGlShader& shader);
 		static bool CheckProgramLinkStatus(const OpenGlShader& shader);
 		std::unordered_map<std::string, std::string>ProcessGLSLCode(const std::string& glslCode);
-	public:
-		inline unsigned int GetID()const { return m_Id; }
-		inline EShaderType GetShaderType()const { return Type; }
-		virtual void Bind()override { assert(m_Id && "Bind Invalid Shader Id"); glUseProgram(m_Id); }
-		virtual void UnBind()override { assert(m_Id && "UnBind Invalid Shader Id"); glUseProgram(0); }
-		inline GLint GetUniformLocation(std::string_view name) { return glGetUniformLocation(m_Id, name.data()); }
-		inline void UploadInt(std::string_view name, const GLint& value) { glUniform1i(GetUniformLocation(name), value); }
-		inline void UploadMat4x4( std::string_view name, const Matrix4& matrix) { glUniformMatrix4fv(GetUniformLocation(name), 1, GL_FALSE, glm::value_ptr(matrix));}
+	private:
+		unsigned int m_Id;
+		EShaderType m_Type = EShaderType::None;
 	};
 }
 

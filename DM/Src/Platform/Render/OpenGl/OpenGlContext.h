@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include<Core/Render/GraphicsContext.h>
 struct GLFWwindow;
 namespace DM

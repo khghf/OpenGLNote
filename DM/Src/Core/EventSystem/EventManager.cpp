@@ -1,4 +1,4 @@
-#include "DMPCH.h"
+﻿#include "DMPCH.h"
 #include "EventManager.h"
 namespace DM
 {
@@ -8,16 +8,14 @@ namespace DM
 	}
 	void EventManager::Init()
 	{
-		Disptchers[EEventCategory::Event] = Disptcher();
-		Disptchers[EEventCategory::KeyEvent] = Disptcher();
-		Disptchers[EEventCategory::MouseEvent] = Disptcher();
-		Disptchers[EEventCategory::WindowEvent] = Disptcher();
+	
 	}
 	void EventManager::OnEvent( Event* const e)
 	{
-		Disptchers[EEventCategory::Event].OnEvent(e);
-		const auto& it = Disptchers.find(e->GetCategory());
-		if (it == Disptchers.end()|| e->GetCategory()== EEventCategory::Event)return;
+		e->bHandled = false;
+		Disptchers[EEventType::Event].OnEvent(e);
+		const auto& it = Disptchers.find(e->GetType());
+		if (it == Disptchers.end()|| e->GetType()== EEventType::Event)return;
 		it->second.OnEvent(e);
 	}
 }

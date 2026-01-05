@@ -1,40 +1,25 @@
-#pragma once
+﻿#pragma once
 #include<Core/Layer/Layer.h>
 struct ImGuiIO;
 struct GLFWwindow;
 namespace DM
 {
-	class DM_API ImguiLayer:public Layer
+	class  ImGuiLayer:public Layer
 	{
 	public:
-		ImguiLayer();
-		virtual ~ImguiLayer();
+		ImGuiLayer(std::string_view name);
+		virtual ~ImGuiLayer();
 		virtual void OnAttach()override;
 		virtual void OnDetach()override;
+		virtual void OnEvent(Event* const e) override;
 		virtual void OnUpdate(float DeltaTime)override;
-		//virtual void OnEvent(Event* const e)override;
+		bool BlockEvent(bool bIsBlock) { m_bBlockEvent = bIsBlock; return m_bBlockEvent; }
 	protected:
-		void Begin();
-		void ImGuiRender();
-		void End();
-		/*bool OnKeyClicked(Event* const e);
-		bool OnKeyPressed(Event* const e);
-		bool OnKeyRepeated(Event* const e);
-		bool OnKeyReleased(Event* const e);
-		bool OnKeyTyped(Event* const e);
-
-		bool OnMouseClicked(Event* const e);
-		bool OnMousePressed(Event* const e);
-		bool OnMouseReleased(Event* const e);
-		bool OnMouseMove(Event* const e);
-		bool OnMouseScroll(Event* const e);
-
-		bool OnWindowResize(Event* const e);
-
-	protected:
-		void UpdateKeyModifiers(ImGuiIO& io, GLFWwindow* window);*/
+		void Begin()override;
+		virtual void Render()override;
+		void End()override;
 	private:
-		float m_Time = 0.f;
+		bool m_bBlockEvent = false;
 	};
 }
 

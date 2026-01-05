@@ -1,9 +1,20 @@
-#include "DMPCH.h"
+ï»¿#include "DMPCH.h"
 #include "OpenGlTexture.h"
 #include<glad/glad.h>
 #include<stb_image.h>
 namespace DM
 {
+    static uint32_t ConvertTextureDataFormatToByteSize(GLenum format)
+    {
+        switch (format)
+        {
+        case GL_RED:return 1;
+        case GL_RGB:return 3;
+        case GL_RGBA:return 4;
+        }
+        DM_CORE_ASSERT(false, "{}", "Unsuported texture format!");
+        return 0;
+    }
     OpenGlTexture2D::OpenGlTexture2D(const std::string_view& path)
     :m_Path(path.data())
     {
@@ -14,28 +25,30 @@ namespace DM
 
         m_Width = width; m_Height = height;
 
-        GLenum outDataFormat = 0;    //½«Êı¾İĞ´ÈëÎÆÀíÊ±µÄµÄ¸ñÊ½
-        GLenum internalFormat = 0;   //ÎÆÀíÄÚ²¿´æ´¢¸ñÊ½
-        desiredChannel = desiredChannel == 0 ? channel : desiredChannel;//DataµÄÍ¨µÀÊı
+        GLenum outDataFormat = 0;    //å°†æ•°æ®å†™å…¥çº¹ç†æ—¶çš„çš„æ ¼å¼
+        GLenum internalFormat = 0;   //çº¹ç†å†…éƒ¨å­˜å‚¨æ ¼å¼
+        desiredChannel = desiredChannel == 0 ? channel : desiredChannel;//Dataçš„é€šé“æ•°
         if (desiredChannel == 1)
         {
             outDataFormat = GL_RED;
-            internalFormat = GL_R8;  // ÄÚ²¿´æ´¢¸ñÊ½£ºµ¥Í¨µÀ8Î»
+            internalFormat = GL_R8;  // å†…éƒ¨å­˜å‚¨æ ¼å¼ï¼šå•é€šé“8ä½
         }
         else if (desiredChannel == 3)
         {
             outDataFormat = GL_RGB;
-            internalFormat = GL_RGB8; // ÈıÍ¨µÀ8Î»
+            internalFormat = GL_RGB8; // ä¸‰é€šé“8ä½
         }
         else if (desiredChannel == 4)
         {
             outDataFormat = GL_RGBA;
-            internalFormat = GL_RGBA8; // ËÄÍ¨µÀ8Î»
+            internalFormat = GL_RGBA8; // å››é€šé“8ä½
         }
         else
         {
             DM_CORE_ASSERT(false, "{}", "OpenGlTexture2D():Unsupported desired channels");
         }
+        m_InternalFormat = internalFormat;
+        m_DataFormat = outDataFormat;
         glCreateTextures(GL_TEXTURE_2D, 1, &m_Id);
         glTextureStorage2D(m_Id, 1, internalFormat, width, height);
         glTextureParameteri(m_Id, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -46,6 +59,23 @@ namespace DM
         stbi_image_free(Data);
     }
 
+    OpenGlTexture2D::OpenGlTexture2D(uint32_t width, uint32_t height)
+    {
+        m_Width = width;
+        m_Height = height;
+        GLenum outDataFormat = GL_RGBA;   
+        GLenum internalFormat = GL_RGBA8;
+        m_InternalFormat = internalFormat;
+        m_DataFormat = outDataFormat;
+        glCreateTextures(GL_TEXTURE_2D, 1, &m_Id);
+        glTextureStorage2D(m_Id, 1, internalFormat, width, height);
+        glTextureParameteri(m_Id, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+        glTextureParameteri(m_Id, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+        glTextureParameteri(m_Id, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTextureParameteri(m_Id, GL_TEXTURE_WRAP_T, GL_REPEAT);
+        glTextureSubImage2D(m_Id, 0, 0, 0, width, height, outDataFormat, GL_UNSIGNED_BYTE, nullptr);
+    }
+
     OpenGlTexture2D::~OpenGlTexture2D()
     {
         glDeleteTextures(1, &m_Id);
@@ -53,7 +83,15 @@ namespace DM
 
     void OpenGlTexture2D::Bind(uint32_t unit)
     {
+       /* glActiveTexture(GL_TEXTURE0 + unit);
+        glBindTexture(GL_TEXTURE_2D, m_Id);*/
         glBindTextureUnit(unit, m_Id);
+    }
+    void OpenGlTexture2D::SetData(void* data, uint32_t size)
+    {
+        const uint32_t& channelSize = ConvertTextureDataFormatToByteSize(m_DataFormat);
+        DM_CORE_ASSERT(size == m_Width * m_Height * channelSize, "{}", "Data must be entire texture!");
+        glTextureSubImage2D(m_Id,0, 0, 0, m_Width, m_Height, m_DataFormat, GL_UNSIGNED_BYTE, data);
     }
 }
 

@@ -131,15 +131,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Src\Renderer2DExample.h" />
+  </ItemGroup>
+  <ItemGroup>
     <ClCompile Include="Src\APP.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DM\DM.vcxproj">
       <Project>{56735900-42FF-870B-ABAD-880B9758880B}</Project>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Asserts\Shaders\Texture.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

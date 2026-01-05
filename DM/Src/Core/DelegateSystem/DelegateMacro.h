@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include"MultiDelegate.h"
 #define DECLARE_DELEGATE(Name,Ret,...)\
 using Name=DM::BaseDelegate<Ret(__VA_ARGS__)>

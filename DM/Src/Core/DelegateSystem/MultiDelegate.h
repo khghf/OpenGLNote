@@ -1,11 +1,11 @@
-#pragma once
+Ôªø#pragma once
 #include<DMPCH.h>
 #include"../Container/Array.h"
 #include"../Container/UnOrderedMap.h"
-#include<Core/DMType.h>
 #include"BaseDelegate.h"
 #include"DelegateHash.h"
 #include<Core/Log.h>
+#include<Core/MMM/Reference.h>
 namespace DM
 {
 	template<typename FunType, typename T = void>
@@ -19,32 +19,32 @@ namespace DM
 		std::string_view Name;
 	public:
 		MultiDelegate() = default;
-		//∆’Õ®∫Ø ˝
+		//ÊôÆÈÄöÂáΩÊï∞
 		void Add(FunType Fun)
 		{
 			BaseDelegate<Ret(Args...)>BD;
 			BD.Bind(std::forward<FunType>(Fun));
 			if (Delegates.find(BD.Key()) != Delegates.end())
 			{
-				LOG_Core_INFO("MultiDelegate:repeat add");
+				LOG_CORE_INFO("MultiDelegate:repeat add");
 				return;
 			}
 			Delegates[BD.Key()] = std::move(BD);
 		}
-		//≥…‘±∫Ø ˝
+		//ÊàêÂëòÂáΩÊï∞
 		template<typename Class>
-		void Add(SPtr<Class>Obj, Ret(Class::* MebFunType)(Args...))
+		void Add(Ref<Class>Obj, Ret(Class::* MebFunType)(Args...))
 		{
 			BaseDelegate<Ret(Args...)>BD;
-			BD.Bind(std::forward<SPtr<Class>>(Obj), std::forward<Ret(Class::*)(Args...)>(MebFunType));
+			BD.Bind(std::forward<Ref<Class>>(Obj), std::forward<Ret(Class::*)(Args...)>(MebFunType));
 			if (Delegates.find(BD.Key()) != Delegates.end())
 			{
-				LOG_Core_INFO("MultiDelegate:repeat add");
+				LOG_CORE_INFO("MultiDelegate:repeat add");
 				return;
 			}
 			Delegates[BD.Key()] = std::move(BD);
 		}
-		//Lambda±Ì¥Ô Ω
+		//LambdaË°®ËææÂºè
 		template<typename CallObj>
 		void Add(CallObj&& Obj)
 		{
@@ -52,7 +52,7 @@ namespace DM
 			BD.Bind(std::forward<CallObj>(Obj));
 			if (Delegates.find(BD.Key()) != Delegates.end())
 			{
-				LOG_Core_INFO("MultiDelegate:repeat add");
+				LOG_CORE_INFO("MultiDelegate:repeat add");
 				return;
 			}
 			Delegates[BD.Key()] = std::move(BD);
@@ -61,7 +61,7 @@ namespace DM
 		{
 			if (Delegates.find(BD.Key()) != Delegates.end())
 			{
-				LOG_Core_INFO("MultiDelegate:repeat add");
+				LOG_CORE_ERROR("MultiDelegate:repeat add. HashKey:{}",BD.Key());
 				return;
 			}
 			Delegates[BD.Key()] = std::move(BD);
@@ -84,7 +84,7 @@ namespace DM
 				else
 				{
 					it = Delegates.erase(it);
-					LOG_Core_INFO(Name,": found and removed invalid delegate");
+					LOG_CORE_INFO(Name,": found and removed invalid delegate");
 				}
 			}
 		}

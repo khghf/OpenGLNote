@@ -1,14 +1,15 @@
-#pragma once
-#include<ISingletion.h>
+﻿#pragma once
+#include<Tool/ISingletion.h>
 #include"Event/Event.h"
 #include "Event/KeyEvent.h"
 #include "Event/MouseEvent.h"
 #include "Event/WindowEvent.h"
 #include"Disptcher.h"
 #include"Listener.h"
+#include<Core/MMM/Reference.h>
 namespace DM
 {
-	class DM_API EventManager:public ISingletion<EventManager>
+	class  EventManager:public ISingletion<EventManager>
 	{
 		friend class ISingletion<EventManager>;
 	public:
@@ -19,14 +20,14 @@ namespace DM
 	public:
 		void OnEvent(Event* const e);
 		template<class EventClass, class Class>
-		void Register(SPtr<Class>Obj, void(Class::* MebFunType)( Event* const));
+		void Register(Ref<Class>Obj, void(Class::* MebFunType)( Event* const));
 		template<class EventClass>
 		void Register(void(*FunType)( Event* const));
 		template<class EventClass,class LambdaType>
 		void Register(LambdaType&& lam);
 
 		template<class EventClass, class Class>
-		void UnRegister(SPtr<Class>Obj, void(Class::* MebFunType)(Event* const));
+		void UnRegister(Ref<Class>Obj, void(Class::* MebFunType)(Event* const));
 		template<class EventClass>
 		void UnRegister(void(*FunType)(Event* const));
 		template<class EventClass, class LambdaType>
@@ -37,10 +38,11 @@ namespace DM
 		template<class EventClass>
 		void UnRegisterInternal(Listener Lis);
 	private:
-		UnOrderedMap<EEventCategory, Disptcher>Disptchers;
+		//UnOrderedMap<EEventCategory, UnOrderedMap<EEventType, Disptcher>>CategoryTo;
+		UnOrderedMap<EEventType, Disptcher>Disptchers;
 	};
 	template<class EventClass, class Class>
-	inline void EventManager::Register(SPtr<Class>Obj, void(Class::* MebFunType)( Event* const))
+	inline void EventManager::Register(Ref<Class>Obj, void(Class::* MebFunType)( Event* const))
 	{
 		Listener lis;
 		lis.Bind(Obj, MebFunType);
@@ -62,7 +64,7 @@ namespace DM
 	}
 
 	template<class EventClass, class Class>
-	inline void EventManager::UnRegister(SPtr<Class>Obj, void(Class::* MebFunType)(Event* const))
+	inline void EventManager::UnRegister(Ref<Class>Obj, void(Class::* MebFunType)(Event* const))
 	{
 		Listener lis;
 		lis.Bind(Obj, MebFunType);
@@ -86,13 +88,17 @@ namespace DM
 	template<class EventClass>
 	inline void EventManager::RegisterInternal(Listener&& Lis)
 	{
-		if (Disptchers.find(EventClass::GetStaticCategory()) == Disptchers.end())return;
-		Disptchers[EventClass::GetStaticCategory()].AddListener<EventClass>(std::move(Lis));
+		/*const auto& it = Disptchers.find(EventClass::GetStaticCategory());
+		if (it == Disptchers.end())return;
+		it->second.AddListener<EventClass>(std::move(Lis));*/
+		Disptchers[EventClass::GetStaticType()].AddListener(std::move(Lis));
 	}
 	template<class EventClass>
 	inline void EventManager::UnRegisterInternal(Listener Lis)
 	{
-		if (Disptchers.find(EventClass::GetStaticCategory()) == Disptchers.end())return;
-		Disptchers[EventClass::GetStaticCategory()].RemoveListener<EventClass>(Lis);
+		/*const auto& it = Disptchers.find(EventClass::GetStaticCategory());
+		if ( it== Disptchers.end())return;
+		it->second.RemoveListener<EventClass>(Lis);*/
+		Disptchers[EventClass::GetStaticType()].RemoveListener(Lis);
 	}
 }

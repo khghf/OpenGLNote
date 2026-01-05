@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include<DMPCH.h>
 #include<glad/glad.h>
 #include<Core/Render/Buffer.h>
@@ -84,11 +84,13 @@ namespace DM
 	class OpenGlVertexBuffer :public VertexBuffer
 	{
 	public:
+		OpenGlVertexBuffer(uint32_t sizeByte);
 		OpenGlVertexBuffer(float* vertices, uint32_t elementCount);
 		virtual ~OpenGlVertexBuffer() = default;
 		virtual void Bind()override;
 		virtual void UnBind()override;
 		virtual void SetLayout(const BufferLayout& layout) override { m_Layout = layout; }
+		virtual void SetData(const void* data, uint32_t size)override;
 		virtual BufferLayout GetLayout()const override { return m_Layout; }
 	private:
 		uint32_t m_Id;

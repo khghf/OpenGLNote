@@ -1,4 +1,4 @@
-//-----------------------------------------------------------------------------
+﻿//-----------------------------------------------------------------------------
 // About imgui_impl_opengl3_loader.h:
 //
 // We embed our own OpenGL loader to not require user to provide their own or to have to use ours,
@@ -828,7 +828,7 @@ static int parse_version(void)
     {
         // Query GL_VERSION in desktop GL 2.x, the string will start with "<major>.<minor>"
         if (const char* gl_version = (const char*)glGetString(GL_VERSION))
-            sscanf(gl_version, "%d.%d", &version.major, &version.minor);
+            sscanf_s(gl_version, "%d.%d", &version.major, &version.minor);
     }
     if (version.major < 2)
         return GL3W_ERROR_OPENGL_VERSION;

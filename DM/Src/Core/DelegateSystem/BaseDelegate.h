@@ -1,7 +1,8 @@
-#pragma once
+﻿#pragma once
 #include<DMPCH.h>
 #include"DelegateInstance.h"
 #include"DelegateHash.h"
+#include<Core/MMM/Reference.h>
 namespace DM
 {
 	template<typename FunType>
@@ -19,6 +20,8 @@ namespace DM
 		BaseDelegate(BaseDelegate&& other)noexcept
 		{
 			this->DelegateInstance = other.DelegateInstance;
+			this->key = other.key;
+			this->Name = other.Name;
 			other.DelegateInstance = nullptr;
 		}
 		BaseDelegate& operator=(BaseDelegate&& other)noexcept
@@ -27,12 +30,16 @@ namespace DM
 			if(this->DelegateInstance)delete this->DelegateInstance;
 			this->DelegateInstance = other.DelegateInstance;
 			other.DelegateInstance = nullptr;
+			this->key = other.key;
+			this->Name = other.Name;
 			return *this;
 		}
 		BaseDelegate(const BaseDelegate& other)
 		{
 			if (other.DelegateInstance == nullptr)return;
 			this->DelegateInstance = other.DelegateInstance->Clone();
+			this->key = other.key;
+			this->Name = other.Name;
 		}
 		BaseDelegate& operator=(const BaseDelegate& other)
 		{
@@ -41,6 +48,8 @@ namespace DM
 			{
 				if (this->DelegateInstance)delete this->DelegateInstance;
 				this->DelegateInstance = other.DelegateInstance->Clone();
+				this->key = other.key;
+				this->Name = other.Name;
 			}
 			return *this;
 		}
@@ -51,7 +60,7 @@ namespace DM
 			DelegateInstance = new FunDelegateInst<Ret, Args...>(Fun);
 		}
 		template<typename Class>
-		void Bind(std::shared_ptr<Class>Obj, Ret(Class::* MebFunType)(Args...))
+		void Bind(Ref<Class>Obj, Ret(Class::* MebFunType)(Args...))
 		{
 			key = FMebFunHash<Class, Ret, Args...>()(MebFunType);
 			DelegateInstance = new MebFunDelegateInst<Class, Ret, Args...>(Obj, MebFunType);
@@ -60,6 +69,7 @@ namespace DM
 		void Bind(CallObj&& Obj)
 		{
 			key = FLambdaHash<CallObj>()(Obj);
+			//LOG_Core_INFO("{}",key);
 			DelegateInstance = new LambdaDelegateInst<CallObj, Ret, Args...>(std::forward<CallObj>(Obj));
 		}
 		Ret Execute(Args... arg)const
