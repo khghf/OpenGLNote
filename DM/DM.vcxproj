@@ -76,8 +76,8 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>DMPCH.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>DM_PLATFORM_WINDOWS;DM_BUILD_DLL;GLFW_INCLUDE_NONE;DM_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>ThirdPart\spdlog\include;ThirdPart\glfw\glfw\include;ThirdPart\glad\glad\include;ThirdPart\imgui\imgui;ThirdPart\glm\glm;ThirdPart\stb_image;ThirdPart\json;Src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>YAML_CPP_STATIC_DEFINE;DM_PLATFORM_WINDOWS;GLFW_INCLUDE_NONE;DM_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\ThirdPart\spdlog\include;..\ThirdPart\glfw\glfw\include;..\ThirdPart\glad\glad\include;..\ThirdPart\imgui\imgui;..\ThirdPart\glm\glm;..\ThirdPart\stb_image;..\ThirdPart\json;..\ThirdPart\entt\include;..\ThirdPart\yaml_cpp\yaml_cpp\include;..\ThirdPart\ImGuizmo\ImGuizmo;Src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -98,8 +98,8 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>DMPCH.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>DM_PLATFORM_WINDOWS;DM_BUILD_DLL;GLFW_INCLUDE_NONE;DM_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>ThirdPart\spdlog\include;ThirdPart\glfw\glfw\include;ThirdPart\glad\glad\include;ThirdPart\imgui\imgui;ThirdPart\glm\glm;ThirdPart\stb_image;ThirdPart\json;Src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>YAML_CPP_STATIC_DEFINE;DM_PLATFORM_WINDOWS;GLFW_INCLUDE_NONE;DM_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\ThirdPart\spdlog\include;..\ThirdPart\glfw\glfw\include;..\ThirdPart\glad\glad\include;..\ThirdPart\imgui\imgui;..\ThirdPart\glm\glm;..\ThirdPart\stb_image;..\ThirdPart\json;..\ThirdPart\entt\include;..\ThirdPart\yaml_cpp\yaml_cpp\include;..\ThirdPart\ImGuizmo\ImGuizmo;Src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -124,8 +124,8 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>DMPCH.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>DM_PLATFORM_WINDOWS;DM_BUILD_DLL;GLFW_INCLUDE_NONE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>ThirdPart\spdlog\include;ThirdPart\glfw\glfw\include;ThirdPart\glad\glad\include;ThirdPart\imgui\imgui;ThirdPart\glm\glm;ThirdPart\stb_image;ThirdPart\json;Src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>YAML_CPP_STATIC_DEFINE;DM_PLATFORM_WINDOWS;GLFW_INCLUDE_NONE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\ThirdPart\spdlog\include;..\ThirdPart\glfw\glfw\include;..\ThirdPart\glad\glad\include;..\ThirdPart\imgui\imgui;..\ThirdPart\glm\glm;..\ThirdPart\stb_image;..\ThirdPart\json;..\ThirdPart\entt\include;..\ThirdPart\yaml_cpp\yaml_cpp\include;..\ThirdPart\ImGuizmo\ImGuizmo;Src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
@@ -140,6 +140,10 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\ThirdPart\entt\include\entt.hpp" />
+    <ClInclude Include="..\ThirdPart\json\json.hpp" />
+    <ClInclude Include="..\ThirdPart\stb_image\stb_image.h" />
+    <ClInclude Include="Src\Tool\Util\PlatformUtils.h" />
     <ClInclude Include="Src\Application.h" />
     <ClInclude Include="Src\Core\Container\Array.h" />
     <ClInclude Include="Src\Core\Container\UnOrderedMap.h" />
@@ -182,6 +186,10 @@
     <ClInclude Include="Src\Core\Render\Texture\Texture.h" />
     <ClInclude Include="Src\Core\Render\Texture\TextureAtlas.h" />
     <ClInclude Include="Src\Core\Render\VertexArray.h" />
+    <ClInclude Include="Src\Core\Scene\Components.h" />
+    <ClInclude Include="Src\Core\Scene\Entity.h" />
+    <ClInclude Include="Src\Core\Scene\Scene.h" />
+    <ClInclude Include="Src\Core\Scene\SceneSerializer.h" />
     <ClInclude Include="Src\Core\Serialization.h" />
     <ClInclude Include="Src\Core\Window.h" />
     <ClInclude Include="Src\DM.h" />
@@ -205,10 +213,11 @@
     <ClInclude Include="Src\Tool\Imgui\ImGuiLayer.h" />
     <ClInclude Include="Src\Tool\Util\GameStatic.h" />
     <ClInclude Include="Src\Tool\Util\TimeMeasurer.h" />
-    <ClInclude Include="ThirdPart\json\json.hpp" />
-    <ClInclude Include="ThirdPart\stb_image\stb_image.h" />
+    <ClInclude Include="Src\Tool\Util\Util.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\ThirdPart\stb_image\stb_image.cpp" />
+    <ClCompile Include="Src\Platform\Window\WindowsPlatformUtil.cpp" />
     <ClCompile Include="Src\Application.cpp" />
     <ClCompile Include="Src\Core\EventSystem\Event\Event.cpp" />
     <ClCompile Include="Src\Core\EventSystem\EventManager.cpp" />
@@ -229,6 +238,9 @@
     <ClCompile Include="Src\Core\Render\Texture\Texture.cpp" />
     <ClCompile Include="Src\Core\Render\Texture\TextureAtlas.cpp" />
     <ClCompile Include="Src\Core\Render\VertexArray.cpp" />
+    <ClCompile Include="Src\Core\Scene\Entity.cpp" />
+    <ClCompile Include="Src\Core\Scene\Scene.cpp" />
+    <ClCompile Include="Src\Core\Scene\SceneSerializer.cpp" />
     <ClCompile Include="Src\DMPCH.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
@@ -250,17 +262,23 @@
     <ClCompile Include="Src\Tool\Imgui\ImGuiLayer.cpp" />
     <ClCompile Include="Src\Tool\Util\GameStatic.cpp" />
     <ClCompile Include="Src\Tool\Util\TimeMeasurer.cpp" />
-    <ClCompile Include="ThirdPart\stb_image\stb_image.cpp" />
+    <ClCompile Include="Src\Tool\Util\Util.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="ThirdPart\glfw\GLFW.vcxproj">
+    <ProjectReference Include="..\ThirdPart\glfw\GLFW.vcxproj">
       <Project>{154B857C-0182-860D-AA6E-6C109684020F}</Project>
     </ProjectReference>
-    <ProjectReference Include="ThirdPart\glad\GLAD.vcxproj">
+    <ProjectReference Include="..\ThirdPart\glad\GLAD.vcxproj">
       <Project>{5D4A857C-4981-860D-F26D-6C10DE83020F}</Project>
     </ProjectReference>
-    <ProjectReference Include="ThirdPart\imgui\ImGui.vcxproj">
+    <ProjectReference Include="..\ThirdPart\imgui\ImGui.vcxproj">
       <Project>{C0FF640D-2C14-8DBE-F595-301E616989EF}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\ThirdPart\yaml_cpp\yaml_cpp.vcxproj">
+      <Project>{7A5CBC57-6629-1763-8F42-050B7B6E4CF1}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\ThirdPart\ImGuizmo\ImGuizmo.vcxproj">
+      <Project>{36FD234F-22CA-7E5A-4BE3-6C02370FB4E8}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

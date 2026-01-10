@@ -7,7 +7,7 @@
 	}
 	startproject"Game"
 outputdir="%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
-ThirdPartBaseDir="DM/ThirdPart/"
+ThirdPartBaseDir="ThirdPart/"
 ThirdPartIncludeDir={}
 ThirdPartIncludeDir["spdlog"]=ThirdPartBaseDir.."spdlog/include"
 ThirdPartIncludeDir["GLFW"]=ThirdPartBaseDir.."glfw/glfw/include"
@@ -16,10 +16,15 @@ ThirdPartIncludeDir["IMGUI"]=ThirdPartBaseDir.."imgui/imgui"
 ThirdPartIncludeDir["GLM"]=ThirdPartBaseDir.."glm/glm"
 ThirdPartIncludeDir["stb_image"]=ThirdPartBaseDir.."stb_image"
 ThirdPartIncludeDir["json"]=ThirdPartBaseDir.."json"
+ThirdPartIncludeDir["entt"]=ThirdPartBaseDir.."entt/include"
+ThirdPartIncludeDir["yaml_cpp"]=ThirdPartBaseDir.."yaml_cpp/yaml_cpp/include"
+ThirdPartIncludeDir["ImGuizmo"]=ThirdPartBaseDir.."ImGuizmo/ImGuizmo"
 group "Dependencies"
-	include "DM/ThirdPart/glfw"
-	include "DM/ThirdPart/glad"
-	include "DM/ThirdPart/imgui"
+	include "ThirdPart/glfw"
+	include "ThirdPart/glad"
+	include "ThirdPart/imgui"
+	include "ThirdPart/yaml_cpp"
+	include "ThirdPart/ImGuizmo"
 group""
 project"DM"
 	location"DM"
@@ -34,11 +39,14 @@ project"DM"
 	files{
 		"%{prj.name}/Src/**.h",
 		"%{prj.name}/Src/**.cpp",
-		"%{prj.name}/ThirdPart/stb_image/**.h",
-		"%{prj.name}/ThirdPart/stb_image/**.cpp",
-		"%{prj.name}/ThirdPart/json/**.hpp",
-		"%{prj.name}/ThirdPart/json/**.cpp",
+		ThirdPartBaseDir.."stb_image/**.h",
+		ThirdPartBaseDir.."stb_image/**.cpp",
+		ThirdPartBaseDir.."json/**.hpp",
+		ThirdPartBaseDir.."json/**.cpp",
+		ThirdPartBaseDir.."entt/include/**.hpp",
 	}
+	
+
 	includedirs{
 		"%{ThirdPartIncludeDir.spdlog}",
 		"%{ThirdPartIncludeDir.GLFW}",
@@ -47,21 +55,29 @@ project"DM"
 		"%{ThirdPartIncludeDir.GLM}",
 		"%{ThirdPartIncludeDir.stb_image}",
 		"%{ThirdPartIncludeDir.json}",
+		"%{ThirdPartIncludeDir.entt}",
+		"%{ThirdPartIncludeDir.yaml_cpp}",
+		"%{ThirdPartIncludeDir.ImGuizmo}",
 		"%{prj.name}/Src",
 	}
+	
 	links{
 		"GLFW",
 		"GLAD",
 		"ImGui",
+		"yaml_cpp",
+		"ImGuizmo",
 		"opengl32.lib"
 	}
+	filter"files:%{ThirdPartIncludeDir.ImGuizmo}/**.cpp"
+		flags{"NoPCH"}
 	filter"system:windows"
 		cppdialect"C++17"
 		systemversion"latest"
 		defines{
-		
+			"YAML_CPP_STATIC_DEFINE",--yaml静态库宏
 			"DM_PLATFORM_WINDOWS",
-			"DM_BUILD_DLL",
+			--"DM_BUILD_DLL",
 			"GLFW_INCLUDE_NONE"
 		}
 		-- postbuildcommands{
@@ -93,10 +109,13 @@ project"Editor"
 		"%{ThirdPartIncludeDir.GLM}",
 		"%{ThirdPartIncludeDir.GLFW}",
 		"%{ThirdPartIncludeDir.IMGUI}",
+		"%{ThirdPartIncludeDir.entt}",
+		"%{prj.name}/Src",
 		"DM/Src"
 	}
 	links{
-		"DM"
+		"DM",
+		"yaml_cpp"
 	}
 	filter"system:windows"
 		staticruntime"on"

@@ -46,6 +46,9 @@
     <Filter Include="Src\Core\Render\Texture">
       <UniqueIdentifier>{B407772D-203F-BFC4-2949-23E895FFE5BD}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Core\Scene">
+      <UniqueIdentifier>{6274299D-4E42-1DA3-37D6-8DC92343F907}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Src\Platform">
       <UniqueIdentifier>{011E97C6-ED80-266B-9606-5F218248F2ED}</UniqueIdentifier>
     </Filter>
@@ -94,6 +97,12 @@
     <Filter Include="ThirdPart">
       <UniqueIdentifier>{B7397EC9-23A4-3240-6CE2-E3E5D88B1095}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ThirdPart\entt">
+      <UniqueIdentifier>{61A9B50C-4D77-A912-360B-1A3922788577}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdPart\entt\include">
+      <UniqueIdentifier>{D4A10236-C09B-2B88-A908-C29895A191F4}</UniqueIdentifier>
+    </Filter>
     <Filter Include="ThirdPart\json">
       <UniqueIdentifier>{E07BB80C-CC49-AC12-B5DD-1C39A14A8877}</UniqueIdentifier>
     </Filter>
@@ -102,6 +111,15 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\ThirdPart\entt\include\entt.hpp">
+      <Filter>ThirdPart\entt\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdPart\json\json.hpp">
+      <Filter>ThirdPart\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdPart\stb_image\stb_image.h">
+      <Filter>ThirdPart\stb_image</Filter>
+    </ClInclude>
     <ClInclude Include="Src\Application.h">
       <Filter>Src</Filter>
     </ClInclude>
@@ -228,6 +246,18 @@
     <ClInclude Include="Src\Core\Render\VertexArray.h">
       <Filter>Src\Core\Render</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Core\Scene\Components.h">
+      <Filter>Src\Core\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Core\Scene\Entity.h">
+      <Filter>Src\Core\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Core\Scene\Scene.h">
+      <Filter>Src\Core\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Core\Scene\SceneSerializer.h">
+      <Filter>Src\Core\Scene</Filter>
+    </ClInclude>
     <ClInclude Include="Src\Core\Serialization.h">
       <Filter>Src\Core</Filter>
     </ClInclude>
@@ -297,14 +327,13 @@
     <ClInclude Include="Src\Tool\Util\TimeMeasurer.h">
       <Filter>Src\Tool\Util</Filter>
     </ClInclude>
-    <ClInclude Include="ThirdPart\json\json.hpp">
-      <Filter>ThirdPart\json</Filter>
-    </ClInclude>
-    <ClInclude Include="ThirdPart\stb_image\stb_image.h">
-      <Filter>ThirdPart\stb_image</Filter>
-    </ClInclude>
+    <ClInclude Include="Src\Tool\Util\PlatformUtils.h" />
+    <ClInclude Include="Src\Tool\Util\Util.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\ThirdPart\stb_image\stb_image.cpp">
+      <Filter>ThirdPart\stb_image</Filter>
+    </ClCompile>
     <ClCompile Include="Src\Application.cpp">
       <Filter>Src</Filter>
     </ClCompile>
@@ -365,6 +394,15 @@
     <ClCompile Include="Src\Core\Render\VertexArray.cpp">
       <Filter>Src\Core\Render</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Core\Scene\Entity.cpp">
+      <Filter>Src\Core\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Core\Scene\Scene.cpp">
+      <Filter>Src\Core\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Core\Scene\SceneSerializer.cpp">
+      <Filter>Src\Core\Scene</Filter>
+    </ClCompile>
     <ClCompile Include="Src\DMPCH.cpp">
       <Filter>Src</Filter>
     </ClCompile>
@@ -422,8 +460,7 @@
     <ClCompile Include="Src\Tool\Util\TimeMeasurer.cpp">
       <Filter>Src\Tool\Util</Filter>
     </ClCompile>
-    <ClCompile Include="ThirdPart\stb_image\stb_image.cpp">
-      <Filter>ThirdPart\stb_image</Filter>
-    </ClCompile>
+    <ClCompile Include="Src\Platform\Window\WindowsPlatformUtil.cpp" />
+    <ClCompile Include="Src\Tool\Util\Util.cpp" />
   </ItemGroup>
 </Project>

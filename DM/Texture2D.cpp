@@ -1,4 +1,4 @@
-#include "Texture2D.h"
+ï»¿#include "Texture2D.h"
 #include"stb-master/stb_image.h"
 #include<GameStatic.h>
 #include<Util.h>
@@ -8,18 +8,18 @@ Texture2D::Texture2D()
     glGenTextures(1, &Id);
 	Type = GL_TEXTURE_2D;
 	Bind(0);
-	//ÉèÖÃ»·ÈÆ·½Ê½
+	//è®¾ç½®ç¯ç»•æ–¹å¼l
 	glTexParameteri(Type, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(Type, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	//ÉèÖÃ¹ıÂË·½Ê½
+	//è®¾ç½®è¿‡æ»¤æ–¹å¼
 	if (!bUseMipmap)
 	{
-		glTexParameteri(Type, GL_TEXTURE_MIN_FILTER, GL_LINEAR);//ÏßĞÔ
-		glTexParameteri(Type, GL_TEXTURE_MAG_FILTER, GL_NEAREST);//ÁÚ½ü
+		glTexParameteri(Type, GL_TEXTURE_MIN_FILTER, GL_LINEAR);//çº¿æ€§
+		glTexParameteri(Type, GL_TEXTURE_MAG_FILTER, GL_NEAREST);//é‚»è¿‘
 	}
 	else
 	{
-		glTexParameteri(Type, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);//²ã¼¶ÄÚÍâÏßĞÔ
+		glTexParameteri(Type, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);//å±‚çº§å†…å¤–çº¿æ€§
 		glTexParameteri(Type, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	}
 	UnBind();
@@ -37,25 +37,25 @@ Texture2D::Texture2D(const std::string& Path, int DesiredChannel):Texture2D()
         {
             Util::Print((int)Data[i], (int)Data[++i], (int)Data[++i], (int)Data[++i]);
         }*/
-        this->LoadedImgFormat = 0;// ¶ÁÈ¡µÄÍ¼Æ¬µÄÊı¾İ¸ñÊ½
-        this->InternalFormat = 0;//ÎÆÀíÄÚ²¿´æ´¢¸ñÊ½
-        DesiredChannel = DesiredChannel == 0 ? Channel : DesiredChannel;//DataµÄÍ¨µÀÊı
-        // ¸ù¾İÊµ¼Ê·µ»ØµÄÍ¨µÀÊı£¨desiredChannels ¿ÉÄÜÇ¿ÖÆ×ª»»ÁËÍ¨µÀ£©ÅĞ¶Ï
+        this->LoadedImgFormat = 0;// è¯»å–çš„å›¾ç‰‡çš„æ•°æ®æ ¼å¼
+        this->InternalFormat = 0;//çº¹ç†å†…éƒ¨å­˜å‚¨æ ¼å¼
+        DesiredChannel = DesiredChannel == 0 ? Channel : DesiredChannel;//Dataçš„é€šé“æ•°
+        // æ ¹æ®å®é™…è¿”å›çš„é€šé“æ•°ï¼ˆdesiredChannels å¯èƒ½å¼ºåˆ¶è½¬æ¢äº†é€šé“ï¼‰åˆ¤æ–­
         if (DesiredChannel == 1)
         {
             this->LoadedImgFormat = GL_RED;
-            this->InternalFormat = GL_R8;  // ÄÚ²¿´æ´¢¸ñÊ½£ºµ¥Í¨µÀ8Î»
+            this->InternalFormat = GL_R8;  // å†…éƒ¨å­˜å‚¨æ ¼å¼ï¼šå•é€šé“8ä½
         }
         else if (DesiredChannel == 3)
         {
             this->LoadedImgFormat = GL_RGB;
-            this->InternalFormat = GL_RGB8; // ÈıÍ¨µÀ8Î»
+            this->InternalFormat = GL_RGB8; // ä¸‰é€šé“8ä½
         }
         else if (DesiredChannel == 4)
         {
             //Util::Print("GL_RGBA8");
             this->LoadedImgFormat = GL_RGBA;
-            this->InternalFormat = GL_RGBA8; // ËÄÍ¨µÀ8Î»
+            this->InternalFormat = GL_RGBA8; // å››é€šé“8ä½
         }
         else
         {
@@ -63,15 +63,15 @@ Texture2D::Texture2D(const std::string& Path, int DesiredChannel):Texture2D()
         }
         Bind(0);
         glTexImage2D(
-            GL_TEXTURE_2D,              // ÎÆÀíÄ¿±ê£¨Èç GL_TEXTURE_2D£©
-            0,                      // »ù´¡²ã¼¶
-            this->InternalFormat,    // ÎÆÀíµÄÄÚ²¿´æ´¢¸ñÊ½
-            this->Width,             // ¿í¶È
-            this->Height,            // ¸ß¶È
-            0,                      // ±ß½ç£¨±ØĞëÎª0£©
-            this->LoadedImgFormat,   // ¶ÁÈ¡µÄÍ¼Æ¬µÄÊı¾İ¸ñÊ½
-            GL_UNSIGNED_BYTE,       // ÊäÈëÊı¾İÀàĞÍ£¨stbi_load ·µ»Ø unsigned char£©
-            Data                    // ÏñËØÊı¾İ
+            GL_TEXTURE_2D,              // çº¹ç†ç›®æ ‡ï¼ˆå¦‚ GL_TEXTURE_2Dï¼‰
+            0,                      // åŸºç¡€å±‚çº§
+            this->InternalFormat,    // çº¹ç†çš„å†…éƒ¨å­˜å‚¨æ ¼å¼
+            this->Width,             // å®½åº¦
+            this->Height,            // é«˜åº¦
+            0,                      // è¾¹ç•Œï¼ˆå¿…é¡»ä¸º0ï¼‰
+            this->LoadedImgFormat,   // è¯»å–çš„å›¾ç‰‡çš„æ•°æ®æ ¼å¼
+            GL_UNSIGNED_BYTE,       // è¾“å…¥æ•°æ®ç±»å‹ï¼ˆstbi_load è¿”å› unsigned charï¼‰
+            Data                    // åƒç´ æ•°æ®
         );
         if (this->bUseMipmap)glGenerateMipmap(this->Type);
         UnBind();
@@ -92,24 +92,24 @@ SPtr<Texture2D> Texture2D::LoadTexture2D(const std::string& Path,int DesiredChan
     unsigned char* Data = stbi_load(Path.c_str(), &Tex->Width, &Tex->Height, &Channel, DesiredChannel);
     if (Data)
     {
-        Tex->LoadedImgFormat = 0;// ¶ÁÈ¡µÄÍ¼Æ¬µÄÊı¾İ¸ñÊ½
-        Tex->InternalFormat = 0;//ÎÆÀíÄÚ²¿´æ´¢¸ñÊ½
-        DesiredChannel = DesiredChannel == 0 ? Channel : DesiredChannel;//DataµÄÍ¨µÀÊı
-        // ¸ù¾İÊµ¼Ê·µ»ØµÄÍ¨µÀÊı£¨desiredChannels ¿ÉÄÜÇ¿ÖÆ×ª»»ÁËÍ¨µÀ£©ÅĞ¶Ï
+        Tex->LoadedImgFormat = 0;// è¯»å–çš„å›¾ç‰‡çš„æ•°æ®æ ¼å¼
+        Tex->InternalFormat = 0;//çº¹ç†å†…éƒ¨å­˜å‚¨æ ¼å¼
+        DesiredChannel = DesiredChannel == 0 ? Channel : DesiredChannel;//Dataçš„é€šé“æ•°
+        // æ ¹æ®å®é™…è¿”å›çš„é€šé“æ•°ï¼ˆdesiredChannels å¯èƒ½å¼ºåˆ¶è½¬æ¢äº†é€šé“ï¼‰åˆ¤æ–­
         if (DesiredChannel == 1)
         {
             Tex->LoadedImgFormat = GL_RED;
-            Tex->InternalFormat = GL_R8;  // ÄÚ²¿´æ´¢¸ñÊ½£ºµ¥Í¨µÀ8Î»
+            Tex->InternalFormat = GL_R8;  // å†…éƒ¨å­˜å‚¨æ ¼å¼ï¼šå•é€šé“8ä½
         }
         else if (DesiredChannel == 3)
         {
             Tex->LoadedImgFormat = GL_RGB;
-            Tex->InternalFormat = GL_RGB8; // ÈıÍ¨µÀ8Î»
+            Tex->InternalFormat = GL_RGB8; // ä¸‰é€šé“8ä½
         }
         else if (DesiredChannel == 4)
         {
             Tex->LoadedImgFormat = GL_RGBA;
-            Tex->InternalFormat = GL_RGBA8; // ËÄÍ¨µÀ8Î»
+            Tex->InternalFormat = GL_RGBA8; // å››é€šé“8ä½
         }
         else
         {
@@ -117,15 +117,15 @@ SPtr<Texture2D> Texture2D::LoadTexture2D(const std::string& Path,int DesiredChan
         }
         Tex->Bind(0);
         glTexImage2D(
-            Tex->Type,              // ÎÆÀíÄ¿±ê£¨Èç GL_TEXTURE_2D£©
-            0,                      // »ù´¡²ã¼¶
-            Tex->InternalFormat,    // ÎÆÀíµÄÄÚ²¿´æ´¢¸ñÊ½
-            Tex->Width,             // ¿í¶È
-            Tex->Height,            // ¸ß¶È
-            0,                      // ±ß½ç£¨±ØĞëÎª0£©
-            Tex->LoadedImgFormat,   // ¶ÁÈ¡µÄÍ¼Æ¬µÄÊı¾İ¸ñÊ½
-            GL_UNSIGNED_BYTE,       // ÊäÈëÊı¾İÀàĞÍ£¨stbi_load ·µ»Ø unsigned char£©
-            Data                    // ÏñËØÊı¾İ
+            Tex->Type,              // çº¹ç†ç›®æ ‡ï¼ˆå¦‚ GL_TEXTURE_2Dï¼‰
+            0,                      // åŸºç¡€å±‚çº§
+            Tex->InternalFormat,    // çº¹ç†çš„å†…éƒ¨å­˜å‚¨æ ¼å¼
+            Tex->Width,             // å®½åº¦
+            Tex->Height,            // é«˜åº¦
+            0,                      // è¾¹ç•Œï¼ˆå¿…é¡»ä¸º0ï¼‰
+            Tex->LoadedImgFormat,   // è¯»å–çš„å›¾ç‰‡çš„æ•°æ®æ ¼å¼
+            GL_UNSIGNED_BYTE,       // è¾“å…¥æ•°æ®ç±»å‹ï¼ˆstbi_load è¿”å› unsigned charï¼‰
+            Data                    // åƒç´ æ•°æ®
         );
         if (Tex->bUseMipmap)glGenerateMipmap(Tex->Type);
     }

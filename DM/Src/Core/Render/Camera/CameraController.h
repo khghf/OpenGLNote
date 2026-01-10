@@ -46,6 +46,5 @@ namespace DM
 	private:
 		float m_ZoomLevel = 1.f;
 		Ref<Camera>m_ViewPoint;
-
 	};
 }

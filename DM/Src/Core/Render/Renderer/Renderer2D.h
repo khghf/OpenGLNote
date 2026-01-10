@@ -3,7 +3,7 @@
 #include"../Shader.h"
 #include"../Camera/OrthoGraphicCamera.h"
 #include"RenderCommand.h"
-
+#include<Core/Scene/Components.h>
 namespace DM
 {
 	class Texture2D;
@@ -19,7 +19,10 @@ namespace DM
 		static void DrawQuad(const Vector2& pos, const Vector2& size, const Vector4& color);
 		static void DrawQuad(const Vector3& pos, const Vector2& size, const Vector4& color);
 		static void DrawQuad(const Vector2& pos, const Vector2& size, const Ref<Texture2D>& texture, const Vector2& uvTiling= Vector2(1.f,1.f), const Vector4& color = Vector4(1.f, 1.f, 1.f, 1.f));
-		static void DrawQuad(const Vector3& pos, const Vector2& size, const Ref<Texture2D>&texture, const Vector2& uvTiling = Vector2(1.f, 1.f),const Vector4& color= Vector4(1.f,1.f,1.f,1.f));
+		static void DrawQuad(const Vector3& pos, const Vector2& size, const Ref<Texture2D>& texture, const Vector2& uvTiling = Vector2(1.f, 1.f), const Vector4& color = Vector4(1.f, 1.f, 1.f, 1.f));
+		
+
+		static void DrawQuad(const SpriteComponent&sprite,const TransformComponent&transform,const Vector2& uvTiling = Vector2(1.f, 1.f));
 
 		static RendererAPI::EAPI GetAPI();
 

@@ -102,6 +102,7 @@ namespace DM
 	void Renderer2D::EndScene()
 	{
 		uint32_t dataSize = (uint32_t)((uint8_t*)s_Data->QuadVertexPtr - (uint8_t*)s_Data->QuadVertexBase);
+		if (dataSize == 0)return;
 		s_Data->QuadVertexBuffer->SetData(s_Data->QuadVertexBase, dataSize);
 		glm::mat4 model(1.f);
 		s_Data->TextureShader->SetMat4x4("u_ModelMatrix", model);
@@ -111,10 +112,8 @@ namespace DM
 	}
 	void Renderer2D::Flush()
 	{
-
 		RenderCommand::DrawIndexed(s_Data->QuadVertexArray,s_Data->QuadIndexCount);
 		++s_Data->Stats.DrawCall;
-
 	}
 
 	void Renderer2D::DrawQuad(const Vector2& pos, const Vector2& size, const Vector4& color)
@@ -123,7 +122,6 @@ namespace DM
 	}
 	void Renderer2D::DrawQuad(const Vector3& pos, const Vector2& size, const Vector4& color)
 	{
-	
 		if (s_Data->QuadIndexCount >= s_Data->MaxIndexCount)FlushAndRest();
 		const int texslot = 0;
 		const  Vector2 textCoord[4] = {
@@ -149,7 +147,6 @@ namespace DM
 		}
 		s_Data->QuadIndexCount += 6;
 		++s_Data->Stats.QuadCount;
-
 	}
 
 	void Renderer2D::DrawQuad(const Vector2& pos, const Vector2& size, const Ref<Texture2D>& texture, const Vector2& uvTiling , const Vector4& color)
@@ -201,6 +198,16 @@ namespace DM
 		s_Data->QuadIndexCount += 6;
 		++s_Data->Stats.QuadCount;
 	}
+
+	void Renderer2D::DrawQuad(const SpriteComponent& sprite, const TransformComponent& transform, const Vector2& uvTiling /*= Vector2(1.f, 1.f)*/)
+	{
+		Vector3 pos = transform.Location;
+		Vector2 size = { 1.f,1.f };
+		size.x *= transform.Scale.x;
+		size.y *= transform.Scale.y;
+		DrawQuad(pos, size, sprite.Color);
+	}
+
 	RendererAPI::EAPI Renderer2D::GetAPI() { return RendererAPI::GetAPI(); }
 	Renderer2D::Statistics Renderer2D::GetStats()
 	{
@@ -214,6 +221,7 @@ namespace DM
 	void Renderer2D::FlushAndRest()
 	{
 		EndScene();
-		Flush();
+		s_Data->QuadVertexPtr = s_Data->QuadVertexBase;
+		s_Data->QuadIndexCount = 0;
 	}
 }

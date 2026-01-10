@@ -14,6 +14,7 @@ namespace DM
 		virtual void OnEvent(Event* const e) override;
 		virtual void OnUpdate(float DeltaTime)override;
 		bool BlockEvent(bool bIsBlock) { m_bBlockEvent = bIsBlock; return m_bBlockEvent; }
+		void SetupImGuiDarkTheme(float alpha = 1.0f);
 	protected:
 		void Begin()override;
 		virtual void Render()override;
