@@ -1,5 +1,5 @@
 ﻿#include"DMPCH.h"
-#include "Application.h"
+#include"Application.h"
 #include<GLFW/glfw3.h>
 #include"Core/EventSystem/EventManager.h"
 #include<glad/glad.h>
@@ -8,6 +8,7 @@
 #include<Core/Render/Renderer/Renderer.h>
 #include<Tool/Util/TimeMeasurer.h>
 #include<Core/Input/Input.h>
+#include"Config.h"
 namespace DM {
 	Application* Application::s_Inst = nullptr;
 	Application::Application()
@@ -36,6 +37,7 @@ namespace DM {
 	}
 	void Application::Init()
 	{
+		Config::Init();
 		m_Win = Window::Create();
 		m_LayerStack = std::unique_ptr<LayerStack>(new LayerStack());
 		

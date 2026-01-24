@@ -54,17 +54,7 @@ namespace DM
 		ImGui::Columns(1);
 		ImGui::PopID();
 	}
-	SceneHierarchyPanel::SceneHierarchyPanel(const Ref<Scene>context)
-	{
-		SetContext(context);
-	}
-
-	void SceneHierarchyPanel::SetContext(const Ref<Scene>& context)
-	{
-		m_Context = context;
-	}
-
-	void SceneHierarchyPanel::OnUIRender()
+	void SceneHierarchyPanel::Render()
 	{
 		ImGui::Begin("SceneHierarchyPanel");
 		{

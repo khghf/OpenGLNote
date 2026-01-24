@@ -12,6 +12,7 @@ namespace DM
 	public:
 		static void Init();
 		static void ShoutDown();
+		static void BeginScene(const Matrix4& projectionView);
 		static void BeginScene(const Ref<Camera>& orthoCamera);
 		static void EndScene();
 		static void Flush();

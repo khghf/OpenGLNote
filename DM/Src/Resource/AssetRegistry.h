@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include<DMPCH.h>
 #include<Core/Core.h>
-#include<Tool/Util/GameStatic.h>
+#include<Tool/Util/Util.h>
 #include<Core/Render/Shader.h>
 #include<Core/Render/Texture/Texture.h>
 #include<Core/Container/Array.h>
@@ -53,7 +53,7 @@ namespace DM
 	template<typename T>
 	Ref<T> AssetRegistry<T>::Register(const std::string& assetPath)
 	{
-		std::string name = GameStatic::ConvertPathToName(assetPath);
+		std::string name = Util::GetFileName(assetPath,false);
 		if (HasAsset(name))return GetAsset(name);
 		else
 		{

@@ -1,9 +1,7 @@
 ﻿#pragma once
 #include<Core/Render/FrameBuffer/FrameBuffer.h>
-
 namespace DM
 {
-
 	class OpenGlFrameBuffer:public FrameBuffer
 	{
 	public:
@@ -11,8 +9,10 @@ namespace DM
 		virtual ~OpenGlFrameBuffer();
 		virtual void Bind()override;
 		virtual void UnBind()override;
-		virtual uint32_t GetColorAttachmentId()const { return m_ColorAttachment; }
-		virtual uint32_t GetDepthAttachmentId()const { return m_DepthAttachment; }
+		virtual int ReadPixel(const uint32_t& attachmentIndex, int x, int y)override;
+		virtual void ClearColorAttachment(const uint32_t& attachmentIndex,  int data) override;
+		virtual uint32_t GetColorAttachmentId(const uint32_t& index)const override { DM_CORE_ASSERT(m_ColorAttachmentIds.size() > index, "{}", "Out of range!"); return m_ColorAttachmentIds[index]; }
+		virtual uint32_t GetDepthAttachmentId()const override { return m_DepthAttachmentId; }
 		virtual void Resize(uint32_t width, uint32_t height)override;
 		virtual uint32_t GetId()const override { return m_Id; };
 
@@ -20,11 +20,13 @@ namespace DM
 		void FreeBuffer();
 		void Reset();
 	private:
-		FrameBufferSpecification m_Spec;
 		uint32_t m_Id;
-		uint32_t m_ColorAttachment;
-		uint32_t m_DepthAttachment;
-	};
+		FrameBufferSpecification m_Spec;
+		std::vector<FramebufferTextureSpecification> m_ColorAttachmentSpecs;
+		FramebufferTextureSpecification m_DepthAttachmentSpec;
+		std::vector<uint32_t>m_ColorAttachmentIds;
+		uint32_t m_DepthAttachmentId = 0;
+	}; 
 }
 
 

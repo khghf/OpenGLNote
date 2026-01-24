@@ -1,0 +1,26 @@
+project"SPIRV-Cross"
+    kind"StaticLib"
+	targetdir("../bin/"..outputdir.."/%{prj.name}")
+	objdir("../bin-int/"..outputdir.."/%{prj.name}")
+	files{
+		ThirdPartBaseDir.."SPIRV-Cross/SPIRV-Cross/spirv_cross.cpp",
+		ThirdPartBaseDir.."SPIRV-Cross/SPIRV-Cross/spirv_cross_parsed_ir.cpp",
+		ThirdPartBaseDir.."SPIRV-Cross/SPIRV-Cross/spirv_cfg.cpp",
+		ThirdPartBaseDir.."SPIRV-Cross/SPIRV-Cross/spirv_glsl.cpp",
+		ThirdPartBaseDir.."SPIRV-Cross/SPIRV-Cross/spirv_parser.cpp",
+	}
+	includedirs{
+		ThirdPartBaseDir.."SPIRV-Cross/SPIRV-Cross/include",
+		ThirdPartBaseDir.."SPIRV-Cross/SPIRV-Cross",
+		-- "%{ThirdPartIncludeDir.GLM}",
+	}
+	filter"system:windows"
+		systemversion"latest"
+	filter"configurations:Debug"
+		defines"DM_DEBUG"
+		runtime"Debug"
+		symbols"on"
+	filter"configurations:Release"
+		defines"DM_RELEASE"
+		runtime"Release"
+		optimize"on"

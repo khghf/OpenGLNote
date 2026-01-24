@@ -6,13 +6,13 @@
 #include<glm/gtc/type_ptr.hpp>
 namespace DM
 {
-	enum class EShaderType :uint8_t//着色器类型
-	{
-		None,
-		VS,//顶点着色器
-		FS,//片段着色器
-		PS,//着色程序
-	};
+	//enum class EShaderType :uint8_t//着色器类型
+	//{
+	//	None,
+	//	VS,//顶点着色器
+	//	FS,//片段着色器
+	//	PS,//着色程序
+	//};
 	class OpenGlShader :public Shader
 	{
 	public:
@@ -22,7 +22,7 @@ namespace DM
 	
 	public:
 		inline unsigned int GetID()const { return m_Id; }
-		inline EShaderType GetShaderType()const { return m_Type; }
+		inline GLenum GetShaderType()const { return m_Type; }
 		virtual void Bind()override { assert(m_Id && "Bind Invalid Shader Id"); glUseProgram(m_Id); }
 		virtual void UnBind()override { assert(m_Id && "UnBind Invalid Shader Id"); glUseProgram(0); }
 
@@ -42,17 +42,30 @@ namespace DM
 		inline void UploadFloat4(const std::string_view& name, const Vector4& val)				{ glUniform4fv(GetUniformLocation(name), 1, glm::value_ptr(val)); }
 		inline void UploadMat3x3(const std::string_view& name, const Matrix3& val)				{ glUniformMatrix3fv(GetUniformLocation(name), 1, GL_FALSE, glm::value_ptr(val)); }
 		inline void UploadMat4x4(std::string_view name, const Matrix4& val)						{ glUniformMatrix4fv(GetUniformLocation(name), 1, GL_FALSE, glm::value_ptr(val)); }
-		
+
+		bool CheckShaderCompStatus();
+		bool CheckProgramLinkStatus();
+		std::unordered_map<GLenum, std::string>ProcessGLSLCode(const std::string& glslCode);
 
 
-		unsigned int CreateShader(std::string_view Code, const EShaderType& Type);
-		unsigned int CreateProgram(const unsigned int& VsId, const unsigned int& FsId);
-		static bool CheckShaderCompStatus(const OpenGlShader& shader);
-		static bool CheckProgramLinkStatus(const OpenGlShader& shader);
-		std::unordered_map<std::string, std::string>ProcessGLSLCode(const std::string& glslCode);
+		//将源码编译成适配Vulkan的SPIRV二进制代码
+		void CompileOrGetVulkanBinaries(const std::unordered_map<GLenum, std::string>& shaderSources);
+		//从m_VulkanSPIRV代码反向编译成适配OpenGL的GLSL源码并缓存适配OpenGL的SPIRV二进制代码
+		void CompileOrGetOpenGLBinaries();
+		void CreateProgram();
+		void Reflect(GLenum stage, const std::vector<uint32_t>& shaderData);
+
+
+
+
+
 	private:
 		unsigned int m_Id;
-		EShaderType m_Type = EShaderType::None;
+		GLenum m_Type;
+
+		std::unordered_map<GLenum, std::vector<uint32_t>> m_VulkanSPIRV;
+		std::unordered_map<GLenum, std::vector<uint32_t>> m_OpenGLSPIRV;
+		std::unordered_map<GLenum, std::string> m_OpenGLSourceCode;
 	};
 }
 

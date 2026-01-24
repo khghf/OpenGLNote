@@ -46,6 +46,9 @@
     <Filter Include="Src\Core\Render\Texture">
       <UniqueIdentifier>{B407772D-203F-BFC4-2949-23E895FFE5BD}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Core\Render\UniformBuffer">
+      <UniqueIdentifier>{7D5C9870-E974-7F9A-B221-0F341EF91334}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Src\Core\Scene">
       <UniqueIdentifier>{6274299D-4E42-1DA3-37D6-8DC92343F907}</UniqueIdentifier>
     </Filter>
@@ -72,6 +75,9 @@
     </Filter>
     <Filter Include="Src\Platform\Render\OpenGl\Texture">
       <UniqueIdentifier>{04AA575C-F0E5-5AC6-59F8-72BD455303E1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Platform\Render\OpenGl\UniformBuffer">
+      <UniqueIdentifier>{CD7A1DB0-B9F7-10F3-E274-1107CE50AD86}</UniqueIdentifier>
     </Filter>
     <Filter Include="Src\Platform\Window">
       <UniqueIdentifier>{C83F772E-34A1-543C-BD0E-9BEE296F8BFB}</UniqueIdentifier>
@@ -243,6 +249,9 @@
     <ClInclude Include="Src\Core\Render\Texture\TextureAtlas.h">
       <Filter>Src\Core\Render\Texture</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Core\Render\UniformBuffer\UniformBuffer.h">
+      <Filter>Src\Core\Render\UniformBuffer</Filter>
+    </ClInclude>
     <ClInclude Include="Src\Core\Render\VertexArray.h">
       <Filter>Src\Core\Render</Filter>
     </ClInclude>
@@ -303,6 +312,9 @@
     <ClInclude Include="Src\Platform\Render\OpenGl\Texture\OpenGlTexture.h">
       <Filter>Src\Platform\Render\OpenGl\Texture</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Platform\Render\OpenGl\UniformBuffer\OpenGlUniformBuffer.h">
+      <Filter>Src\Platform\Render\OpenGl\UniformBuffer</Filter>
+    </ClInclude>
     <ClInclude Include="Src\Platform\Window\Win\WinWindow.h">
       <Filter>Src\Platform\Window\Win</Filter>
     </ClInclude>
@@ -324,11 +336,16 @@
     <ClInclude Include="Src\Tool\Util\GameStatic.h">
       <Filter>Src\Tool\Util</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Tool\Util\PlatformUtils.h">
+      <Filter>Src\Tool\Util</Filter>
+    </ClInclude>
     <ClInclude Include="Src\Tool\Util\TimeMeasurer.h">
       <Filter>Src\Tool\Util</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Tool\Util\PlatformUtils.h" />
-    <ClInclude Include="Src\Tool\Util\Util.h" />
+    <ClInclude Include="Src\Tool\Util\Util.h">
+      <Filter>Src\Tool\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Config.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\ThirdPart\stb_image\stb_image.cpp">
@@ -391,6 +408,9 @@
     <ClCompile Include="Src\Core\Render\Texture\TextureAtlas.cpp">
       <Filter>Src\Core\Render\Texture</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Core\Render\UniformBuffer\UniformBuffer.cpp">
+      <Filter>Src\Core\Render\UniformBuffer</Filter>
+    </ClCompile>
     <ClCompile Include="Src\Core\Render\VertexArray.cpp">
       <Filter>Src\Core\Render</Filter>
     </ClCompile>
@@ -433,11 +453,17 @@
     <ClCompile Include="Src\Platform\Render\OpenGl\Texture\OpenGlTexture.cpp">
       <Filter>Src\Platform\Render\OpenGl\Texture</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Platform\Render\OpenGl\UniformBuffer\OpenGlUniformBuffer.cpp">
+      <Filter>Src\Platform\Render\OpenGl\UniformBuffer</Filter>
+    </ClCompile>
     <ClCompile Include="Src\Platform\Window\Input\WindowInput.cpp">
       <Filter>Src\Platform\Window\Input</Filter>
     </ClCompile>
     <ClCompile Include="Src\Platform\Window\Win\WinWindow.cpp">
       <Filter>Src\Platform\Window\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Platform\Window\WindowsPlatformUtil.cpp">
+      <Filter>Src\Platform\Window</Filter>
     </ClCompile>
     <ClCompile Include="Src\Resource\Asset.cpp">
       <Filter>Src\Resource</Filter>
@@ -460,7 +486,9 @@
     <ClCompile Include="Src\Tool\Util\TimeMeasurer.cpp">
       <Filter>Src\Tool\Util</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Platform\Window\WindowsPlatformUtil.cpp" />
-    <ClCompile Include="Src\Tool\Util\Util.cpp" />
+    <ClCompile Include="Src\Tool\Util\Util.cpp">
+      <Filter>Src\Tool\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Config.cpp" />
   </ItemGroup>
 </Project>

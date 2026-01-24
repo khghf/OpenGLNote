@@ -9,6 +9,7 @@ namespace DM
 		auto state = glfwGetKey(static_cast<GLFWwindow*>(Application::GetInst()->GetWindow()->GetNativeWindow()), (int)code);
 		return state == GLFW_PRESS || state == GLFW_REPEAT;
 	}
+	
 	bool Input::IsMouseButtonPressed(Key code)
 	{
 		auto state = glfwGetMouseButton(static_cast<GLFWwindow*>(Application::GetInst()->GetWindow()->GetNativeWindow()), (int)code);

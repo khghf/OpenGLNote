@@ -1,7 +1,6 @@
 ﻿#pragma once
 #include<Core/Math/Vector.h>
 #include<Core/Math/Matrix.h>
-#include<Core/Log.h>
 namespace DM
 {
 	class Event;
@@ -21,7 +20,7 @@ namespace DM
 		virtual void	SetRotation(const Vector3& rotation)	{ m_Rotation = rotation;UpdateData(); }
 		virtual void	SetPosition(const Vector3& position)	{ m_Position = position; UpdateData(); }
 		virtual void	SetFOV(const float& fov)				{ m_FOV = fov;OnFovUpdate(); }
-		virtual void	SetProjection(const float& aspectRatio) = 0;
+		virtual void	SetProjection(const float& aspectRatio)=0;
 		virtual Vector3 GetRotation()const						{ return m_Rotation; }
 		virtual Vector3 GetPosition()const						{ return m_Position; }
 		virtual Vector3 GetForward()const						{ return m_Front; }
@@ -46,6 +45,6 @@ namespace DM
 		Vector3 m_Right;
 		Vector3 m_Rotation;
 		float m_FOV = 45.f;
-		float m_aspectRatio;
+		float m_AspectRatio;
 	};
 }

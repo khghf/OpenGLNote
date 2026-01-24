@@ -1,13 +1,20 @@
 ﻿workspace "DM"
-	architecture"x64"--x64ƽ̨
+	architecture"x64"--x64
 	configurations{
 		"Debug",
 		"Release",
-		"Dist"
 	}
 	startproject"Game"
+	staticruntime "off"  
+	language"C++"
+	cppdialect "C++17"  
+    buildoptions "/utf-8"
 outputdir="%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
-ThirdPartBaseDir="ThirdPart/"
+ThirdPartBaseDir="%{wks.basedir}/ThirdPart/"
+VULKAN_SDK = os.getenv("VULKAN_SDK")
+EngineName="DM"
+EidtorName="Editor"
+GameName="Game"
 ThirdPartIncludeDir={}
 ThirdPartIncludeDir["spdlog"]=ThirdPartBaseDir.."spdlog/include"
 ThirdPartIncludeDir["GLFW"]=ThirdPartBaseDir.."glfw/glfw/include"
@@ -19,154 +26,44 @@ ThirdPartIncludeDir["json"]=ThirdPartBaseDir.."json"
 ThirdPartIncludeDir["entt"]=ThirdPartBaseDir.."entt/include"
 ThirdPartIncludeDir["yaml_cpp"]=ThirdPartBaseDir.."yaml_cpp/yaml_cpp/include"
 ThirdPartIncludeDir["ImGuizmo"]=ThirdPartBaseDir.."ImGuizmo/ImGuizmo"
+
+ThirdPartIncludeDir["VulkanSDK"] = "%{VULKAN_SDK}/Include"
+ThirdPartIncludeDir["shaderc"] = "%{VULKAN_SDK}/Include"
+-- ThirdPartIncludeDir["SPIRV_Cross"] = "%{VULKAN_SDK}/Include"
+ThirdPartIncludeDir["SPIRV_Cross"] = ThirdPartBaseDir.."SPIRV-Cross/SPIRV-Cross/Include"
+
+
+LibraryDir = {}
+
+LibraryDir["VulkanSDK"] = "%{VULKAN_SDK}/Lib"
+LibraryDir["VulkanSDK_Debug"] = "%{VULKAN_SDK}/Lib"
+
+Library = {}
+Library["Vulkan"] = "%{LibraryDir.VulkanSDK}/vulkan-1.lib"
+Library["VulkanUtils"] = "%{LibraryDir.VulkanSDK}/VkLayer_utils.lib"
+
+Library["ShaderC_Debug"] = "%{LibraryDir.VulkanSDK_Debug}/shaderc_sharedd.lib"
+-- Library["SPIRV_Cross_Debug"] = "%{LibraryDir.VulkanSDK_Debug}/spirv-cross-cored.lib"
+-- Library["SPIRV_Cross_GLSL_Debug"] = "%{LibraryDir.VulkanSDK_Debug}/spirv-cross-glsld.lib"
+Library["SPIRV_Tools_Debug"] = "%{LibraryDir.VulkanSDK_Debug}/SPIRV-Toolsd.lib"
+
+Library["ShaderC_Release"] = "%{LibraryDir.VulkanSDK}/shaderc_shared.lib"
+-- Library["SPIRV_Cross_Release"] = "%{LibraryDir.VulkanSDK}/spirv-cross-core.lib"
+-- Library["SPIRV_Cross_GLSL_Release"] = "%{LibraryDir.VulkanSDK}/spirv-cross-glsl.lib"
+
+
+
 group "Dependencies"
 	include "ThirdPart/glfw"
 	include "ThirdPart/glad"
 	include "ThirdPart/imgui"
 	include "ThirdPart/yaml_cpp"
 	include "ThirdPart/ImGuizmo"
+	-- include "ThirdPart/shaderc"
+	include "ThirdPart/SPIRV-Cross"
 group""
-project"DM"
-	location"DM"
-	kind"StaticLib"
-	language"C++"
-	staticruntime"on"
-	buildoptions"/utf-8"
-	targetdir("bin/"..outputdir.."/%{prj.name}")
-	objdir("bin-int/"..outputdir.."/%{prj.name}")
-	pchheader"DMPCH.h"	
-	pchsource"DM/Src/DMPCH.cpp"
-	files{
-		"%{prj.name}/Src/**.h",
-		"%{prj.name}/Src/**.cpp",
-		ThirdPartBaseDir.."stb_image/**.h",
-		ThirdPartBaseDir.."stb_image/**.cpp",
-		ThirdPartBaseDir.."json/**.hpp",
-		ThirdPartBaseDir.."json/**.cpp",
-		ThirdPartBaseDir.."entt/include/**.hpp",
-	}
-	
+include"DM"
+include"Editor"
+include"Game"
 
-	includedirs{
-		"%{ThirdPartIncludeDir.spdlog}",
-		"%{ThirdPartIncludeDir.GLFW}",
-		"%{ThirdPartIncludeDir.GLAD}",
-		"%{ThirdPartIncludeDir.IMGUI}",
-		"%{ThirdPartIncludeDir.GLM}",
-		"%{ThirdPartIncludeDir.stb_image}",
-		"%{ThirdPartIncludeDir.json}",
-		"%{ThirdPartIncludeDir.entt}",
-		"%{ThirdPartIncludeDir.yaml_cpp}",
-		"%{ThirdPartIncludeDir.ImGuizmo}",
-		"%{prj.name}/Src",
-	}
-	
-	links{
-		"GLFW",
-		"GLAD",
-		"ImGui",
-		"yaml_cpp",
-		"ImGuizmo",
-		"opengl32.lib"
-	}
-	filter"files:%{ThirdPartIncludeDir.ImGuizmo}/**.cpp"
-		flags{"NoPCH"}
-	filter"system:windows"
-		cppdialect"C++17"
-		systemversion"latest"
-		defines{
-			"YAML_CPP_STATIC_DEFINE",--yaml静态库宏
-			"DM_PLATFORM_WINDOWS",
-			--"DM_BUILD_DLL",
-			"GLFW_INCLUDE_NONE"
-		}
-		-- postbuildcommands{
-		-- 	("{COPY} %{cfg.buildtarget.relpath} ../bin/"..outputdir.."/Game")
-		-- }
-	filter"configurations:Debug"
-		defines"DM_DEBUG"
-		runtime"Debug"
-		symbols"on"
-	filter"configurations:Release"
-		defines"DM_RELEASE"
-		runtime"Release"
-		optimize"on"
-project"Editor"
-	location"Editor"
-	kind"ConsoleApp"
-	language"C++"
-	cppdialect"C++17"
-	staticruntime"on"
-	buildoptions"/utf-8"
-	targetdir("bin/"..outputdir.."/%{prj.name}")	
-	objdir("bin-int/"..outputdir.."/%{prj.name}")
-	files{
-		"%{prj.name}/Src/**.h",
-		"%{prj.name}/Src/**.cpp"
-	}
-	includedirs{
-		"%{ThirdPartIncludeDir.spdlog}",
-		"%{ThirdPartIncludeDir.GLM}",
-		"%{ThirdPartIncludeDir.GLFW}",
-		"%{ThirdPartIncludeDir.IMGUI}",
-		"%{ThirdPartIncludeDir.entt}",
-		"%{prj.name}/Src",
-		"DM/Src"
-	}
-	links{
-		"DM",
-		"yaml_cpp"
-	}
-	filter"system:windows"
-		staticruntime"on"
-		systemversion"latest"
-		defines{
-			"DM_PLATFORM_WINDOWS"
-		}
-	filter"configurations:Debug"
-		defines"DM_DEBUG"
-		runtime"Debug"
-		symbols"on"
-	filter"configurations:Release"
-		defines"DM_RELEASE"
-		runtime"Release"
-		optimize"on"
-
-project"Game"
-	location"Game"
-	kind"ConsoleApp"
-	language"C++"
-	cppdialect"C++17"
-	staticruntime"on"
-	buildoptions"/utf-8"
-	targetdir("bin/"..outputdir.."/%{prj.name}")	
-	objdir("bin-int/"..outputdir.."/%{prj.name}")
-	files{
-		"%{prj.name}/Src/**.h",
-		"%{prj.name}/Src/**.cpp"
-	}
-	includedirs{
-		"%{ThirdPartIncludeDir.spdlog}",
-		"%{ThirdPartIncludeDir.GLM}",
-		"%{ThirdPartIncludeDir.GLFW}",
-		"%{ThirdPartIncludeDir.IMGUI}",
-		"DM/Src"
-	}
-	links{
-		"DM"
-	}
-	filter"system:windows"
-		staticruntime"on"
-		systemversion"latest"
-		defines{
-			"DM_PLATFORM_WINDOWS"
-		}
-	filter"configurations:Debug"
-		defines"DM_DEBUG"
-		runtime"Debug"
-		symbols"on"
-	filter"configurations:Release"
-		defines"DM_RELEASE"
-		runtime"Release"
-		optimize"on"
 	

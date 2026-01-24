@@ -2,12 +2,11 @@
 #include "SceneSerializer.h"
 #include"Scene.h"
 #include<yaml-cpp/yaml.h>
-#include<filesystem>
 #include<Core/Core.h>
 #include<Core/Scene/Entity.h>
 #include"Components.h"
 #include<fstream>
-
+#include<Tool/Util/PlatformUtils.h>
 namespace YAML
 {
 	YAML::Emitter& operator << (YAML::Emitter& out, const DM::Vector3& v) {
@@ -77,11 +76,6 @@ namespace YAML
 namespace DM
 {
 	namespace fs = std::filesystem;
-	SceneSerializer::SceneSerializer(Ref<Scene>scene):
-		m_Context(scene)
-	{
-
-	}
 
 	static void SerializeEntity(YAML::Emitter& out, Entity entity)
 	{
@@ -133,52 +127,63 @@ namespace DM
 		out << YAML::EndMap; 
 	}
 
-	void SceneSerializer::Serialize(const std::string& filepath)
+	void SceneSerializer::Serialize(const Ref<Scene>& scene)
 	{
-		fs::path pa(filepath);
+		if (!scene->bHasSavedToLocal)
+		{
+			const std::string path = FileDialog::SaveFile(scene->m_Name.c_str());
+			scene->m_path = path+"."+scene->s_FileExtension.data();
+		}
+		fs::path pa(scene->m_path);
+		std::ofstream outfile(pa.string());
+		scene->m_Name = pa.filename().string();
 		if (!(fs::exists(pa) && fs::is_regular_file(pa)))
 		{
-			DM_CORE_ASSERT(false, "{} is invalid path!", filepath);
+			DM_CORE_ASSERT(false, "{} is invalid path!", pa.string());
 		}
 		YAML::Emitter out;
 		out.SetIndent(4);
 		out << YAML::BeginMap;
 		{
-			out << YAML::Key << "Scene" << YAML::Value << "Unnamed Scene";
+			out << YAML::Key << "Scene" << YAML::Value << scene->m_Name;
 			out << YAML::Key << "Entities" << YAML::Value;
 			out << YAML::BeginSeq;
 			{
-				auto & view=m_Context->m_Registry.view<entt::entity>();
+				auto& view = scene->m_Registry.view<entt::entity>();
 				for (auto& entity : view)
 				{
-						if (!m_Context->m_Registry.valid(entity))continue;
-						Entity en{ entity,m_Context.get() };
-						SerializeEntity(out, en);
+					if (!scene->m_Registry.valid(entity))continue;
+					Entity en{ entity,scene.get() };
+					SerializeEntity(out, en);
 				}
 			}
 			out << YAML::EndSeq;
 		}
 		out << YAML::EndMap;
-		std::ofstream outfile(filepath);
 		outfile << out.c_str();
 	}
-	void SceneSerializer::DeSerialize(const std::string& filepath)
+
+	Ref<Scene> SceneSerializer::DeSerialize(const std::filesystem::path& filepath)
 	{
-		YAML::Node node = YAML::LoadFile(filepath);
-		if (!node["Scene"])return;
+		YAML::Node node = YAML::LoadFile(filepath.string());
+		if (!node["Scene"])return nullptr;
+		Ref<Scene>scene = CreateRef<Scene>(new Scene());
+		scene->m_path = filepath.string();
+		scene->m_Name = filepath.stem().string();
+		scene->bHasSavedToLocal = true;
 		const std::string& sceneName = node["Scene"].as<std::string>();
 		YAML::Node entities = node["Entities"];
 		if (!entities.IsSequence())
 		{
 			std::cerr << "Error: 'Entities' node is not a sequence (invalid YAML format)." << std::endl;
-			return;
+			return nullptr;
 		}
 
 		if (entities)
 		{
 			for (YAML::Node entity : entities)
 			{
-				auto en=m_Context->CreateEntity();	
+				auto en = scene->CreateEntity();
 				YAML::Node components = entity["Components"];
 				if (YAML::Node com = components["TagComponent"])
 				{
@@ -196,6 +201,8 @@ namespace DM
 				}
 			}
 		}
+		return scene;
 	}
+
 }
 

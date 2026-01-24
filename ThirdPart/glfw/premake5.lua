@@ -1,7 +1,6 @@
 project "GLFW"
     kind "StaticLib"  -- ���־�̬�⣨��Ҫ��̬���Ϊ SharedLib����ͬ���޸ĺ꣩
     language "C"
-    staticruntime "On"      -- ��̬����ʱ��������Ŀ����һ�£�
     targetdir("bin/" .. outputdir .. "/%{prj.name}")
     objdir("bin-int/" .. outputdir .. "/%{prj.name}")
 

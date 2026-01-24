@@ -1,7 +1,5 @@
 project "yaml_cpp"
     kind "StaticLib"         
-    language "C++"
-    cppdialect "C++17"        
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
     defines {
@@ -26,7 +24,6 @@ project "yaml_cpp"
 
     filter "system:windows"
         systemversion "latest"
-        staticruntime "on"  -- 静态运行时（/MTd 或 /MT），与引擎统一
         buildoptions {
             "/wd4251",  -- 屏蔽 STL 类型未导出 DLL 接口警告
             "/wd4273",  -- 屏蔽 DLL 链接不一致警告

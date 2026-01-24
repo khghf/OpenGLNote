@@ -1,18 +1,14 @@
 ﻿#pragma once
 #include<Core/MMM/Reference.h>
+#include<filesystem>
 namespace DM
 {
 	class Scene;
 	class SceneSerializer
 	{
 	public:
-		SceneSerializer() = default;
-		SceneSerializer(Ref<Scene>scene);
-		void Serialize(const std::string& filepath);
-		void DeSerialize(const std::string& filepath);
-		void SetContext(Ref<Scene>context) { m_Context = context; }
-	private:
-		Ref<Scene>m_Context;
+		static void Serialize(const Ref<Scene>&scene);
+		static Ref<Scene> DeSerialize(const std::filesystem::path& filepath);
 	};
 }
 

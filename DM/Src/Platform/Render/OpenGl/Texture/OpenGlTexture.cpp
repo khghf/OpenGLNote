@@ -2,6 +2,8 @@
 #include "OpenGlTexture.h"
 #include<glad/glad.h>
 #include<stb_image.h>
+#include<Tool/Util/Util.h>
+#include<fstream>
 namespace DM
 {
     static uint32_t ConvertTextureDataFormatToByteSize(GLenum format)
@@ -20,7 +22,7 @@ namespace DM
     {
         stbi_set_flip_vertically_on_load(true);
         int width=0,height=0, channel = 0, desiredChannel=0;
-        unsigned char* Data = stbi_load(path.data(), &width, &height, &channel, desiredChannel);
+		unsigned char* Data = stbi_load(path.data(), &width, &height, &channel, desiredChannel);
         DM_CORE_ASSERT(Data, "{}", "OpenGlTexture2D():Failed to load image");
 
         m_Width = width; m_Height = height;
@@ -93,5 +95,8 @@ namespace DM
         DM_CORE_ASSERT(size == m_Width * m_Height * channelSize, "{}", "Data must be entire texture!");
         glTextureSubImage2D(m_Id,0, 0, 0, m_Width, m_Height, m_DataFormat, GL_UNSIGNED_BYTE, data);
     }
+
+
+
 }
 

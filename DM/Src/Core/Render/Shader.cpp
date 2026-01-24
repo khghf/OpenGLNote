@@ -12,16 +12,6 @@ namespace DM
 	Shader::~Shader()
 	{
 	}
-	Ref<Shader> Shader::Create(const std::string_view& name,const std::string_view& vsCode, const std::string_view &fsCode)
-	{
-		switch (Renderer::GetAPI())
-		{
-		case RendererAPI::EAPI::None: DM_CORE_ASSERT(false, "{}", "RendererAPI::None is currently not supported!"); return nullptr;
-		case RendererAPI::EAPI::OpenGl:return std::make_shared<OpenGlShader>(name, vsCode, fsCode);
-		}
-		DM_CORE_ASSERT(false, "{}", "UnKnown RendererAPI!");
-		return Ref<Shader>();
-	}
 	Ref<Shader> Shader::Create(const std::string_view& glslCodePath)
 	{
 		switch (Renderer::GetAPI())

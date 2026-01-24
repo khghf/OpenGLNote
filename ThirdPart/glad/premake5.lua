@@ -1,7 +1,6 @@
 project "GLAD"
     kind "StaticLib"  -- ���־�̬�⣨��Ҫ��̬���Ϊ SharedLib����ͬ���޸ĺ꣩
     language "C"
-    staticruntime "on"      -- ��̬����ʱ��������Ŀ����һ�£�
     targetdir("bin/" .. outputdir .. "/%{prj.name}")
     objdir("bin-int/" .. outputdir .. "/%{prj.name}")
     -- �ؼ� 1������ GLFW ���°����к����ļ�����Դ��ԭ���ṹ������©��

@@ -6,6 +6,11 @@ namespace DM
 	typedef enum class KeyCode:uint16_t
 	{
 		//From glfw3.h
+		Mouse_Left		= 0,
+		Mouse_Rigth		= 1,
+		Mouse_Middle	= 2,
+		Mouse_Back		= 3,
+		Mouse_Forward	= 4,
 		Space			= 32,
 		Apostrophe		= 39,
 		Comma			= 44, 

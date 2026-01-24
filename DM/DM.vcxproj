@@ -9,10 +9,6 @@
       <Configuration>Release</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="Dist|x64">
-      <Configuration>Dist</Configuration>
-      <Platform>x64</Platform>
-    </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{56735900-42FF-870B-ABAD-880B9758880B}</ProjectGuid>
@@ -34,12 +30,6 @@
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
-    <UseDebugLibraries>false</UseDebugLibraries>
-    <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v143</PlatformToolset>
-  </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
@@ -47,9 +37,6 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
@@ -65,22 +52,16 @@
     <TargetName>DM</TargetName>
     <TargetExt>.lib</TargetExt>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
-    <OutDir>$(ProjectDir)..\bin\Dist-windows-x86_64\DM\</OutDir>
-    <IntDir>$(ProjectDir)..\bin-int\Dist-windows-x86_64\DM\</IntDir>
-    <TargetName>DM</TargetName>
-    <TargetExt>.lib</TargetExt>
-  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>DMPCH.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>YAML_CPP_STATIC_DEFINE;DM_PLATFORM_WINDOWS;GLFW_INCLUDE_NONE;DM_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\ThirdPart\spdlog\include;..\ThirdPart\glfw\glfw\include;..\ThirdPart\glad\glad\include;..\ThirdPart\imgui\imgui;..\ThirdPart\glm\glm;..\ThirdPart\stb_image;..\ThirdPart\json;..\ThirdPart\entt\include;..\ThirdPart\yaml_cpp\yaml_cpp\include;..\ThirdPart\ImGuizmo\ImGuizmo;Src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\ThirdPart\spdlog\include;..\ThirdPart\glfw\glfw\include;..\ThirdPart\glad\glad\include;..\ThirdPart\imgui\imgui;..\ThirdPart\glm\glm;..\ThirdPart\stb_image;..\ThirdPart\json;..\ThirdPart\entt\include;..\ThirdPart\yaml_cpp\yaml_cpp\include;..\ThirdPart\ImGuizmo\ImGuizmo;C:\VulkanSDK\1.4.335.0\Include;..\ThirdPart\SPIRV-Cross\SPIRV-Cross\Include;Src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
@@ -90,7 +71,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;C:\VulkanSDK\1.4.335.0\Lib\shaderc_sharedd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -99,13 +80,13 @@
       <PrecompiledHeaderFile>DMPCH.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>YAML_CPP_STATIC_DEFINE;DM_PLATFORM_WINDOWS;GLFW_INCLUDE_NONE;DM_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\ThirdPart\spdlog\include;..\ThirdPart\glfw\glfw\include;..\ThirdPart\glad\glad\include;..\ThirdPart\imgui\imgui;..\ThirdPart\glm\glm;..\ThirdPart\stb_image;..\ThirdPart\json;..\ThirdPart\entt\include;..\ThirdPart\yaml_cpp\yaml_cpp\include;..\ThirdPart\ImGuizmo\ImGuizmo;Src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\ThirdPart\spdlog\include;..\ThirdPart\glfw\glfw\include;..\ThirdPart\glad\glad\include;..\ThirdPart\imgui\imgui;..\ThirdPart\glm\glm;..\ThirdPart\stb_image;..\ThirdPart\json;..\ThirdPart\entt\include;..\ThirdPart\yaml_cpp\yaml_cpp\include;..\ThirdPart\ImGuizmo\ImGuizmo;C:\VulkanSDK\1.4.335.0\Include;..\ThirdPart\SPIRV-Cross\SPIRV-Cross\Include;Src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
@@ -116,34 +97,14 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-    </Lib>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
-    <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>DMPCH.h</PrecompiledHeaderFile>
-      <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>YAML_CPP_STATIC_DEFINE;DM_PLATFORM_WINDOWS;GLFW_INCLUDE_NONE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\ThirdPart\spdlog\include;..\ThirdPart\glfw\glfw\include;..\ThirdPart\glad\glad\include;..\ThirdPart\imgui\imgui;..\ThirdPart\glm\glm;..\ThirdPart\stb_image;..\ThirdPart\json;..\ThirdPart\entt\include;..\ThirdPart\yaml_cpp\yaml_cpp\include;..\ThirdPart\ImGuizmo\ImGuizmo;Src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <Optimization>Disabled</Optimization>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
-      <LanguageStandard>stdcpp17</LanguageStandard>
-      <ExternalWarningLevel>Level3</ExternalWarningLevel>
-    </ClCompile>
-    <Link>
-      <SubSystem>Windows</SubSystem>
-    </Link>
-    <Lib>
-      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;C:\VulkanSDK\1.4.335.0\Lib\shaderc_shared.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\ThirdPart\entt\include\entt.hpp" />
     <ClInclude Include="..\ThirdPart\json\json.hpp" />
     <ClInclude Include="..\ThirdPart\stb_image\stb_image.h" />
-    <ClInclude Include="Src\Tool\Util\PlatformUtils.h" />
+    <ClInclude Include="Src\Config.h" />
     <ClInclude Include="Src\Application.h" />
     <ClInclude Include="Src\Core\Container\Array.h" />
     <ClInclude Include="Src\Core\Container\UnOrderedMap.h" />
@@ -185,6 +146,7 @@
     <ClInclude Include="Src\Core\Render\Texture\SubTexture2D.h" />
     <ClInclude Include="Src\Core\Render\Texture\Texture.h" />
     <ClInclude Include="Src\Core\Render\Texture\TextureAtlas.h" />
+    <ClInclude Include="Src\Core\Render\UniformBuffer\UniformBuffer.h" />
     <ClInclude Include="Src\Core\Render\VertexArray.h" />
     <ClInclude Include="Src\Core\Scene\Components.h" />
     <ClInclude Include="Src\Core\Scene\Entity.h" />
@@ -205,6 +167,7 @@
     <ClInclude Include="Src\Platform\Render\OpenGl\OpenGlVertexArray.h" />
     <ClInclude Include="Src\Platform\Render\OpenGl\Renderer\OpenGlRendererAPI.h" />
     <ClInclude Include="Src\Platform\Render\OpenGl\Texture\OpenGlTexture.h" />
+    <ClInclude Include="Src\Platform\Render\OpenGl\UniformBuffer\OpenGlUniformBuffer.h" />
     <ClInclude Include="Src\Platform\Window\Win\WinWindow.h" />
     <ClInclude Include="Src\Resource\Asset.h" />
     <ClInclude Include="Src\Resource\AssetManager.h" />
@@ -212,12 +175,13 @@
     <ClInclude Include="Src\Tool\ISingletion.h" />
     <ClInclude Include="Src\Tool\Imgui\ImGuiLayer.h" />
     <ClInclude Include="Src\Tool\Util\GameStatic.h" />
+    <ClInclude Include="Src\Tool\Util\PlatformUtils.h" />
     <ClInclude Include="Src\Tool\Util\TimeMeasurer.h" />
     <ClInclude Include="Src\Tool\Util\Util.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\ThirdPart\stb_image\stb_image.cpp" />
-    <ClCompile Include="Src\Platform\Window\WindowsPlatformUtil.cpp" />
+    <ClCompile Include="Src\Config.cpp" />
     <ClCompile Include="Src\Application.cpp" />
     <ClCompile Include="Src\Core\EventSystem\Event\Event.cpp" />
     <ClCompile Include="Src\Core\EventSystem\EventManager.cpp" />
@@ -237,6 +201,7 @@
     <ClCompile Include="Src\Core\Render\Texture\SubTexture2D.cpp" />
     <ClCompile Include="Src\Core\Render\Texture\Texture.cpp" />
     <ClCompile Include="Src\Core\Render\Texture\TextureAtlas.cpp" />
+    <ClCompile Include="Src\Core\Render\UniformBuffer\UniformBuffer.cpp" />
     <ClCompile Include="Src\Core\Render\VertexArray.cpp" />
     <ClCompile Include="Src\Core\Scene\Entity.cpp" />
     <ClCompile Include="Src\Core\Scene\Scene.cpp" />
@@ -253,8 +218,10 @@
     <ClCompile Include="Src\Platform\Render\OpenGl\OpenGlVertexArray.cpp" />
     <ClCompile Include="Src\Platform\Render\OpenGl\Renderer\OpenGlRendererAPI.cpp" />
     <ClCompile Include="Src\Platform\Render\OpenGl\Texture\OpenGlTexture.cpp" />
+    <ClCompile Include="Src\Platform\Render\OpenGl\UniformBuffer\OpenGlUniformBuffer.cpp" />
     <ClCompile Include="Src\Platform\Window\Input\WindowInput.cpp" />
     <ClCompile Include="Src\Platform\Window\Win\WinWindow.cpp" />
+    <ClCompile Include="Src\Platform\Window\WindowsPlatformUtil.cpp" />
     <ClCompile Include="Src\Resource\Asset.cpp" />
     <ClCompile Include="Src\Resource\AssetManager.cpp" />
     <ClCompile Include="Src\Resource\AssetRegistry.cpp" />
@@ -279,6 +246,9 @@
     </ProjectReference>
     <ProjectReference Include="..\ThirdPart\ImGuizmo\ImGuizmo.vcxproj">
       <Project>{36FD234F-22CA-7E5A-4BE3-6C02370FB4E8}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\ThirdPart\SPIRV-Cross\SPIRV-Cross.vcxproj">
+      <Project>{30B15D9A-9C66-D68F-255B-D066910FCD93}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

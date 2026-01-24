@@ -1,9 +1,10 @@
 ﻿#include<DMPCH.h>
 #include "AssetManager.h"
-#include<Tool/Util/GameStatic.h>
+#include<Tool/Util/Util.h>
 #include<type_traits>
 #include<Core/Serialization.h>
 #include<fstream>
+#include "Config.h"
 namespace DM
 {
 
@@ -19,24 +20,15 @@ namespace DM
 
     void AssetManager::LoadAsset()
     {
-        Json Config;
-        std::ifstream ConFile;
-        try
-        {
-            ConFile.open("../Config/Config.json");
-            ConFile >> Config;
-            ConFile.close();
-            const std::string ShaderFloderPath = Config["Asset"]["ShaderFolder"];
-            const std::string TextureFloderPath = Config["Asset"]["TextureFolder"];
-            const Array<std::string>& ShaderPaths = GameStatic::GetAllFilePath(ShaderFloderPath, true);
-            const Array<std::string>& TexturePaths = GameStatic::GetAllFilePath(TextureFloderPath, true);
-            RegisterAsset(ShaderPaths, ShaderRegistry);
-            RegisterAsset(TexturePaths, Texture2DRegistry);
-        }
-        catch (const std::exception& e)
-        {
-            std::cerr << "AssetManager:load config file failed" << e.what() << std::endl;
-        }
+		const std::string ShaderFloderPath = Config::AssetShader();
+		const std::string TextureFloderPath = Config::AssetTexture();
+		const std::string IconFloderPath = Config::AssetIcon();
+		const Array<std::string>& ShaderPaths = Util::GetAllFilePath(ShaderFloderPath, true);
+		const Array<std::string>& TexturePaths = Util::GetAllFilePath(TextureFloderPath, true);
+		const Array<std::string>& IconPaths = Util::GetAllFilePath(IconFloderPath, true);
+		RegisterAsset(ShaderPaths, ShaderRegistry);
+		RegisterAsset(TexturePaths, Texture2DRegistry);
+		RegisterAsset(IconPaths, Texture2DRegistry);
         PostLoadAsset();
     }
 

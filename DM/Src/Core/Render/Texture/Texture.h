@@ -16,10 +16,12 @@ namespace DM
 		virtual bool operator==(const Texture& other)const = 0;
 	public:
 		constexpr static EAssetsCategory s_AssetsCategory = EAssetsCategory::Texture;
+		constexpr static std::string_view s_FileExtensionName = "tex";
 	};
 	class Texture2D :public Texture
 	{
 	public:
+		virtual uint32_t GetId() { return 0; };
 		constexpr static EAssetsCategory s_AssetsCategory = EAssetsCategory::Texture2D;
 		static Ref<Texture2D>Create(const std::string_view& path);
 		static Ref<Texture2D>Create(uint32_t width,uint32_t height);

@@ -11,6 +11,7 @@
 #include<Core/EventSystem/Event/KeyEvent.h>
 #include<Core/EventSystem/Event/MouseEvent.h>
 #include<Core/EventSystem/Event/WindowEvent.h>
+#include"Config.h"
 ImGuiKey ImGui_ImplGlfw_KeyToImGuiKey(int keycode, int scancode);
 namespace DM
 {
@@ -168,8 +169,10 @@ namespace DM
 			ImGuiIO& io = ImGui::GetIO();
 			io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
 			io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
-			io.Fonts->AddFontFromFileTTF("Assert/Fonts/Neuton/Neuton-Bold.ttf", 20.f);
-			io.FontDefault = io.Fonts->AddFontFromFileTTF("Assert/Fonts/Neuton/Neuton-Regular.ttf", 20.f);
+			std::string Neuton_Bold = Config::AssetFont() + "/Neuton/Neuton-Bold.ttf";
+			std::string Neuton_Regular = Config::AssetFont() + "/Neuton/Neuton-Regular.ttf";
+			io.Fonts->AddFontFromFileTTF(Neuton_Bold.c_str(), 20.f);
+			io.FontDefault = io.Fonts->AddFontFromFileTTF(Neuton_Regular.c_str(), 20.f);
 			SetupImGuiDarkLuxuryTheme();
 			ImGui_ImplGlfw_InitForOpenGL(Application::GetInst()->GetWindow()->GetGlWindow(), true);
 			ImGui_ImplOpenGL3_Init("#version 450");

@@ -8,10 +8,38 @@
 #include<Tool/Util/TimeMeasurer.h>
 #include<Core/Render/FrameBuffer/FrameBuffer.h>
 #include<Core/Scene/SceneSerializer.h>
+#include<filesystem>
 namespace DM
 {
 	class Scene;
-	class SceneHierarchyPanel;
+	class Panel;
+	struct DockSpace
+	{
+		
+	};
+	struct ViewPort
+	{
+		Vector2 MinBound = { 0.f,0.f };//视口左下角
+		Vector2 MaxBound = { 0.f,0.f };//视口右上角
+		Vector2 Size = { 0.f,0.f };
+		Vector2 MousePosLocal = { 0.f,0.f };//相对与视口左下角的坐标
+		Vector2 MousePosScreen = { 0.f,0.f };//相对与屏幕左上角的坐标
+		Vector2 MousePosLocalNarmal = { 0.f,0.f };
+		bool bFocused=false;
+		bool bHovered=false;
+		void Reset()
+		{
+			MinBound = { 0.f,0.f };
+			MaxBound = { 0.f,0.f };
+			Size = { 0.f,0.f };
+			MousePosLocal = { 0.f,0.f };
+			MousePosScreen = { 0.f,0.f };
+			MousePosLocalNarmal = { 0.f,0.f };
+			bFocused = false;
+			bHovered = false;
+		}
+	};
+	
 	class EditorLayer :public ImGuiLayer
 	{
 	public:
@@ -27,17 +55,31 @@ namespace DM
 
 	protected:
 		virtual void Render()override;
+
+		void UpdateEditor();
+		void UpdateRunTime();
 	private:
 		void OnSceneChanged();
+		void RenderViewPort();
+		void RenderSetting();
+
 		void RenderMenuBar();
 		void RenderMenuBar_File();
+	private:
+		void OpenScene(std::filesystem::path p);
 	private:
 		CameraController m_CameraController;
 		Ref<FrameBuffer>m_ViewportFramebuffer;
 		Ref<Scene>m_ActiveScene;
-		Ref<SceneHierarchyPanel>m_Panel;
-		SceneSerializer m_SceneSerializer;
-		bool m_bViewportFocused = false, m_bViewportHovered = false;
-		Vector2 m_ViewportSize;
+		Ref<Panel>m_HierarchyPanel;
+		Ref<Panel>m_ContentPanel;
+		ViewPort m_ViewPort;
+		enum class SceneState:uint8_t
+		{
+
+		};
 	};
+
+
+
 }

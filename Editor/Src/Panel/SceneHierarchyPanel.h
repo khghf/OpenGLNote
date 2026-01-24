@@ -1,20 +1,17 @@
 ﻿#pragma once
-#include<Core/Scene/Scene.h>
-#include<Core/MMM/Reference.h>
+#include"Panel.h"
 #include<Core/Scene/Entity.h>
 namespace DM
 {
-	class SceneHierarchyPanel
+	class SceneHierarchyPanel:public Panel
 	{
 		friend class EditorLayer;
-		SceneHierarchyPanel(const Ref<Scene>context);
-		void SetContext(const Ref<Scene>& context);
-	private:
-		void OnUIRender();
+		SceneHierarchyPanel(const Ref<Context>& context) { SetContext(context); };
+	protected:
+		virtual void Render()override;
 		void DrawEntityNode(const Entity& entity);
 		void DrawComponents(const Entity& entity);
 	private:
-		Ref<Scene>m_Context;
 		Entity m_SelectedEntity;
 	};
 }

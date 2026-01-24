@@ -3,14 +3,14 @@
 #include<Core/Math/Vector.h>
 namespace DM
 {
-	class DM_API MouseEvent :public Event
+	class  MouseEvent :public Event
 	{
 	public:
 		MouseEvent() = default;
 		inline static constexpr EEventCategory GetStaticCategory() { return EEventCategory::MouseEvent; }
 		virtual EEventCategory GetCategory()const { return GetStaticCategory(); }
 	};
-	class DM_API MouseClick :public MouseEvent
+	class  MouseClick :public MouseEvent
 	{
 	public:
 		struct FEventData
@@ -27,7 +27,7 @@ namespace DM
 	private:
 		static constexpr EEventType Type = EEventType::MouseClick;
 	};
-	class DM_API MousePress :public MouseClick
+	class  MousePress :public MouseClick
 	{
 	public:
 		inline static constexpr EEventType GetStaticType() { return Type; }
@@ -35,7 +35,7 @@ namespace DM
 	private:
 		static constexpr EEventType Type = EEventType::MousePress;
 	};
-	class DM_API MouseRelease :public MouseClick
+	class  MouseRelease :public MouseClick
 	{
 	public:
 		inline static constexpr EEventType GetStaticType() { return Type; }
@@ -43,7 +43,7 @@ namespace DM
 	private:
 		static constexpr EEventType Type = EEventType::MouseRelease;
 	};
-	class DM_API MouseMove :public MouseEvent
+	class  MouseMove :public MouseEvent
 	{
 	public:
 		struct FEventData
@@ -57,7 +57,7 @@ namespace DM
 	private:
 		static constexpr EEventType Type = EEventType::MouseMove;
 	};
-	class DM_API MouseScroll :public MouseEvent
+	class  MouseScroll :public MouseEvent
 	{
 	public:
 		struct FEventData

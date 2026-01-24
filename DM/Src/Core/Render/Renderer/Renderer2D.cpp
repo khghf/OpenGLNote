@@ -6,6 +6,7 @@
 #include<Core/Render/Texture/Texture.h>
 #include<Tool/Util/TimeMeasurer.h>
 #include<glad/glad.h>
+#include<Core/Render/UniformBuffer/UniformBuffer.h>
 namespace DM
 {
 	struct QuadVertex
@@ -16,7 +17,7 @@ namespace DM
 		int TexSlot;
 		Vector2 UVTiling;
 	};
-
+	
 	struct Renderer2DData
 	{
 		const uint32_t MaxQuadCount = 10000;
@@ -33,12 +34,13 @@ namespace DM
 		Ref<VertexBuffer>QuadVertexBuffer;
 		Ref<VertexArray>QuadVertexArray;
 		Ref<Shader>TextureShader;
-		Matrix4 ProjectionView= Matrix4(1.f);
-
 		Ref<Texture>WhiteTexture;
-
-
-		
+		struct CameraData
+		{
+			Matrix4 ProjectionView = Matrix4(1.f);
+		};
+		CameraData CameraBuffer;
+		Ref<UniformBuffer> CameraUniformBuffer;
 		Renderer2D::Statistics Stats;
 	};
 	static Renderer2DData* s_Data = nullptr;
@@ -73,7 +75,7 @@ namespace DM
 		s_Data->QuadVertexArray= VertexArray::Create();
 		s_Data->QuadVertexArray->AddVertexBuffer(s_Data->QuadVertexBuffer);
 		s_Data->QuadVertexArray->SetIndexBuffer(IBO);
-		s_Data->TextureShader= Shader::Create("../Assert/Shader/Texture.glsl");
+		s_Data->TextureShader= Shader::Create("../Assets/Shader/Texture.glsl");
 		s_Data->TextureShader->Bind();
 		s_Data->WhiteTexture = Texture2D::Create(1, 1);
 		//uint32_t data = 0x00000000;
@@ -83,6 +85,7 @@ namespace DM
 		int32_t textureslot[s_Data->MaxTextureSlots];
 		for (int i = 0; i < s_Data->MaxTextureSlots; ++i)textureslot[i] = i;
 		s_Data->TextureShader->SetIntArray("u_Textures", textureslot, s_Data->MaxTextureSlots);
+		s_Data->CameraUniformBuffer = UniformBuffer::Create(sizeof(Renderer2DData::CameraData), 0);
 	}
 	void Renderer2D::ShoutDown()
 	{
@@ -92,21 +95,27 @@ namespace DM
 	}
 	void Renderer2D::BeginScene(const Ref<Camera>& orthoCamera)
 	{
-		s_Data->ProjectionView = orthoCamera->GetProjectionViewMatrix();
+		BeginScene(orthoCamera->GetProjectionViewMatrix());
+	}
+
+	void Renderer2D::BeginScene(const Matrix4& projectionView)
+	{
+		s_Data->CameraBuffer.ProjectionView = projectionView;
+		s_Data->CameraUniformBuffer->SetData(&s_Data->CameraBuffer, sizeof(Renderer2DData::CameraData));
 		s_Data->QuadVertexPtr = s_Data->QuadVertexBase;
 		s_Data->QuadIndexCount = 0;
 		s_Data->TextureSlotIndex = 1;
 		ResetStats();
-		DM_CORE_ASSERT(s_Data->QuadVertexPtr == s_Data->QuadVertexBase,"{}", "顶点指针重置失败！");
+		DM_CORE_ASSERT(s_Data->QuadVertexPtr == s_Data->QuadVertexBase, "{}", "顶点指针重置失败！");
 	}
+
 	void Renderer2D::EndScene()
 	{
 		uint32_t dataSize = (uint32_t)((uint8_t*)s_Data->QuadVertexPtr - (uint8_t*)s_Data->QuadVertexBase);
 		if (dataSize == 0)return;
 		s_Data->QuadVertexBuffer->SetData(s_Data->QuadVertexBase, dataSize);
-		glm::mat4 model(1.f);
-		s_Data->TextureShader->SetMat4x4("u_ModelMatrix", model);
-		s_Data->TextureShader->SetMat4x4("u_ProjectionViewMatrix", s_Data->ProjectionView);
+	/*	glm::mat4 model(1.f);
+		s_Data->TextureShader->SetMat4x4("u_ModelMatrix", model);*/
 		s_Data->TextureSlots[0]->Bind(0);
 		Flush();
 	}
