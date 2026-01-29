@@ -1,13 +1,12 @@
 ﻿#pragma once
-#include<Core/Scene/Scene.h>
-#include<Core/MMM/Reference.h>
+#include"DM.h"
 namespace DM
 {
 	class Panel
 	{
 		friend class EditorLayer;
 	public:
-		using Context = Scene;
+		using Context = GWorld;
 		virtual ~Panel() = default;
 	protected:
 		void SetContext(const Ref<Context>& context) { m_Context = context; }

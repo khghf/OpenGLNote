@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include<Resource/Asset.h>
 #include<Core/Render/Shader.h>
 #include<glad/glad.h>

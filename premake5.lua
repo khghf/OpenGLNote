@@ -4,7 +4,7 @@
 		"Debug",
 		"Release",
 	}
-	startproject"Game"
+	startproject"DM"
 	staticruntime "off"  
 	language"C++"
 	cppdialect "C++17"  
@@ -23,13 +23,15 @@ ThirdPartIncludeDir["IMGUI"]=ThirdPartBaseDir.."imgui/imgui"
 ThirdPartIncludeDir["GLM"]=ThirdPartBaseDir.."glm/glm"
 ThirdPartIncludeDir["stb_image"]=ThirdPartBaseDir.."stb_image"
 ThirdPartIncludeDir["json"]=ThirdPartBaseDir.."json"
-ThirdPartIncludeDir["entt"]=ThirdPartBaseDir.."entt/include"
+ThirdPartIncludeDir["entt"]=ThirdPartBaseDir.."entt"
 ThirdPartIncludeDir["yaml_cpp"]=ThirdPartBaseDir.."yaml_cpp/yaml_cpp/include"
 ThirdPartIncludeDir["ImGuizmo"]=ThirdPartBaseDir.."ImGuizmo/ImGuizmo"
+ThirdPartIncludeDir["Reflection"]="%{wks.basedir}/Reflection/Reflect/Src"
+ThirdPartIncludeDir["GeneratedCode"]="%{wks.basedir}/Reflection/Reflect/GeneratedCode"
+
 
 ThirdPartIncludeDir["VulkanSDK"] = "%{VULKAN_SDK}/Include"
 ThirdPartIncludeDir["shaderc"] = "%{VULKAN_SDK}/Include"
--- ThirdPartIncludeDir["SPIRV_Cross"] = "%{VULKAN_SDK}/Include"
 ThirdPartIncludeDir["SPIRV_Cross"] = ThirdPartBaseDir.."SPIRV-Cross/SPIRV-Cross/Include"
 
 
@@ -62,8 +64,12 @@ group "Dependencies"
 	-- include "ThirdPart/shaderc"
 	include "ThirdPart/SPIRV-Cross"
 group""
-include"DM"
-include"Editor"
-include"Game"
+group "Engine"
+	include"Reflection/CodeGenerator"
+	include"Reflection/Reflect"
+	include"DM"
+	-- include"Editor"
+group""
+-- include"Game"
 
 	

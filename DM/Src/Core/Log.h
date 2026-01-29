@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include"DMPCH.h"
 #include<spdlog/spdlog.h>
 namespace DM
@@ -27,3 +27,32 @@ namespace DM
 #define LOG_WARN(...)		::DM::Log::GetClientLogger()->warn		(__VA_ARGS__)
 #define LOG_ERROR(...)		::DM::Log::GetClientLogger()->error		(__VA_ARGS__)
 #define LOG_FATAL(...)		::DM::Log::GetClientLogger()->critical	(__VA_ARGS__)
+
+
+#define DM_ENABLE_ASSERT
+#ifdef DM_ENABLE_ASSERT
+#define DM_ASSERT(x,fmt,...)\
+			{\
+				if(!(x))\
+				{\
+					std::string str("Assertion Failed.File:{}---Line:{}.");\
+					str+=fmt;\
+					LOG_ERROR(str.c_str(),__FILE__,__LINE__,__VA_ARGS__);\
+					__debugbreak();\
+				}\
+			}
+
+#define DM_CORE_ASSERT(x,fmt,...)\
+			{\
+				if(!(x))\
+				{\
+					std::string str("Assertion Failed.File:{}---Line:{}.");\
+					str+=fmt;\
+					LOG_CORE_ERROR(str.c_str(),__FILE__,__LINE__,__VA_ARGS__);\
+					__debugbreak();\
+				}\
+			}
+#else
+#define DM_ASSERT(x,...)
+#define DM_CORE_ASSERT(x,fmt,...)
+#endif // DM_ENABLE_ASSERT

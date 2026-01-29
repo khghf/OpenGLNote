@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 namespace DM { class Layer; }
 #include"Layer.h"
 #include"../Container/Array.h"

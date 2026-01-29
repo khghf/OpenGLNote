@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include"RendererAPI.h"
 #include<Core/Math/Vector.h>
 #include<Core/MMM/Reference.h>

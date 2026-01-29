@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include<Core/EventSystem/Event/Event.h>
 #include<string_view>
 namespace DM

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include<Core/DelegateSystem/MultiDelegate.h>
 #include<Tool/ISingletion.h>
 #include"Listener.h"

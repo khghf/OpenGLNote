@@ -6,7 +6,7 @@
 #include <Tool/Util/Util.h>
 
 #include <string.h>
-#include<Application.h>
+#include<GEngine.h>
 namespace DM
 {
 	std::string FileDialog::OpenFile(const char* filter)

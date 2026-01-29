@@ -1,17 +1,12 @@
 ﻿#include "EditorLayer.h"
 #include<imgui.h>
-#include<Core/Math/Vector.h>
-#include<Tool/Util/GameStatic.h>
-#include<Tool/Util/Util.h>
-#include<Tool/Util/TimeMeasurer.h>
-#include<Core/Scene/Scene.h>
-#include<Core/Scene/Components.h>
+#include"DM.h"
 #include"Panel/SceneHierarchyPanel.h"
 #include"Panel/ContentBrowserPanel.h"
 #include <glm/gtc/type_ptr.hpp>
 #include<Tool/Util/PlatformUtils.h>
 #include"Config.h"
-
+//#include <Core/Render/Renderer/Renderer2D.h>
 
 namespace DM
 {
@@ -53,10 +48,6 @@ namespace DM
 	{
 		ImGui::End();
 	}
-
-
-
-
 	EditorLayer::EditorLayer(const std::string_view& name) :ImGuiLayer(name)
 	{
 		
@@ -71,8 +62,8 @@ namespace DM
 	{
 		__super::OnAttach();
 		DM::Renderer2D::Init();
-		float x = (float)DM::Application::GetInst()->GetWindow()->Width();
-		float y = (float)DM::Application::GetInst()->GetWindow()->Height();
+		float x = (float)Engine->GetWindow()->Width();
+		float y = (float)Engine->GetWindow()->Height();
 		m_CameraController = CameraController(x / y, ECameraType::Ortho);
 		FrameBufferSpecification spec;
 		spec.Attachments = { FramebufferTextureFormat::Depth,FramebufferTextureFormat::RGBA8,FramebufferTextureFormat::RED_Int};
@@ -92,7 +83,7 @@ namespace DM
 		DM::Renderer2D::ShoutDown();
 		if (m_ActiveScene)
 		{
-			SceneSerializer::Serialize(m_ActiveScene);
+			Serializer::Serialize(m_ActiveScene);
 		}
 	}
 
@@ -161,7 +152,7 @@ namespace DM
 			ImGuiStyle& style = ImGui::GetStyle();
 			m_ViewPort.bHovered = ImGui::IsWindowHovered();
 			m_ViewPort.bFocused = ImGui::IsWindowFocused();
-			Application::GetInst()->BlockEvent(!m_ViewPort.bHovered);
+			Engine->BlockEvent(!m_ViewPort.bHovered);
 			Vector2 viewportPanelSize;
 			ImVec2 imvec = ImGui::GetContentRegionAvail();
 			
@@ -252,9 +243,9 @@ namespace DM
 			{
 				if (m_ActiveScene)
 				{
-					SceneSerializer::Serialize(m_ActiveScene);
+					Serializer::Serialize(m_ActiveScene);
 				}
-				m_ActiveScene.reset(new Scene());
+				m_ActiveScene.reset(new GWorld());
 				OnSceneChanged();
 			}
 			if (ImGui::MenuItem("OpenScene","Ctrl+O"))
@@ -268,12 +259,12 @@ namespace DM
 				if (!path.empty())
 				{
 					m_ActiveScene->m_path = path+"."+ m_ActiveScene->s_FileExtension.data();
-					SceneSerializer::Serialize(m_ActiveScene);
+					Serializer::Serialize(m_ActiveScene);
 				}
 			}
 			if (ImGui::MenuItem("Exit"))
 			{
-				Application::GetInst()->Close();
+				Engine->Close();
 			}
 			ImGui::EndMenu();
 		}
@@ -282,14 +273,14 @@ namespace DM
 	void EditorLayer::OpenScene(std::filesystem::path p)
 	{
 		
-		if (std::filesystem::is_regular_file(p)&&Util::HasSuffix(p.string(),Scene::s_FileExtension.data()))
+		if (std::filesystem::is_regular_file(p)&&Util::HasSuffix(p.string(),GWorld::s_FileExtension.data()))
 		{
 			if (m_ActiveScene)
 			{
-				SceneSerializer::Serialize(m_ActiveScene);
+				Serializer::Serialize(m_ActiveScene);
 				m_ActiveScene.reset();
 			}
-			m_ActiveScene=SceneSerializer::DeSerialize(p.string());
+			m_ActiveScene=Serializer::DeSerialize(p.string());
 			DM_CORE_ASSERT(m_ActiveScene, "Open scene failed path:{}", p.string());
 			OnSceneChanged();
 			LOG_CORE_INFO("OpenScene:{}", p.string());

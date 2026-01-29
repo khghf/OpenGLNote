@@ -1,17 +1,17 @@
-﻿#pragma once
+#pragma once
 #include<DMPCH.h>
 #include<Core/Core.h>
 #include<Tool/Util/Util.h>
 #include<Core/Render/Shader.h>
 #include<Core/Render/Texture/Texture.h>
 #include<Core/Container/Array.h>
-#include<Core/Container/UnOrderedMap.h>
+#include<Core/Container/UMap.h>
 namespace DM
 {
 	template<typename T>
 	class AssetRegistry
 	{
-		UnOrderedMap<std::string, Ref<T>>Registry;
+		UMap<std::string, Ref<T>>Registry;
 	public:
 		inline bool HasAsset(const std::string& name)const;
 		inline Ref<T>GetAsset(const std::string& name)const;

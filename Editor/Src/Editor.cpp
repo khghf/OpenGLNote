@@ -9,7 +9,7 @@
 #include"EditorLayer.h"
 namespace DM
 {
-	class Editor :public Application
+	class Editor :public GEngine
 	{
 	public:
 		Editor()
@@ -17,7 +17,7 @@ namespace DM
 			PushOverLayer(new EditorLayer("EditorLayer"));
 		}
 	};
-	Application* CreateApplication()
+	GEngine* CreateApplication()
 	{
 		return new Editor();
 	}

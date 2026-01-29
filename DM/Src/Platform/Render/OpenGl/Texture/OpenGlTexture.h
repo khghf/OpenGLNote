@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include<Core/Render/Texture/Texture.h>
 namespace DM
 {

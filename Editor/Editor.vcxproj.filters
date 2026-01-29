@@ -6,19 +6,24 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Src\EditorLayer.h" />
+    <ClInclude Include="Src\Panel\ContentBrowserPanel.h">
+      <Filter>Panel</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Panel\Panel.h">
+      <Filter>Panel</Filter>
+    </ClInclude>
     <ClInclude Include="Src\Panel\SceneHierarchyPanel.h">
       <Filter>Panel</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Panel\ContentBrowserPanel.h" />
-    <ClInclude Include="Src\Panel\Panel.h" />
-    <ClInclude Include="Src\EditorLayer.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Src\Editor.cpp" />
+    <ClCompile Include="Src\EditorLayer.cpp" />
+    <ClCompile Include="Src\Panel\ContentBrowserPanel.cpp">
+      <Filter>Panel</Filter>
+    </ClCompile>
     <ClCompile Include="Src\Panel\SceneHierarchyPanel.cpp">
       <Filter>Panel</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Panel\ContentBrowserPanel.cpp" />
-    <ClCompile Include="Src\EditorLayer.cpp" />
   </ItemGroup>
 </Project>

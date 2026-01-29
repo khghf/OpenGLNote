@@ -1,9 +1,9 @@
-﻿#pragma once
+#pragma once
 #include<chrono>
-#include<Tool/Imgui/ImguiLayer.h>
+#include<Core/Layer/ImGuiLayer.h>
 #include<Tool/ISingletion.h>
 #include<Core/Container/Array.h>
-#include<Core/Container/UnOrderedMap.h>
+#include<Core/Container/UMap.h>
 namespace DM
 {
 	class TimeMeasurer
@@ -49,7 +49,7 @@ namespace DM
 
 	class TimeMeasurerLayer:public ImGuiLayer
 	{
-		friend class Application;
+		friend class GEngine;
 	public:
 		static TimeMeasurerLayer* GetInst()
 		{
@@ -69,8 +69,8 @@ namespace DM
 		TimeMeasurerLayer() :ImGuiLayer("TimeMeasurer") {}
 		virtual void Render()override;
 	private:
-		UnOrderedMap<std::string, Array<TimeMeasurer::Result>>m_Times;
-		UnOrderedMap<std::string, float>m_ClassTime;
+		UMap<std::string, Array<TimeMeasurer::Result>>m_Times;
+		UMap<std::string, float>m_ClassTime;
 		static TimeMeasurerLayer* m_Inst;
 	};
 }

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include<Core/Math/Vector.h>
 #include<Core/Input/KeyCode.h>
 namespace DM

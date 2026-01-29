@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include<vector>
 #include<string>
 #include<string_view>
@@ -10,7 +10,7 @@
 #include<iostream>
 #include<memory>
 #include<functional>
-
+#include"Core/Log.h"
 
 #ifdef DM_PLATFORM_WINDOWS
 	#include<Windows.h>

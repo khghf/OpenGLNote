@@ -49,8 +49,8 @@
     <Filter Include="Src\Core\Render\UniformBuffer">
       <UniqueIdentifier>{7D5C9870-E974-7F9A-B221-0F341EF91334}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\Core\Scene">
-      <UniqueIdentifier>{6274299D-4E42-1DA3-37D6-8DC92343F907}</UniqueIdentifier>
+    <Filter Include="Src\FrameWork">
+      <UniqueIdentifier>{AA07B685-16C8-31BC-DF02-7B394B827698}</UniqueIdentifier>
     </Filter>
     <Filter Include="Src\Platform">
       <UniqueIdentifier>{011E97C6-ED80-266B-9606-5F218248F2ED}</UniqueIdentifier>
@@ -94,48 +94,39 @@
     <Filter Include="Src\Tool">
       <UniqueIdentifier>{9A89EB46-8656-4652-AF6F-34FA9B9B7BE0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\Tool\Imgui">
-      <UniqueIdentifier>{64D23F37-50A0-333D-3934-A46325A10FA2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Src\Tool\Util">
       <UniqueIdentifier>{27B1464F-9371-C285-5CAC-0B03C82B0762}</UniqueIdentifier>
     </Filter>
     <Filter Include="ThirdPart">
       <UniqueIdentifier>{B7397EC9-23A4-3240-6CE2-E3E5D88B1095}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ThirdPart\entt">
-      <UniqueIdentifier>{61A9B50C-4D77-A912-360B-1A3922788577}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ThirdPart\entt\include">
-      <UniqueIdentifier>{D4A10236-C09B-2B88-A908-C29895A191F4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ThirdPart\json">
       <UniqueIdentifier>{E07BB80C-CC49-AC12-B5DD-1C39A14A8877}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdPart\json\json">
+      <UniqueIdentifier>{A97F4FB8-15E1-2CC6-9E4E-73780AAF6385}</UniqueIdentifier>
     </Filter>
     <Filter Include="ThirdPart\stb_image">
       <UniqueIdentifier>{11BB59B5-7D1C-37C3-068A-7D7572EA6D82}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\ThirdPart\entt\include\entt.hpp">
-      <Filter>ThirdPart\entt\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\ThirdPart\json\json.hpp">
-      <Filter>ThirdPart\json</Filter>
+    <ClInclude Include="..\ThirdPart\json\json\json.hpp">
+      <Filter>ThirdPart\json\json</Filter>
     </ClInclude>
     <ClInclude Include="..\ThirdPart\stb_image\stb_image.h">
       <Filter>ThirdPart\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application.h">
+    <ClInclude Include="Src\Config.h">
       <Filter>Src</Filter>
     </ClInclude>
     <ClInclude Include="Src\Core\Container\Array.h">
       <Filter>Src\Core\Container</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Core\Container\UnOrderedMap.h">
+    <ClInclude Include="Src\Core\Container\UMap.h">
       <Filter>Src\Core\Container</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Core\Container\UnOrderedSet.h">
+    <ClInclude Include="Src\Core\Container\USet.h">
       <Filter>Src\Core\Container</Filter>
     </ClInclude>
     <ClInclude Include="Src\Core\Core.h">
@@ -188,6 +179,9 @@
     </ClInclude>
     <ClInclude Include="Src\Core\Input\MouseButtonCode.h">
       <Filter>Src\Core\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Core\Layer\ImGuiLayer.h">
+      <Filter>Src\Core\Layer</Filter>
     </ClInclude>
     <ClInclude Include="Src\Core\Layer\Layer.h">
       <Filter>Src\Core\Layer</Filter>
@@ -255,19 +249,10 @@
     <ClInclude Include="Src\Core\Render\VertexArray.h">
       <Filter>Src\Core\Render</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Core\Scene\Components.h">
-      <Filter>Src\Core\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Core\Scene\Entity.h">
-      <Filter>Src\Core\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Core\Scene\Scene.h">
-      <Filter>Src\Core\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Core\Scene\SceneSerializer.h">
-      <Filter>Src\Core\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="Src\Core\Serialization.h">
+      <Filter>Src\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Core\Serializer.h">
       <Filter>Src\Core</Filter>
     </ClInclude>
     <ClInclude Include="Src\Core\Window.h">
@@ -279,8 +264,41 @@
     <ClInclude Include="Src\DMPCH.h">
       <Filter>Src</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Platform\EntryPoint.h">
-      <Filter>Src\Platform</Filter>
+    <ClInclude Include="Src\FrameWork\GComponent.h">
+      <Filter>Src\FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\FrameWork\GActor.h">
+      <Filter>Src\FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\FrameWork\GCharacter.h">
+      <Filter>Src\FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\FrameWork\GController.h">
+      <Filter>Src\FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\FrameWork\GInfo.h">
+      <Filter>Src\FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\FrameWork\GObject.h">
+      <Filter>Src\FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\FrameWork\GPlayer.h">
+      <Filter>Src\FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\FrameWork\GPlayerController.h">
+      <Filter>Src\FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\FrameWork\GWorld.h">
+      <Filter>Src\FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\FrameWork\GameSetting.h">
+      <Filter>Src\FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\FrameWork\WorldSetting.h">
+      <Filter>Src\FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\GEngine.h">
+      <Filter>Src</Filter>
     </ClInclude>
     <ClInclude Include="Src\Platform\Render\ImGui\imgui_impl_glfw.h">
       <Filter>Src\Platform\Render\ImGui</Filter>
@@ -330,9 +348,6 @@
     <ClInclude Include="Src\Tool\ISingletion.h">
       <Filter>Src\Tool</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Tool\Imgui\ImGuiLayer.h">
-      <Filter>Src\Tool\Imgui</Filter>
-    </ClInclude>
     <ClInclude Include="Src\Tool\Util\GameStatic.h">
       <Filter>Src\Tool\Util</Filter>
     </ClInclude>
@@ -345,13 +360,16 @@
     <ClInclude Include="Src\Tool\Util\Util.h">
       <Filter>Src\Tool\Util</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Config.h" />
+    <ClInclude Include="Src\Editor\Panel\ContentBrowserPanel.h" />
+    <ClInclude Include="Src\Editor\Panel\Panel.h" />
+    <ClInclude Include="Src\Editor\Panel\SceneHierarchyPanel.h" />
+    <ClInclude Include="Src\Editor\EditorLayer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\ThirdPart\stb_image\stb_image.cpp">
       <Filter>ThirdPart\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application.cpp">
+    <ClCompile Include="Src\Config.cpp">
       <Filter>Src</Filter>
     </ClCompile>
     <ClCompile Include="Src\Core\EventSystem\Event\Event.cpp">
@@ -359,6 +377,9 @@
     </ClCompile>
     <ClCompile Include="Src\Core\EventSystem\EventManager.cpp">
       <Filter>Src\Core\EventSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Core\Layer\ImGuiLayer.cpp">
+      <Filter>Src\Core\Layer</Filter>
     </ClCompile>
     <ClCompile Include="Src\Core\Layer\Layer.cpp">
       <Filter>Src\Core\Layer</Filter>
@@ -414,16 +435,43 @@
     <ClCompile Include="Src\Core\Render\VertexArray.cpp">
       <Filter>Src\Core\Render</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Core\Scene\Entity.cpp">
-      <Filter>Src\Core\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Core\Scene\Scene.cpp">
-      <Filter>Src\Core\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Core\Scene\SceneSerializer.cpp">
-      <Filter>Src\Core\Scene</Filter>
+    <ClCompile Include="Src\Core\Serializer.cpp">
+      <Filter>Src\Core</Filter>
     </ClCompile>
     <ClCompile Include="Src\DMPCH.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\FrameWork\GActor.cpp">
+      <Filter>Src\FrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\FrameWork\GCharacter.cpp">
+      <Filter>Src\FrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\FrameWork\GController.cpp">
+      <Filter>Src\FrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\FrameWork\GInfo.cpp">
+      <Filter>Src\FrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\FrameWork\GObject.cpp">
+      <Filter>Src\FrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\FrameWork\GPlayer.cpp">
+      <Filter>Src\FrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\FrameWork\GPlayerController.cpp">
+      <Filter>Src\FrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\FrameWork\GWorld.cpp">
+      <Filter>Src\FrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\FrameWork\GameSetting.cpp">
+      <Filter>Src\FrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\FrameWork\WorldSetting.cpp">
+      <Filter>Src\FrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\GEngine.cpp">
       <Filter>Src</Filter>
     </ClCompile>
     <ClCompile Include="Src\Platform\Render\ImGui\imgui_impl_glfw.cpp">
@@ -477,9 +525,6 @@
     <ClCompile Include="Src\Tool\ISingletion.cpp">
       <Filter>Src\Tool</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Tool\Imgui\ImGuiLayer.cpp">
-      <Filter>Src\Tool\Imgui</Filter>
-    </ClCompile>
     <ClCompile Include="Src\Tool\Util\GameStatic.cpp">
       <Filter>Src\Tool\Util</Filter>
     </ClCompile>
@@ -489,6 +534,11 @@
     <ClCompile Include="Src\Tool\Util\Util.cpp">
       <Filter>Src\Tool\Util</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Config.cpp" />
+    <ClCompile Include="Src\main.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Editor\Panel\ContentBrowserPanel.cpp" />
+    <ClCompile Include="Src\Editor\Panel\SceneHierarchyPanel.cpp" />
+    <ClCompile Include="Src\Editor\EditorLayer.cpp" />
   </ItemGroup>
 </Project>

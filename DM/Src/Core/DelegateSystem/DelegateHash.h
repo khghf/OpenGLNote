@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include<DMPCH.h>
 #include <typeindex>
 namespace DM

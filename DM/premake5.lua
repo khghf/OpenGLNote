@@ -1,5 +1,5 @@
 project"DM"
-	kind"StaticLib"
+	kind"ConsoleApp"
 	targetdir("../bin/"..outputdir.."/%{prj.name}")
 	objdir("../bin-int/"..outputdir.."/%{prj.name}")
 	pchheader"DMPCH.h"	
@@ -24,6 +24,8 @@ project"DM"
 		"%{ThirdPartIncludeDir.entt}",
 		"%{ThirdPartIncludeDir.yaml_cpp}",
 		"%{ThirdPartIncludeDir.ImGuizmo}",
+		"%{ThirdPartIncludeDir.Reflection}",
+		"%{ThirdPartIncludeDir.GeneratedCode}",
 		-- "%{ThirdPartIncludeDir.VulkanSDK}",
 		"%{ThirdPartIncludeDir.shaderc}",
 		"%{ThirdPartIncludeDir.SPIRV_Cross}",
@@ -37,8 +39,10 @@ project"DM"
 		"yaml_cpp",
 		"ImGuizmo",
 		"opengl32.lib",
+		"Reflect",
 		-- "shaderc",
 		"SPIRV-Cross",
+		"Editor",
 	}
 	filter"files:%{ThirdPartIncludeDir.ImGuizmo}/**.cpp"
 		flags{"NoPCH"}

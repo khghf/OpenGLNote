@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include<Core/Core.h>
 #include<Core/Container/Array.h>
 #include<Core/MMM/Reference.h>

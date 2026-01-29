@@ -1,8 +1,8 @@
 ﻿#include "SceneHierarchyPanel.h"
 #include <Imgui.h>
 #include <Imgui_internal.h>
-#include <Core/Scene/Entity.h>
-#include<Core/Scene/Components.h>
+#include <FrameWork/Entity.h>
+#include<FrameWork/GComponent.h>
 #include<glm/gtc/type_ptr.hpp>
 namespace DM
 {

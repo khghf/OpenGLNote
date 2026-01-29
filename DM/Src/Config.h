@@ -1,11 +1,11 @@
-﻿#pragma once
+#pragma once
 #include <string>
 #include<filesystem>
 namespace DM
 {
 	class Config
 	{
-		friend class Application;
+		friend class GEngine;
 		static void Init();
 	public:
 		static std::string				AssetFolder();

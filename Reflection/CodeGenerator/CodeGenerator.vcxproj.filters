@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="LLVM">
+      <UniqueIdentifier>{000B887C-EC41-890D-952E-6F108144050F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LLVM\include">
+      <UniqueIdentifier>{7332F0D7-5F95-7F7C-081B-B832F45C4BFF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LLVM\include\clang-c">
+      <UniqueIdentifier>{3704CB91-2393-545B-CCB1-6856B81F6501}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src">
+      <UniqueIdentifier>{0D23880B-792C-887C-02A8-9E7C6EB0937C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Generator">
+      <UniqueIdentifier>{4349D7D1-AF09-5308-7844-9C85E4C397E4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Meta">
+      <UniqueIdentifier>{0389E746-EF55-4252-186F-30FA049B77E0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="LLVM\include\clang-c\index.h">
+      <Filter>LLVM\include\clang-c</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Generator\CodeGrenerator.h">
+      <Filter>Src\Generator</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Generator\CodeParser.h">
+      <Filter>Src\Generator</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Meta\MetaInfo.h">
+      <Filter>Src\Meta</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\ReflectMarco.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Util.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Src\Generator\CodeGrenerator.cpp">
+      <Filter>Src\Generator</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Generator\CodeParser.cpp">
+      <Filter>Src\Generator</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Meta\MetaInfo.cpp">
+      <Filter>Src\Meta</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Util.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\main.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

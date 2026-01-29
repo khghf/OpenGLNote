@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include <Core/MMM/Reference.h>
 namespace DM
 {

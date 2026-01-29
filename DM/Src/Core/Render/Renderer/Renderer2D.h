@@ -3,7 +3,7 @@
 #include"../Shader.h"
 #include"../Camera/OrthoGraphicCamera.h"
 #include"RenderCommand.h"
-#include<Core/Scene/Components.h>
+#include<FrameWork/GComponent.h>
 namespace DM
 {
 	class Texture2D;

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include"Core/Render/UniformBuffer/UniformBuffer.h"
 namespace DM
 {

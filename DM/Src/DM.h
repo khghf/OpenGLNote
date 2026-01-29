@@ -1,5 +1,5 @@
 ﻿#pragma once
-#include"Application.h"
+#include"GEngine.h"
 #include<Core/Core.h>
 #include<Core/DelegateSystem/DelegateMacro.h>
 /////////////////Math
@@ -7,8 +7,8 @@
 #include<Core/Math/Matrix.h>
 /////////////////Container
 #include<Core/Container/Array.h>
-#include<Core/Container/UnOrderedMap.h>
-#include<Core/Container/UnOrderedSet.h>
+#include<Core/Container/UMap.h>
+#include<Core/Container/USet.h>
 
 //////////////////input
 #include<Core/Input/Input.h>
@@ -21,5 +21,9 @@
 #include<Core/Render/VertexArray.h>
 #include<Core/Render/Texture/Texture.h>
 /////////////////Scene-Entity-Component
-#include<Core/Scene/Scene.h>
-#include<Core/Scene/Components.h>
+#include<FrameWork/GWorld.h>
+#include<FrameWork/GComponent.h>
+#include<FrameWork/GActor.h>
+////////////////Tool
+#include"Tool/Util/GameStatic.h"
+#include"Tool/Util/Util.h"

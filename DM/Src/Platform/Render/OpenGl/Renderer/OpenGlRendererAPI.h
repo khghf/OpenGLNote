@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include<Core/Render/Renderer/RendererAPI.h>
 #include<Core/Math/Vector.h>
 namespace DM

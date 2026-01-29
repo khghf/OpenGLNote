@@ -1,6 +1,6 @@
 ﻿#pragma once
 #include"Panel.h"
-#include<Core/Scene/Entity.h>
+#include"FrameWork/GActor.h"
 namespace DM
 {
 	class SceneHierarchyPanel:public Panel

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include<Tool/ISingletion.h>
 #include"AssetRegistry.h"
 #include<Core/Container/Array.h>
@@ -7,7 +7,7 @@ namespace DM
     class Asset;
     class AssetManager :public ISingletion<AssetManager>
     {
-        friend class Application;
+        friend class GEngine;
         friend class ISingletion<AssetManager>;
         using UTextureRegistry  = AssetRegistry<Texture2D>;	    UTextureRegistry Texture2DRegistry;
         using UShaderRegistry   = AssetRegistry<Shader>;		UShaderRegistry ShaderRegistry;

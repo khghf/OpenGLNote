@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{EAD1F29E-56B1-713A-5FC9-FC10CB27D89B}</ProjectGuid>
+    <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Reflect</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(ProjectDir)..\..\bin\Debug-windows-x86_64\Reflect\</OutDir>
+    <IntDir>$(ProjectDir)..\..\bin-int\Debug-windows-x86_64\Reflect\</IntDir>
+    <TargetName>Reflect</TargetName>
+    <TargetExt>.dll</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(ProjectDir)..\..\bin\Release-windows-x86_64\Reflect\</OutDir>
+    <IntDir>$(ProjectDir)..\..\bin-int\Release-windows-x86_64\Reflect\</IntDir>
+    <TargetName>Reflect</TargetName>
+    <TargetExt>.dll</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>REFLECT_PROJECT;DM_PLATFORM_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>GeneratedCode;Src;.;..\..\ThirdPart\json;..\..\ThirdPart\entt;..\..\DM\Src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <ExternalWarningLevel>Level3</ExternalWarningLevel>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ImportLibrary>..\..\bin\Debug-windows-x86_64\Reflect\Reflect.lib</ImportLibrary>
+    </Link>
+    <PostBuildEvent>
+      <Command>IF EXIST ..\..\bin\Debug-windows-x86_64\Reflect\Reflect.dll\ (xcopy /Q /E /Y /I ..\..\bin\Debug-windows-x86_64\Reflect\Reflect.dll ..\..\bin\Debug-windows-x86_64\DM &gt; nul) ELSE (xcopy /Q /Y /I ..\..\bin\Debug-windows-x86_64\Reflect\Reflect.dll ..\..\bin\Debug-windows-x86_64\DM &gt; nul)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>REFLECT_PROJECT;DM_PLATFORM_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>GeneratedCode;Src;.;..\..\ThirdPart\json;..\..\ThirdPart\entt;..\..\DM\Src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Full</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <ExternalWarningLevel>Level3</ExternalWarningLevel>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <ImportLibrary>..\..\bin\Release-windows-x86_64\Reflect\Reflect.lib</ImportLibrary>
+    </Link>
+    <PostBuildEvent>
+      <Command>IF EXIST ..\..\bin\Release-windows-x86_64\Reflect\Reflect.dll\ (xcopy /Q /E /Y /I ..\..\bin\Release-windows-x86_64\Reflect\Reflect.dll ..\..\bin\Release-windows-x86_64\DM &gt; nul) ELSE (xcopy /Q /Y /I ..\..\bin\Release-windows-x86_64\Reflect\Reflect.dll ..\..\bin\Release-windows-x86_64\DM &gt; nul)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="GeneratedCode\DM.gen.h" />
+    <ClInclude Include="GeneratedCode\Entity.gen.h" />
+    <ClInclude Include="GeneratedCode\GCharacter.gen.h" />
+    <ClInclude Include="GeneratedCode\GController.gen.h" />
+    <ClInclude Include="GeneratedCode\GInfo.gen.h" />
+    <ClInclude Include="GeneratedCode\GObject.gen.h" />
+    <ClInclude Include="GeneratedCode\GPlayer.gen.h" />
+    <ClInclude Include="GeneratedCode\GPlayerController.gen.h" />
+    <ClInclude Include="GeneratedCode\GWorld.gen.h" />
+    <ClInclude Include="GeneratedCode\GameSetting.gen.h" />
+    <ClInclude Include="GeneratedCode\GameStatic.gen.h" />
+    <ClInclude Include="GeneratedCode\WorldSetting.gen.h" />
+    <ClInclude Include="Src\Reflect\ArgWrap.h" />
+    <ClInclude Include="Src\Reflect\GeneratedCppIncludes.h" />
+    <ClInclude Include="Src\Reflect\GeneratedHppIncludes.h" />
+    <ClInclude Include="Src\Reflect\Hash.h" />
+    <ClInclude Include="Src\Reflect\RClass.h" />
+    <ClInclude Include="Src\Reflect\RFunction.h" />
+    <ClInclude Include="Src\Reflect\RObject.h" />
+    <ClInclude Include="Src\Reflect\RProperty.h" />
+    <ClInclude Include="Src\Reflect\ReflectMarco.h" />
+    <ClInclude Include="Src\Reflect\reflection.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="GeneratedCode\DM.gen.cpp" />
+    <ClCompile Include="GeneratedCode\Entity.gen.cpp" />
+    <ClCompile Include="GeneratedCode\GCharacter.gen.cpp" />
+    <ClCompile Include="GeneratedCode\GController.gen.cpp" />
+    <ClCompile Include="GeneratedCode\GInfo.gen.cpp" />
+    <ClCompile Include="GeneratedCode\GObject.gen.cpp" />
+    <ClCompile Include="GeneratedCode\GPlayer.gen.cpp" />
+    <ClCompile Include="GeneratedCode\GPlayerController.gen.cpp" />
+    <ClCompile Include="GeneratedCode\GWorld.gen.cpp" />
+    <ClCompile Include="GeneratedCode\GameSetting.gen.cpp" />
+    <ClCompile Include="GeneratedCode\GameStatic.gen.cpp" />
+    <ClCompile Include="GeneratedCode\WorldSetting.gen.cpp" />
+    <ClCompile Include="Src\Reflect\reflection.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

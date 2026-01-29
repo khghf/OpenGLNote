@@ -1,7 +1,7 @@
-﻿#pragma once
+#pragma once
 #include<DMPCH.h>
 #include"../Container/Array.h"
-#include"../Container/UnOrderedMap.h"
+#include"../Container/UMap.h"
 #include"BaseDelegate.h"
 #include"DelegateHash.h"
 #include<Core/Log.h>
@@ -15,7 +15,7 @@ namespace DM
 	{
 	private:
 		using FunType = Ret(*)(Args...);
-		UnOrderedMap<size_t, BaseDelegate<Ret(Args...)>>Delegates;
+		UMap<size_t, BaseDelegate<Ret(Args...)>>Delegates;
 		std::string_view Name;
 	public:
 		MultiDelegate() = default;

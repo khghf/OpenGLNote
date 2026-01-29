@@ -1,6 +1,4 @@
-﻿#pragma once
-
-
+#pragma once
 namespace DM
 {
 	typedef enum class KeyCode:uint16_t

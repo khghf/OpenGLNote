@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include<DMPCH.h>
 #include<Resource/Asset.h>
 #include<Core/MMM/Reference.h>

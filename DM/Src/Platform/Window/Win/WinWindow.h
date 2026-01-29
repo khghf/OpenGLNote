@@ -1,6 +1,5 @@
-﻿#pragma once
+#pragma once
 #include<Core/Window.h>
-
 #ifdef DM_PLATFORM_WINDOWS
 namespace DM
 {

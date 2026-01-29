@@ -28,6 +28,16 @@ namespace DM
 		static std::string			ModifySuffix(const std::string& source, const std::string& suffix);
 		static bool					HasSuffix(const std::string& source, const std::string& suffix);
 	};
+	struct Is_Pointer
+	{
+		template<typename Ty>
+		constexpr static bool Val(Ty&& obj)
+		{
+			return std::is_pointer_v<std::remove_reference_t<Ty>>;
+		}
+	};
+
+
 }
 
 

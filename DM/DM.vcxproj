@@ -19,13 +19,13 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v143</PlatformToolset>
@@ -41,16 +41,18 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
     <OutDir>$(ProjectDir)..\bin\Debug-windows-x86_64\DM\</OutDir>
     <IntDir>$(ProjectDir)..\bin-int\Debug-windows-x86_64\DM\</IntDir>
     <TargetName>DM</TargetName>
-    <TargetExt>.lib</TargetExt>
+    <TargetExt>.exe</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
     <OutDir>$(ProjectDir)..\bin\Release-windows-x86_64\DM\</OutDir>
     <IntDir>$(ProjectDir)..\bin-int\Release-windows-x86_64\DM\</IntDir>
     <TargetName>DM</TargetName>
-    <TargetExt>.lib</TargetExt>
+    <TargetExt>.exe</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -58,7 +60,7 @@
       <PrecompiledHeaderFile>DMPCH.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>YAML_CPP_STATIC_DEFINE;DM_PLATFORM_WINDOWS;GLFW_INCLUDE_NONE;DM_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\ThirdPart\spdlog\include;..\ThirdPart\glfw\glfw\include;..\ThirdPart\glad\glad\include;..\ThirdPart\imgui\imgui;..\ThirdPart\glm\glm;..\ThirdPart\stb_image;..\ThirdPart\json;..\ThirdPart\entt\include;..\ThirdPart\yaml_cpp\yaml_cpp\include;..\ThirdPart\ImGuizmo\ImGuizmo;C:\VulkanSDK\1.4.335.0\Include;..\ThirdPart\SPIRV-Cross\SPIRV-Cross\Include;Src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\ThirdPart\spdlog\include;..\ThirdPart\glfw\glfw\include;..\ThirdPart\glad\glad\include;..\ThirdPart\imgui\imgui;..\ThirdPart\glm\glm;..\ThirdPart\stb_image;..\ThirdPart\json;..\ThirdPart\entt;..\ThirdPart\yaml_cpp\yaml_cpp\include;..\ThirdPart\ImGuizmo\ImGuizmo;..\Reflection\Reflect\Src;..\Reflection\Reflect\GeneratedCode;C:\VulkanSDK\1.4.335.0\Include;..\ThirdPart\SPIRV-Cross\SPIRV-Cross\Include;Src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -67,12 +69,10 @@
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>opengl32.lib;Editor.lib;C:\VulkanSDK\1.4.335.0\Lib\shaderc_sharedd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
-    <Lib>
-      <AdditionalDependencies>opengl32.lib;C:\VulkanSDK\1.4.335.0\Lib\shaderc_sharedd.lib;%(AdditionalDependencies)</AdditionalDependencies>
-    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -80,7 +80,7 @@
       <PrecompiledHeaderFile>DMPCH.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>YAML_CPP_STATIC_DEFINE;DM_PLATFORM_WINDOWS;GLFW_INCLUDE_NONE;DM_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\ThirdPart\spdlog\include;..\ThirdPart\glfw\glfw\include;..\ThirdPart\glad\glad\include;..\ThirdPart\imgui\imgui;..\ThirdPart\glm\glm;..\ThirdPart\stb_image;..\ThirdPart\json;..\ThirdPart\entt\include;..\ThirdPart\yaml_cpp\yaml_cpp\include;..\ThirdPart\ImGuizmo\ImGuizmo;C:\VulkanSDK\1.4.335.0\Include;..\ThirdPart\SPIRV-Cross\SPIRV-Cross\Include;Src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\ThirdPart\spdlog\include;..\ThirdPart\glfw\glfw\include;..\ThirdPart\glad\glad\include;..\ThirdPart\imgui\imgui;..\ThirdPart\glm\glm;..\ThirdPart\stb_image;..\ThirdPart\json;..\ThirdPart\entt;..\ThirdPart\yaml_cpp\yaml_cpp\include;..\ThirdPart\ImGuizmo\ImGuizmo;..\Reflection\Reflect\Src;..\Reflection\Reflect\GeneratedCode;C:\VulkanSDK\1.4.335.0\Include;..\ThirdPart\SPIRV-Cross\SPIRV-Cross\Include;Src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -92,23 +92,19 @@
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>opengl32.lib;Editor.lib;C:\VulkanSDK\1.4.335.0\Lib\shaderc_shared.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
-    <Lib>
-      <AdditionalDependencies>opengl32.lib;C:\VulkanSDK\1.4.335.0\Lib\shaderc_shared.lib;%(AdditionalDependencies)</AdditionalDependencies>
-    </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\ThirdPart\entt\include\entt.hpp" />
-    <ClInclude Include="..\ThirdPart\json\json.hpp" />
+    <ClInclude Include="..\ThirdPart\json\json\json.hpp" />
     <ClInclude Include="..\ThirdPart\stb_image\stb_image.h" />
     <ClInclude Include="Src\Config.h" />
-    <ClInclude Include="Src\Application.h" />
     <ClInclude Include="Src\Core\Container\Array.h" />
-    <ClInclude Include="Src\Core\Container\UnOrderedMap.h" />
-    <ClInclude Include="Src\Core\Container\UnOrderedSet.h" />
+    <ClInclude Include="Src\Core\Container\UMap.h" />
+    <ClInclude Include="Src\Core\Container\USet.h" />
     <ClInclude Include="Src\Core\Core.h" />
     <ClInclude Include="Src\Core\DelegateSystem\BaseDelegate.h" />
     <ClInclude Include="Src\Core\DelegateSystem\DelegateHash.h" />
@@ -126,6 +122,7 @@
     <ClInclude Include="Src\Core\Input\Input.h" />
     <ClInclude Include="Src\Core\Input\KeyCode.h" />
     <ClInclude Include="Src\Core\Input\MouseButtonCode.h" />
+    <ClInclude Include="Src\Core\Layer\ImGuiLayer.h" />
     <ClInclude Include="Src\Core\Layer\Layer.h" />
     <ClInclude Include="Src\Core\Layer\LayerStack.h" />
     <ClInclude Include="Src\Core\Log.h" />
@@ -148,15 +145,27 @@
     <ClInclude Include="Src\Core\Render\Texture\TextureAtlas.h" />
     <ClInclude Include="Src\Core\Render\UniformBuffer\UniformBuffer.h" />
     <ClInclude Include="Src\Core\Render\VertexArray.h" />
-    <ClInclude Include="Src\Core\Scene\Components.h" />
-    <ClInclude Include="Src\Core\Scene\Entity.h" />
-    <ClInclude Include="Src\Core\Scene\Scene.h" />
-    <ClInclude Include="Src\Core\Scene\SceneSerializer.h" />
     <ClInclude Include="Src\Core\Serialization.h" />
+    <ClInclude Include="Src\Core\Serializer.h" />
     <ClInclude Include="Src\Core\Window.h" />
     <ClInclude Include="Src\DM.h" />
     <ClInclude Include="Src\DMPCH.h" />
-    <ClInclude Include="Src\Platform\EntryPoint.h" />
+    <ClInclude Include="Src\Editor\EditorLayer.h" />
+    <ClInclude Include="Src\Editor\Panel\ContentBrowserPanel.h" />
+    <ClInclude Include="Src\Editor\Panel\Panel.h" />
+    <ClInclude Include="Src\Editor\Panel\SceneHierarchyPanel.h" />
+    <ClInclude Include="Src\FrameWork\GComponent.h" />
+    <ClInclude Include="Src\FrameWork\GActor.h" />
+    <ClInclude Include="Src\FrameWork\GCharacter.h" />
+    <ClInclude Include="Src\FrameWork\GController.h" />
+    <ClInclude Include="Src\FrameWork\GInfo.h" />
+    <ClInclude Include="Src\FrameWork\GObject.h" />
+    <ClInclude Include="Src\FrameWork\GPlayer.h" />
+    <ClInclude Include="Src\FrameWork\GPlayerController.h" />
+    <ClInclude Include="Src\FrameWork\GWorld.h" />
+    <ClInclude Include="Src\FrameWork\GameSetting.h" />
+    <ClInclude Include="Src\FrameWork\WorldSetting.h" />
+    <ClInclude Include="Src\GEngine.h" />
     <ClInclude Include="Src\Platform\Render\ImGui\imgui_impl_glfw.h" />
     <ClInclude Include="Src\Platform\Render\ImGui\imgui_impl_opengl3.h" />
     <ClInclude Include="Src\Platform\Render\ImGui\imgui_impl_opengl3_loader.h" />
@@ -173,7 +182,6 @@
     <ClInclude Include="Src\Resource\AssetManager.h" />
     <ClInclude Include="Src\Resource\AssetRegistry.h" />
     <ClInclude Include="Src\Tool\ISingletion.h" />
-    <ClInclude Include="Src\Tool\Imgui\ImGuiLayer.h" />
     <ClInclude Include="Src\Tool\Util\GameStatic.h" />
     <ClInclude Include="Src\Tool\Util\PlatformUtils.h" />
     <ClInclude Include="Src\Tool\Util\TimeMeasurer.h" />
@@ -182,9 +190,9 @@
   <ItemGroup>
     <ClCompile Include="..\ThirdPart\stb_image\stb_image.cpp" />
     <ClCompile Include="Src\Config.cpp" />
-    <ClCompile Include="Src\Application.cpp" />
     <ClCompile Include="Src\Core\EventSystem\Event\Event.cpp" />
     <ClCompile Include="Src\Core\EventSystem\EventManager.cpp" />
+    <ClCompile Include="Src\Core\Layer\ImGuiLayer.cpp" />
     <ClCompile Include="Src\Core\Layer\Layer.cpp" />
     <ClCompile Include="Src\Core\Layer\LayerStack.cpp" />
     <ClCompile Include="Src\Core\Log.cpp" />
@@ -203,12 +211,24 @@
     <ClCompile Include="Src\Core\Render\Texture\TextureAtlas.cpp" />
     <ClCompile Include="Src\Core\Render\UniformBuffer\UniformBuffer.cpp" />
     <ClCompile Include="Src\Core\Render\VertexArray.cpp" />
-    <ClCompile Include="Src\Core\Scene\Entity.cpp" />
-    <ClCompile Include="Src\Core\Scene\Scene.cpp" />
-    <ClCompile Include="Src\Core\Scene\SceneSerializer.cpp" />
+    <ClCompile Include="Src\Core\Serializer.cpp" />
     <ClCompile Include="Src\DMPCH.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Src\Editor\EditorLayer.cpp" />
+    <ClCompile Include="Src\Editor\Panel\ContentBrowserPanel.cpp" />
+    <ClCompile Include="Src\Editor\Panel\SceneHierarchyPanel.cpp" />
+    <ClCompile Include="Src\FrameWork\GActor.cpp" />
+    <ClCompile Include="Src\FrameWork\GCharacter.cpp" />
+    <ClCompile Include="Src\FrameWork\GController.cpp" />
+    <ClCompile Include="Src\FrameWork\GInfo.cpp" />
+    <ClCompile Include="Src\FrameWork\GObject.cpp" />
+    <ClCompile Include="Src\FrameWork\GPlayer.cpp" />
+    <ClCompile Include="Src\FrameWork\GPlayerController.cpp" />
+    <ClCompile Include="Src\FrameWork\GWorld.cpp" />
+    <ClCompile Include="Src\FrameWork\GameSetting.cpp" />
+    <ClCompile Include="Src\FrameWork\WorldSetting.cpp" />
+    <ClCompile Include="Src\GEngine.cpp" />
     <ClCompile Include="Src\Platform\Render\ImGui\imgui_impl_glfw.cpp" />
     <ClCompile Include="Src\Platform\Render\ImGui\imgui_impl_opengl3.cpp" />
     <ClCompile Include="Src\Platform\Render\OpenGl\Buffer\OpenGlBuffer.cpp" />
@@ -226,10 +246,10 @@
     <ClCompile Include="Src\Resource\AssetManager.cpp" />
     <ClCompile Include="Src\Resource\AssetRegistry.cpp" />
     <ClCompile Include="Src\Tool\ISingletion.cpp" />
-    <ClCompile Include="Src\Tool\Imgui\ImGuiLayer.cpp" />
     <ClCompile Include="Src\Tool\Util\GameStatic.cpp" />
     <ClCompile Include="Src\Tool\Util\TimeMeasurer.cpp" />
     <ClCompile Include="Src\Tool\Util\Util.cpp" />
+    <ClCompile Include="Src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ThirdPart\glfw\GLFW.vcxproj">
@@ -246,6 +266,9 @@
     </ProjectReference>
     <ProjectReference Include="..\ThirdPart\ImGuizmo\ImGuizmo.vcxproj">
       <Project>{36FD234F-22CA-7E5A-4BE3-6C02370FB4E8}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Reflection\Reflect\Reflect.vcxproj">
+      <Project>{EAD1F29E-56B1-713A-5FC9-FC10CB27D89B}</Project>
     </ProjectReference>
     <ProjectReference Include="..\ThirdPart\SPIRV-Cross\SPIRV-Cross.vcxproj">
       <Project>{30B15D9A-9C66-D68F-255B-D066910FCD93}</Project>

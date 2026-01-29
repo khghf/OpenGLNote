@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include"Event.h"
 #include<Core/Math/Vector.h>
 struct GLFWwindow;

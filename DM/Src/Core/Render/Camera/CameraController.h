@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include"OrthoGraphicCamera.h"
 #include<Core/MMM/Reference.h>
 namespace DM

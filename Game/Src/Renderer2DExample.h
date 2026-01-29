@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include<Core/Layer/Layer.h>
 #include<Core/Render/Camera/CameraController.h>
-#include<Application.h>
+#include<GEngine.h>
 #include<Core/Render/Renderer/Renderer2D.h>
 #include<Resource/AssetManager.h>
 #include<Core/Render/Texture/Texture.h>
@@ -12,8 +12,8 @@ class Renderer2DExample :public DM::Layer
 public:
 	Renderer2DExample(const std::string_view&name) :Layer(name)
 	{
-		float x = (float)DM::Application::GetInst()->GetWindow()->Width();
-		float y = (float)DM::Application::GetInst()->GetWindow()->Height();
+		float x = (float)DM::GEngine::GetInst()->GetWindow()->Width();
+		float y = (float)DM::GEngine::GetInst()->GetWindow()->Height();
 		m_CameraController = DM::CameraController(x / y, DM::ECameraType::Ortho);
 	}
 	virtual ~Renderer2DExample() {}
