@@ -1,11 +1,10 @@
 ﻿#pragma once
-#include<DMPCH.h>
+//#include<DMPCH.h>
 #include <Core/Math/Matrix.h>
 #include <Core/Math/Vector.h>
 #include<Core/Render/Camera/Camera.h>
 #include"FrameWork/GActor.h"
 #include <glm/gtc/matrix_transform.hpp>
-#include<Reflect/ReflectMarco.h>
 namespace DM
 {
 	class GComponent:public GActor
@@ -57,7 +56,7 @@ namespace DM
 		CameraComponent(const CameraComponent&) = default;
 		CameraComponent(const ECameraType& type) {}
 	};
-	struct NativeScriptComponent
+	/*struct NativeScriptComponent
 	{
 		ScritableEntity* Inst = nullptr;
 		ScritableEntity*(*InstantiateScript)();
@@ -68,5 +67,5 @@ namespace DM
 			InstantiateScript = [this]() {return static_cast<ScritableEntity*>(new T();) };
 			DestroyScript = [this]() {delete Inst; Inst = nullptr; };
 		}
-	};
+	};*/
 }

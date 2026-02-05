@@ -1,9 +1,8 @@
 project "GLAD"
-    kind "StaticLib"  -- ���־�̬�⣨��Ҫ��̬���Ϊ SharedLib����ͬ���޸ĺ꣩
+    kind "StaticLib"  
     language "C"
     targetdir("bin/" .. outputdir .. "/%{prj.name}")
     objdir("bin-int/" .. outputdir .. "/%{prj.name}")
-    -- �ؼ� 1������ GLFW ���°����к����ļ�����Դ��ԭ���ṹ������©��
     files {
        "glad/include/GLAD/glad.h",
        "glad/include/KHR/khrplatform.h",
@@ -13,7 +12,7 @@ project "GLAD"
         "glad/include"
     }
     filter "system:windows"
-        systemversion "latest"  -- ʹ������ Windows SDK
+        systemversion "latest"  
     filter "configurations:Debug"
         runtime"Debug"
         symbols "on"

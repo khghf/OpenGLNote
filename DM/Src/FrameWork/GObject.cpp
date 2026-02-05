@@ -8,13 +8,18 @@ namespace DM
 		//UpdateMannger::GetSingletion()->Add(SPtr<GObject>(this));
 	}
 
-	void GObject::Start()
-	{
+	//void GObject::Start()
+	//{
 
-	}
+	//}
 
 	void GObject::Update(float DeltaTime)
 	{
+	}
+
+	void GObject::Destroy()
+	{
+
 	}
 
 	void GObject::OnDestroy()

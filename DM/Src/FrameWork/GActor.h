@@ -1,11 +1,9 @@
-﻿#pragma once
-#include<entt/entt.hpp>
+#pragma once
 #include"GWorld.h"
-#include<Core/Core.h>
-#include"GObject.h"
-#include<GActor.gen.h>
+#include"GActor.gen.h"
 namespace DM
 {
+	//class GComponent;
 	class CLASS() GActor:public GObject
 	{
 		REFLECT_BODY()
@@ -13,36 +11,41 @@ namespace DM
 		friend class SceneHierarchyPanel;
 	public:
 		GActor() = default;
-		GActor(entt::entity entityHandle, GWorld* context);
+		GActor(entt::entity entityHandle, GWorld * context);
+		~GActor()=default;
+		virtual void Update(float DeltaTime)override;
+		virtual void Destroy()override;
+		virtual void OnDestroy()override;
+
+
 		template<typename T>
 		bool HasComponent()const { return m_Context->m_Registry.any_of<T>(m_Handle); }
-		template<typename T,typename...Args>
-		T& AddComponent(Args&&...arg) 
+		template<typename T, typename...Args>
+		T* AddComponent(Args&&...arg)
 		{
-			if (HasComponent<T>()) { LOG_CORE_WARN("Entity already has component!"); return T{}; }
-			return m_Context->m_Registry.emplace<T>(m_Handle, std::forward<Args>(arg)...);
+			if (HasComponent<T>()) { LOG_CORE_WARN("Entity already has component!"); return nullptr; }
+			return &m_Context->m_Registry.emplace<T>(m_Handle, std::forward<Args>(arg)...);
 		}
 		template<typename T>
-		void RemoveComponent() 
-		{ 
-			if (!HasComponent<T>()) { LOG_CORE_WARN("Entity does not have component,need not to remove")return; }
-			return m_Context->m_Registry.get<T>(m_Handle); 
+		void RemoveComponent()
+		{
+			if (!HasComponent<T>()) { LOG_CORE_WARN("Entity does not have component,need not to remove"); return; }
+			m_Context->m_Registry.get<T>(m_Handle);
 		}
 		template<typename T>
-		T& GetComponent()const 
+		T* GetComponent()const
 		{
-			if (!HasComponent<T>()) { LOG_CORE_WARN("Entity does not have component!"); return T{}; }
-			return m_Context->m_Registry.get<T>(m_Handle); 
+			if (!HasComponent<T>()) { LOG_CORE_WARN("Entity does not have component!"); return nullptr; }
+			return &m_Context->m_Registry.get<T>(m_Handle);
 		}
+
 		operator bool()const { return m_Handle != entt::null; }
 		operator entt::entity()const { return m_Handle; }
 		bool operator==(const GActor& other) { return m_Handle == other.m_Handle; }
 		bool operator!=(const GActor& other) { return !(*this == other); }
 	private:
 		entt::entity m_Handle{ entt::null };
-		GWorld* m_Context=nullptr;
-		PROPERTY()
-			std::string M__name = "Entity";
+		GWorld* m_Context = nullptr;
 	};
 
 	class ScritableEntity

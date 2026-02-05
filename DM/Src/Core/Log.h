@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include"DMPCH.h"
 #include<spdlog/spdlog.h>
 namespace DM
@@ -31,27 +31,29 @@ namespace DM
 
 #define DM_ENABLE_ASSERT
 #ifdef DM_ENABLE_ASSERT
+
+#define DM_ASSERT_INTERNAL(x,tip,fmt,file,line,...)\
+{\
+	if (!(x))\
+	{\
+		LOG_ERROR(tip##fmt,#file, #line, __VA_ARGS__); \
+		__debugbreak(); \
+	}\
+}
+
+#define DM_CORE_ASSERT_INTERNAL(x,tip,fmt,file,line,...)\
+{\
+	if (!(x))\
+	{\
+		LOG_CORE_ERROR(tip##fmt,#file, #line, __VA_ARGS__); \
+		__debugbreak(); \
+	}\
+}
 #define DM_ASSERT(x,fmt,...)\
-			{\
-				if(!(x))\
-				{\
-					std::string str("Assertion Failed.File:{}---Line:{}.");\
-					str+=fmt;\
-					LOG_ERROR(str.c_str(),__FILE__,__LINE__,__VA_ARGS__);\
-					__debugbreak();\
-				}\
-			}
+			DM_ASSERT_INTERNAL(x,"Assertion Failed.File:{}---Line:{}.",fmt,__FILE__,__LINE__,__VA_ARGS__)
 
 #define DM_CORE_ASSERT(x,fmt,...)\
-			{\
-				if(!(x))\
-				{\
-					std::string str("Assertion Failed.File:{}---Line:{}.");\
-					str+=fmt;\
-					LOG_CORE_ERROR(str.c_str(),__FILE__,__LINE__,__VA_ARGS__);\
-					__debugbreak();\
-				}\
-			}
+			DM_ASSERT_INTERNAL(x,"Assertion Failed.File:{}---Line:{}.",fmt,__FILE__,__LINE__,__VA_ARGS__)
 #else
 #define DM_ASSERT(x,...)
 #define DM_CORE_ASSERT(x,fmt,...)

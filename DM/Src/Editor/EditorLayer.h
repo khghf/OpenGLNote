@@ -1,7 +1,6 @@
 ﻿#pragma once
 #include<Core/Layer/ImGuiLayer.h>
 #include<Core/Render/Camera/CameraController.h>
-#include<GEngine.h>
 #include<Core/Render/Renderer/Renderer2D.h>
 #include<Resource/AssetManager.h>
 #include<Core/Render/Texture/Texture.h>
@@ -74,10 +73,10 @@ namespace DM
 		Ref<Panel>m_HierarchyPanel;
 		Ref<Panel>m_ContentPanel;
 		ViewPort m_ViewPort;
-		enum class SceneState:uint8_t
+		/*enum class SceneState:uint8_t
 		{
 
-		};
+		};*/
 	};
 
 

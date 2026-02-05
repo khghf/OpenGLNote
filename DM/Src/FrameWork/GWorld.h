@@ -1,6 +1,6 @@
 #pragma once
 #include"GObject.h"
-#include<GWorld.gen.h>
+#include"GWorld.gen.h"
 namespace DM
 {
 	class GActor;
@@ -17,14 +17,13 @@ namespace DM
 	public:
 		GActor CreateEntity();
 		void DestroyEntity(GActor entity);
-		PROPERTY()
 		std::string m_Name = "Unnamed";
 		std::string m_path;
+		PROPERTY()
 		bool bHasSavedToLocal = false;//在本地序列化过
 	private:
-	private:
+		constexpr static std::string_view s_FileExtension = "world";
 		entt::registry m_Registry;
-		constexpr static std::string_view s_FileExtension = "scene";
 	};
 }
 

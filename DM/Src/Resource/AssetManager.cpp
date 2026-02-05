@@ -23,9 +23,9 @@ namespace DM
 		const std::string ShaderFloderPath = Config::AssetShader();
 		const std::string TextureFloderPath = Config::AssetTexture();
 		const std::string IconFloderPath = Config::AssetIcon();
-		const Array<std::string>& ShaderPaths = Util::GetAllFilePath(ShaderFloderPath, true);
-		const Array<std::string>& TexturePaths = Util::GetAllFilePath(TextureFloderPath, true);
-		const Array<std::string>& IconPaths = Util::GetAllFilePath(IconFloderPath, true);
+		const std::vector<std::string>& ShaderPaths = Util::GetAllFilePath(ShaderFloderPath, true);
+		const std::vector<std::string>& TexturePaths = Util::GetAllFilePath(TextureFloderPath, true);
+		const std::vector<std::string>& IconPaths = Util::GetAllFilePath(IconFloderPath, true);
 		RegisterAsset(ShaderPaths, ShaderRegistry);
 		RegisterAsset(TexturePaths, Texture2DRegistry);
 		RegisterAsset(IconPaths, Texture2DRegistry);

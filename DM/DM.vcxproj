@@ -60,19 +60,21 @@
       <PrecompiledHeaderFile>DMPCH.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>YAML_CPP_STATIC_DEFINE;DM_PLATFORM_WINDOWS;GLFW_INCLUDE_NONE;DM_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\ThirdPart\spdlog\include;..\ThirdPart\glfw\glfw\include;..\ThirdPart\glad\glad\include;..\ThirdPart\imgui\imgui;..\ThirdPart\glm\glm;..\ThirdPart\stb_image;..\ThirdPart\json;..\ThirdPart\entt;..\ThirdPart\yaml_cpp\yaml_cpp\include;..\ThirdPart\ImGuizmo\ImGuizmo;..\Reflection\Reflect\Src;..\Reflection\Reflect\GeneratedCode;C:\VulkanSDK\1.4.335.0\Include;..\ThirdPart\SPIRV-Cross\SPIRV-Cross\Include;Src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\ThirdPart\spdlog\include;..\ThirdPart\glfw\glfw\include;..\ThirdPart\glad\glad\include;..\ThirdPart\imgui\imgui;..\ThirdPart\glm\glm;..\ThirdPart\stb_image;..\ThirdPart\rapidjson\include;..\ThirdPart\json;..\ThirdPart\entt;..\ThirdPart\yaml_cpp\yaml_cpp\include;..\ThirdPart\ImGuizmo\ImGuizmo;..\Intermediate\GeneratedCode;C:\VulkanSDK\1.4.335.0\Include;..\ThirdPart\SPIRV-Cross\SPIRV-Cross\Include;Src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;Editor.lib;C:\VulkanSDK\1.4.335.0\Lib\shaderc_sharedd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;C:\VulkanSDK\1.4.335.0\Lib\shaderc_sharedd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <ProjectReference>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -80,7 +82,7 @@
       <PrecompiledHeaderFile>DMPCH.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>YAML_CPP_STATIC_DEFINE;DM_PLATFORM_WINDOWS;GLFW_INCLUDE_NONE;DM_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\ThirdPart\spdlog\include;..\ThirdPart\glfw\glfw\include;..\ThirdPart\glad\glad\include;..\ThirdPart\imgui\imgui;..\ThirdPart\glm\glm;..\ThirdPart\stb_image;..\ThirdPart\json;..\ThirdPart\entt;..\ThirdPart\yaml_cpp\yaml_cpp\include;..\ThirdPart\ImGuizmo\ImGuizmo;..\Reflection\Reflect\Src;..\Reflection\Reflect\GeneratedCode;C:\VulkanSDK\1.4.335.0\Include;..\ThirdPart\SPIRV-Cross\SPIRV-Cross\Include;Src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\ThirdPart\spdlog\include;..\ThirdPart\glfw\glfw\include;..\ThirdPart\glad\glad\include;..\ThirdPart\imgui\imgui;..\ThirdPart\glm\glm;..\ThirdPart\stb_image;..\ThirdPart\rapidjson\include;..\ThirdPart\json;..\ThirdPart\entt;..\ThirdPart\yaml_cpp\yaml_cpp\include;..\ThirdPart\ImGuizmo\ImGuizmo;..\Intermediate\GeneratedCode;C:\VulkanSDK\1.4.335.0\Include;..\ThirdPart\SPIRV-Cross\SPIRV-Cross\Include;Src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -88,23 +90,22 @@
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>opengl32.lib;Editor.lib;C:\VulkanSDK\1.4.335.0\Lib\shaderc_shared.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;C:\VulkanSDK\1.4.335.0\Lib\shaderc_shared.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <ProjectReference>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\ThirdPart\json\json\json.hpp" />
     <ClInclude Include="..\ThirdPart\stb_image\stb_image.h" />
     <ClInclude Include="Src\Config.h" />
-    <ClInclude Include="Src\Core\Container\Array.h" />
-    <ClInclude Include="Src\Core\Container\UMap.h" />
-    <ClInclude Include="Src\Core\Container\USet.h" />
     <ClInclude Include="Src\Core\Core.h" />
     <ClInclude Include="Src\Core\DelegateSystem\BaseDelegate.h" />
     <ClInclude Include="Src\Core\DelegateSystem\DelegateHash.h" />
@@ -129,6 +130,66 @@
     <ClInclude Include="Src\Core\MMM\Reference.h" />
     <ClInclude Include="Src\Core\Math\Matrix.h" />
     <ClInclude Include="Src\Core\Math\Vector.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\ReflectMarco.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\ThirdPart\rapidjson\include\rapidjson\allocators.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\ThirdPart\rapidjson\include\rapidjson\cursorstreamwrapper.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\ThirdPart\rapidjson\include\rapidjson\document.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\ThirdPart\rapidjson\include\rapidjson\encodedstream.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\ThirdPart\rapidjson\include\rapidjson\encodings.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\ThirdPart\rapidjson\include\rapidjson\error\en.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\ThirdPart\rapidjson\include\rapidjson\error\error.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\ThirdPart\rapidjson\include\rapidjson\filereadstream.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\ThirdPart\rapidjson\include\rapidjson\filewritestream.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\ThirdPart\rapidjson\include\rapidjson\fwd.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\ThirdPart\rapidjson\include\rapidjson\internal\biginteger.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\ThirdPart\rapidjson\include\rapidjson\internal\clzll.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\ThirdPart\rapidjson\include\rapidjson\internal\diyfp.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\ThirdPart\rapidjson\include\rapidjson\internal\dtoa.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\ThirdPart\rapidjson\include\rapidjson\internal\ieee754.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\ThirdPart\rapidjson\include\rapidjson\internal\itoa.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\ThirdPart\rapidjson\include\rapidjson\internal\meta.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\ThirdPart\rapidjson\include\rapidjson\internal\pow10.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\ThirdPart\rapidjson\include\rapidjson\internal\regex.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\ThirdPart\rapidjson\include\rapidjson\internal\stack.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\ThirdPart\rapidjson\include\rapidjson\internal\strfunc.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\ThirdPart\rapidjson\include\rapidjson\internal\strtod.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\ThirdPart\rapidjson\include\rapidjson\internal\swap.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\ThirdPart\rapidjson\include\rapidjson\istreamwrapper.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\ThirdPart\rapidjson\include\rapidjson\memorybuffer.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\ThirdPart\rapidjson\include\rapidjson\memorystream.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\ThirdPart\rapidjson\include\rapidjson\msinttypes\inttypes.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\ThirdPart\rapidjson\include\rapidjson\msinttypes\stdint.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\ThirdPart\rapidjson\include\rapidjson\ostreamwrapper.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\ThirdPart\rapidjson\include\rapidjson\pointer.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\ThirdPart\rapidjson\include\rapidjson\prettywriter.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\ThirdPart\rapidjson\include\rapidjson\rapidjson.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\ThirdPart\rapidjson\include\rapidjson\reader.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\ThirdPart\rapidjson\include\rapidjson\schema.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\ThirdPart\rapidjson\include\rapidjson\stream.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\ThirdPart\rapidjson\include\rapidjson\stringbuffer.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\ThirdPart\rapidjson\include\rapidjson\uri.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\ThirdPart\rapidjson\include\rapidjson\writer.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\include\Impl\Dependency.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\include\Impl\Function_Impl.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\include\Impl\Impl_Internal.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\include\Impl\Member_Impl.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\include\Impl\TypeConverter.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\include\Impl\TypeInfo_Impl.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\include\Info\FunctionInfo.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\include\Info\MemberInfo.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\include\Info\Property.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\include\Info\TypeInfo.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\include\Serialization\Serialization_Binary.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\include\Serialization\Serialization_Binary_Impl.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\include\Serialization\Serialization_Json.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\include\Serialization\Serialization_Json_Impl.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\include\Storage\Storage_Internal.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\include\Storage\TypeTuple.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\include\Tool\TypeHash.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\include\Tool\TypeTrait.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\include\Tool\Util.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\include\test.h" />
+    <ClInclude Include="Src\Core\Reflection\Mirror\mirror.h" />
     <ClInclude Include="Src\Core\Render\Buffer.h" />
     <ClInclude Include="Src\Core\Render\Camera\Camera.h" />
     <ClInclude Include="Src\Core\Render\Camera\CameraController.h" />
@@ -154,9 +215,9 @@
     <ClInclude Include="Src\Editor\Panel\ContentBrowserPanel.h" />
     <ClInclude Include="Src\Editor\Panel\Panel.h" />
     <ClInclude Include="Src\Editor\Panel\SceneHierarchyPanel.h" />
-    <ClInclude Include="Src\FrameWork\GComponent.h" />
     <ClInclude Include="Src\FrameWork\GActor.h" />
     <ClInclude Include="Src\FrameWork\GCharacter.h" />
+    <ClInclude Include="Src\FrameWork\GComponent.h" />
     <ClInclude Include="Src\FrameWork\GController.h" />
     <ClInclude Include="Src\FrameWork\GInfo.h" />
     <ClInclude Include="Src\FrameWork\GObject.h" />
@@ -188,6 +249,36 @@
     <ClInclude Include="Src\Tool\Util\Util.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Intermediate\GeneratedCode\GActor.gen.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Intermediate\GeneratedCode\GCharacter.gen.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Intermediate\GeneratedCode\GController.gen.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Intermediate\GeneratedCode\GInfo.gen.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Intermediate\GeneratedCode\GObject.gen.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Intermediate\GeneratedCode\GPlayer.gen.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Intermediate\GeneratedCode\GPlayerController.gen.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Intermediate\GeneratedCode\GWorld.gen.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Intermediate\GeneratedCode\GameSetting.gen.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\Intermediate\GeneratedCode\WorldSetting.gen.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="..\ThirdPart\stb_image\stb_image.cpp" />
     <ClCompile Include="Src\Config.cpp" />
     <ClCompile Include="Src\Core\EventSystem\Event\Event.cpp" />
@@ -266,9 +357,6 @@
     </ProjectReference>
     <ProjectReference Include="..\ThirdPart\ImGuizmo\ImGuizmo.vcxproj">
       <Project>{36FD234F-22CA-7E5A-4BE3-6C02370FB4E8}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\Reflection\Reflect\Reflect.vcxproj">
-      <Project>{EAD1F29E-56B1-713A-5FC9-FC10CB27D89B}</Project>
     </ProjectReference>
     <ProjectReference Include="..\ThirdPart\SPIRV-Cross\SPIRV-Cross.vcxproj">
       <Project>{30B15D9A-9C66-D68F-255B-D066910FCD93}</Project>

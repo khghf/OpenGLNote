@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include<memory>
 namespace DM
 {
@@ -29,7 +29,6 @@ namespace DM
 		return std::shared_ptr<T>(raw);
 	}
 
-
 	template<typename T>
 	using WRef = std::weak_ptr<T>;
 	template<typename T>
@@ -37,5 +36,4 @@ namespace DM
 	{
 		return std::weak_ptr<T>(ref);
 	}
-	
 }

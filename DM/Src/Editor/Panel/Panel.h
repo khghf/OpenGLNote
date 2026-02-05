@@ -7,12 +7,12 @@ namespace DM
 	{
 		friend class EditorLayer;
 	public:
-		using Context = class GWorld;
+		
 		virtual ~Panel() = default;
 	protected:
-		void SetContext(const Ref<Context>& context) { m_Context = context; }
+		void SetContext(const Ref<GWorld>& context) { m_Context = context; }
 		virtual void Render() = 0;
 	protected:
-		Ref<Context>m_Context;
+		Ref<GWorld>m_Context;
 	};
 }

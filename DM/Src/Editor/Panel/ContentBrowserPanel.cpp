@@ -1,4 +1,5 @@
-﻿#include "ContentBrowserPanel.h"
+﻿#include<DMPCH.h>
+#include "ContentBrowserPanel.h"
 #include <imgui.h>
 #include<Config.h>
 #include<Core/Input/Input.h>
@@ -15,9 +16,10 @@ namespace DM
 	static Icons icon;
 
 
-	ContentBrowserPanel::ContentBrowserPanel(const Ref<Context>& context)
+	ContentBrowserPanel::ContentBrowserPanel(const Ref<GWorld>& context)
 	{
 		 SetContext(context);
+		 CurPath = fs::path(Config::AssetFolder());
 		 CurPath = fs::path(Config::AssetFolder());
 		 icon.File = GameStatic::GetTexture2D("File");
 		 icon.Folder = GameStatic::GetTexture2D("Folder");

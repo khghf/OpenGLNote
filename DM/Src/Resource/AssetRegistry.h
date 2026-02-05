@@ -1,24 +1,22 @@
-#pragma once
+﻿#pragma once
 #include<DMPCH.h>
 #include<Core/Core.h>
 #include<Tool/Util/Util.h>
 #include<Core/Render/Shader.h>
 #include<Core/Render/Texture/Texture.h>
-#include<Core/Container/Array.h>
-#include<Core/Container/UMap.h>
 namespace DM
 {
 	template<typename T>
 	class AssetRegistry
 	{
-		UMap<std::string, Ref<T>>Registry;
+		std::unordered_map<std::string, Ref<T>>Registry;
 	public:
 		inline bool HasAsset(const std::string& name)const;
 		inline Ref<T>GetAsset(const std::string& name)const;
-		Array<Ref<T>>GetAllAsset()const;
+		std::vector<Ref<T>>GetAllAsset()const;
 		Ref<T>Register(const std::string& assetPath);
 		void Register(Ref<T> asset);
-		void Register(Array<Ref<T>>assets);
+		void Register(std::vector<Ref<T>>assets);
 		void UnRegisterAllAsset();
 	};
 	template<typename T>
@@ -40,9 +38,9 @@ namespace DM
 	}
 
 	template<typename T>
-	Array<Ref<T>> AssetRegistry<T>::GetAllAsset() const
+	std::vector<Ref<T>> AssetRegistry<T>::GetAllAsset() const
 	{
-		Array<Ref<T>> ret(Registry.size());
+		std::vector<Ref<T>> ret(Registry.size());
 		for (const auto& In : Registry)
 		{
 			ret.push_back(In.second);
@@ -74,7 +72,7 @@ namespace DM
 		return;
 	}
 	template<typename T>
-	inline void AssetRegistry<T>::Register(Array<Ref<T>>assets)
+	inline void AssetRegistry<T>::Register(std::vector<Ref<T>>assets)
 	{
 		for (const auto& asset : assets)
 		{

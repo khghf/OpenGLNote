@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{0FB3ECDE-7B73-6815-44AE-B192B02DADF1}</ProjectGuid>
+    <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>GeneratedCode</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(ProjectDir)bin\Debug\</OutDir>
+    <IntDir>$(ProjectDir)obj\Debug\</IntDir>
+    <TargetName>GeneratedCode</TargetName>
+    <TargetExt>.dll</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(ProjectDir)bin\Release\</OutDir>
+    <IntDir>$(ProjectDir)obj\Release\</IntDir>
+    <TargetName>GeneratedCode</TargetName>
+    <TargetExt>.dll</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>REFLECT_PROJECT;DM_PLATFORM_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.;Mirror;..\..\ThirdPart\rapidjson\include;..\..\ThirdPart\entt;..\..\ThirdPart\spdlog\include;..\Src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <ExternalWarningLevel>Level3</ExternalWarningLevel>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ImportLibrary>bin\Debug\GeneratedCode.lib</ImportLibrary>
+    </Link>
+    <PostBuildEvent>
+      <Command>IF EXIST bin\Debug\GeneratedCode.dll\ (xcopy /Q /E /Y /I bin\Debug\GeneratedCode.dll ..\..\bin\Debug-windows-x86_64\DM &gt; nul) ELSE (xcopy /Q /Y /I bin\Debug\GeneratedCode.dll ..\..\bin\Debug-windows-x86_64\DM &gt; nul)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>REFLECT_PROJECT;DM_PLATFORM_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.;Mirror;..\..\ThirdPart\rapidjson\include;..\..\ThirdPart\entt;..\..\ThirdPart\spdlog\include;..\Src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Full</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <ExternalWarningLevel>Level3</ExternalWarningLevel>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <ImportLibrary>bin\Release\GeneratedCode.lib</ImportLibrary>
+    </Link>
+    <PostBuildEvent>
+      <Command>IF EXIST bin\Release\GeneratedCode.dll\ (xcopy /Q /E /Y /I bin\Release\GeneratedCode.dll ..\..\bin\Release-windows-x86_64\DM &gt; nul) ELSE (xcopy /Q /Y /I bin\Release\GeneratedCode.dll ..\..\bin\Release-windows-x86_64\DM &gt; nul)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="GeneratedCode\GActor.gen.h" />
+    <ClInclude Include="GeneratedCode\GCharacter.gen.h" />
+    <ClInclude Include="GeneratedCode\GController.gen.h" />
+    <ClInclude Include="GeneratedCode\GInfo.gen.h" />
+    <ClInclude Include="GeneratedCode\GObject.gen.h" />
+    <ClInclude Include="GeneratedCode\GPlayer.gen.h" />
+    <ClInclude Include="GeneratedCode\GPlayerController.gen.h" />
+    <ClInclude Include="GeneratedCode\GWorld.gen.h" />
+    <ClInclude Include="GeneratedCode\GameSetting.gen.h" />
+    <ClInclude Include="GeneratedCode\WorldSetting.gen.h" />
+    <ClInclude Include="Mirror\ReflectMarco.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\allocators.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\cursorstreamwrapper.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\document.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\encodedstream.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\encodings.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\error\en.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\error\error.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\filereadstream.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\filewritestream.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\fwd.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\internal\biginteger.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\internal\clzll.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\internal\diyfp.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\internal\dtoa.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\internal\ieee754.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\internal\itoa.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\internal\meta.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\internal\pow10.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\internal\regex.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\internal\stack.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\internal\strfunc.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\internal\strtod.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\internal\swap.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\istreamwrapper.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\memorybuffer.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\memorystream.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\msinttypes\inttypes.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\msinttypes\stdint.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\ostreamwrapper.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\pointer.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\prettywriter.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\rapidjson.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\reader.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\schema.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\stream.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\stringbuffer.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\uri.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\writer.h" />
+    <ClInclude Include="Mirror\include\Impl\Dependency.h" />
+    <ClInclude Include="Mirror\include\Impl\Function_Impl.h" />
+    <ClInclude Include="Mirror\include\Impl\Impl_Internal.h" />
+    <ClInclude Include="Mirror\include\Impl\Member_Impl.h" />
+    <ClInclude Include="Mirror\include\Impl\TypeConverter.h" />
+    <ClInclude Include="Mirror\include\Impl\TypeInfo_Impl.h" />
+    <ClInclude Include="Mirror\include\Info\FunctionInfo.h" />
+    <ClInclude Include="Mirror\include\Info\MemberInfo.h" />
+    <ClInclude Include="Mirror\include\Info\Property.h" />
+    <ClInclude Include="Mirror\include\Info\TypeInfo.h" />
+    <ClInclude Include="Mirror\include\Serialization\Serialization_Binary.h" />
+    <ClInclude Include="Mirror\include\Serialization\Serialization_Binary_Impl.h" />
+    <ClInclude Include="Mirror\include\Serialization\Serialization_Json.h" />
+    <ClInclude Include="Mirror\include\Serialization\Serialization_Json_Impl.h" />
+    <ClInclude Include="Mirror\include\Storage\Storage_Internal.h" />
+    <ClInclude Include="Mirror\include\Storage\TypeTuple.h" />
+    <ClInclude Include="Mirror\include\Tool\TypeHash.h" />
+    <ClInclude Include="Mirror\include\Tool\TypeTrait.h" />
+    <ClInclude Include="Mirror\include\Tool\Util.h" />
+    <ClInclude Include="Mirror\include\test.h" />
+    <ClInclude Include="Mirror\mirror.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="GeneratedCode\GActor.gen.cpp" />
+    <ClCompile Include="GeneratedCode\GCharacter.gen.cpp" />
+    <ClCompile Include="GeneratedCode\GController.gen.cpp" />
+    <ClCompile Include="GeneratedCode\GInfo.gen.cpp" />
+    <ClCompile Include="GeneratedCode\GObject.gen.cpp" />
+    <ClCompile Include="GeneratedCode\GPlayer.gen.cpp" />
+    <ClCompile Include="GeneratedCode\GPlayerController.gen.cpp" />
+    <ClCompile Include="GeneratedCode\GWorld.gen.cpp" />
+    <ClCompile Include="GeneratedCode\GameSetting.gen.cpp" />
+    <ClCompile Include="GeneratedCode\WorldSetting.gen.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,6 +1,6 @@
 #pragma once
 #include "GCharacter.h"
-#include<GPlayer.gen.h>
+#include"GPlayer.gen.h"
 namespace DM
 {
 	class CLASS() GPlayer :public GCharacter

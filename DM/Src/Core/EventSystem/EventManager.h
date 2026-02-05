@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include<Tool/ISingletion.h>
 #include"Event/Event.h"
 #include "Event/KeyEvent.h"
@@ -39,7 +39,7 @@ namespace DM
 		void UnRegisterInternal(Listener Lis);
 	private:
 		//UnOrderedMap<EEventCategory, UnOrderedMap<EEventType, Disptcher>>CategoryTo;
-		UMap<EEventType, Disptcher>Disptchers;
+		std::unordered_map<EEventType, Disptcher>Disptchers;
 	};
 	template<class EventClass, class Class>
 	inline void EventManager::Register(Ref<Class>Obj, void(Class::* MebFunType)( Event* const))

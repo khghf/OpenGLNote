@@ -1,0 +1,30 @@
+project"GeneratedCode"
+	kind"SharedLib"
+    files{
+        "./**.h",
+        "./**.cpp",
+    }
+    includedirs{
+		"./",
+		"./Mirror",
+		"%{ThirdPartIncludeDir.rapidjson}",
+		"%{ThirdPartIncludeDir.entt}",
+		"%{ThirdPartIncludeDir.spdlog}",
+        "../Src",
+    }
+    defines{
+            "REFLECT_PROJECT"
+        }
+    filter"configurations:Debug"
+		runtime"Debug"
+		symbols"on"
+	filter"configurations:Release"
+		runtime"Release"
+		optimize"on"
+    filter"system:windows"
+        defines{
+            "DM_PLATFORM_WINDOWS"
+        }
+        postbuildcommands{
+			("{COPY} %{cfg.buildtarget.relpath} %{wks.basedir}/bin/"..outputdir.."/"..EngineName)
+		}

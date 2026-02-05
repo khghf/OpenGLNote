@@ -9,12 +9,10 @@ int main(int argc, char** argv)
 	const DM::GObject* const obj = new DM::GActor();
 	const DM::GPlayer* const player = new DM::GPlayer();
 	const DM::GActor* const entt = new DM::GActor();
-	nlohmann::json j;
-	j["111"] = obj;
-	std::cout << j << std::endl;
-	std::cout << DM::GameStatic::IsChildOf<DM::GObject>(obj) << std::endl;
+	auto& data = mirror::GetGlobalData();
+	/*std::cout << DM::GameStatic::IsChildOf<DM::GObject>(obj) << std::endl;
 	std::cout << DM::GameStatic::IsChildOf<DM::GObject>(player) << std::endl;
-	std::cout << DM::GameStatic::IsChildOf<DM::GObject>(entt) << std::endl;
+	std::cout << DM::GameStatic::IsChildOf<DM::GObject>(entt) << std::endl;*/
 	delete obj;
 	delete player;
 	delete entt;

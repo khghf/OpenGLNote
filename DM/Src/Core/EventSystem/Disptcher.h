@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include<Core/DelegateSystem/MultiDelegate.h>
 #include<Tool/ISingletion.h>
 #include"Listener.h"
@@ -25,7 +25,7 @@ namespace DM
 		void DisptchSpecifiedEvent(void(*Fun)(Event*const))
 		{
 			DisptchTarget.Bind(Fun);
-			if (SpecifiedEvent::GetStaticType() == e->GetType())
+			if (SpecifiedEvent::GetStaticType() == m_e->GetType())
 			{
 				DisptchTarget.Execute(m_e);
 			}

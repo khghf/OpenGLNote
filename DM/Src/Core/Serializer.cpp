@@ -84,37 +84,37 @@ namespace DM
 			{
 				if (entity.HasComponent<TagComponent>())
 				{
-					auto& com = entity.GetComponent<TagComponent>();
+					auto com = entity.GetComponent<TagComponent>();
 					out << YAML::Key << "TagComponent" << YAML::Value;
 					out << YAML::BeginMap; 
 					{
-						out << YAML::Key << "Tag" << YAML::Value << com.Tag; 
+						out << YAML::Key << "Tag" << YAML::Value << com->Tag; 
 					}
 					out << YAML::EndMap;
 				}
 
 				if (entity.HasComponent<SpriteComponent>())
 				{
-					auto& com = entity.GetComponent<SpriteComponent>();
+					auto com = entity.GetComponent<SpriteComponent>();
 					out << YAML::Key << "SpriteComponent" << YAML::Value;
 					out << YAML::BeginMap; 
 					{
-						out << YAML::Key << "Color" << YAML::Value<<com.Color;
+						out << YAML::Key << "Color" << YAML::Value<<com->Color;
 					}
 					out << YAML::EndMap;
 				}
 
 				if (entity.HasComponent<TransformComponent>())
 				{
-					auto& com = entity.GetComponent<TransformComponent>();
+					auto com = entity.GetComponent<TransformComponent>();
 					out << YAML::Key << "TransformComponent" << YAML::Value;
 					out << YAML::BeginMap; 
 					{
-						out << YAML::Key << "Location" << YAML::Value<< com.Location;
+						out << YAML::Key << "Location" << YAML::Value<< com->Location;
 
-						out << YAML::Key << "Rotation" << YAML::Value<< com.Rotation;
+						out << YAML::Key << "Rotation" << YAML::Value<< com->Rotation;
 
-						out << YAML::Key << "Scale" << YAML::Value<< com.Scale;
+						out << YAML::Key << "Scale" << YAML::Value<< com->Scale;
 					}
 					out << YAML::EndMap;
 				}
@@ -146,7 +146,7 @@ namespace DM
 			out << YAML::Key << "Entities" << YAML::Value;
 			out << YAML::BeginSeq;
 			{
-				auto& view = scene->m_Registry.view<entt::entity>();
+				const auto& view = scene->m_Registry.view<entt::entity>();
 				//scene->m_Registry.get()
 				for (auto& entity : view)
 				{
@@ -185,17 +185,17 @@ namespace DM
 				YAML::Node components = entity["Components"];
 				if (YAML::Node com = components["TagComponent"])
 				{
-					en.GetComponent<TagComponent>().Tag = com["Tag"].as<std::string>();
+					en.GetComponent<TagComponent>()->Tag = com["Tag"].as<std::string>();
 				}
 				if (YAML::Node com = components["SpriteComponent"])
 				{
-					en.GetComponent<SpriteComponent>().Color = com["Color"].as<Vector4>();
+					en.GetComponent<SpriteComponent>()->Color = com["Color"].as<Vector4>();
 				}
 				if (YAML::Node com = components["TransformComponent"])
 				{
-					en.GetComponent<TransformComponent>().Location = com["Location"].as<Vector3>();
-					en.GetComponent<TransformComponent>().Rotation = com["Rotation"].as<Vector3>();
-					en.GetComponent<TransformComponent>().Scale = com["Scale"].as<Vector3>();
+					en.GetComponent<TransformComponent>()->Location = com["Location"].as<Vector3>();
+					en.GetComponent<TransformComponent>()->Rotation = com["Rotation"].as<Vector3>();
+					en.GetComponent<TransformComponent>()->Scale = com["Scale"].as<Vector3>();
 				}
 			}
 		}

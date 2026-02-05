@@ -1,0 +1,294 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="GeneratedCode">
+      <UniqueIdentifier>{0FB3ECDE-7B73-6815-44AE-B192B02DADF1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mirror">
+      <UniqueIdentifier>{00C128C3-EC62-5399-D51D-67EDC15EDAE9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mirror\ThirdPart">
+      <UniqueIdentifier>{2155204F-0D4E-3FA1-3680-242622D81EAD}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mirror\ThirdPart\rapidjson">
+      <UniqueIdentifier>{1A7C447C-068C-F04C-6F45-556B5B74DFE5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mirror\ThirdPart\rapidjson\include">
+      <UniqueIdentifier>{8D1D3196-7959-3400-E26B-4CF7CEC6DC1A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mirror\ThirdPart\rapidjson\include\rapidjson">
+      <UniqueIdentifier>{86BB0B88-72CE-0BE1-1BB8-E8CD07AAA82E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mirror\ThirdPart\rapidjson\include\rapidjson\error">
+      <UniqueIdentifier>{5F5FAEAE-4BF3-A356-B4B7-FD0AA06ADE48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mirror\ThirdPart\rapidjson\include\rapidjson\internal">
+      <UniqueIdentifier>{92B44F0D-FED0-41FE-C7A8-AE6B3384ABBF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mirror\ThirdPart\rapidjson\include\rapidjson\msinttypes">
+      <UniqueIdentifier>{95C3C389-01AB-AE7F-0A99-B0FB76FF5142}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mirror\include">
+      <UniqueIdentifier>{73E8E636-5FB6-DA3C-484A-4B6334B7B6A1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mirror\include\Impl">
+      <UniqueIdentifier>{348E35B3-A0EF-12C1-295D-597395BD4980}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mirror\include\Info">
+      <UniqueIdentifier>{2E9135B3-9AF2-12C1-2360-59738FC04980}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mirror\include\Serialization">
+      <UniqueIdentifier>{408E71E3-2C49-618F-D500-DAD9C19AAB1F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mirror\include\Storage">
+      <UniqueIdentifier>{B7A91C43-A3A3-4595-8C10-DCA578A9AB01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mirror\include\Tool">
+      <UniqueIdentifier>{C09E3BB3-2C00-19C1-B56D-5F7321CE4F80}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GeneratedCode\GActor.gen.h">
+      <Filter>GeneratedCode</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedCode\GCharacter.gen.h">
+      <Filter>GeneratedCode</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedCode\GController.gen.h">
+      <Filter>GeneratedCode</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedCode\GInfo.gen.h">
+      <Filter>GeneratedCode</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedCode\GObject.gen.h">
+      <Filter>GeneratedCode</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedCode\GPlayer.gen.h">
+      <Filter>GeneratedCode</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedCode\GPlayerController.gen.h">
+      <Filter>GeneratedCode</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedCode\GWorld.gen.h">
+      <Filter>GeneratedCode</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedCode\GameSetting.gen.h">
+      <Filter>GeneratedCode</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedCode\WorldSetting.gen.h">
+      <Filter>GeneratedCode</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\ReflectMarco.h">
+      <Filter>Mirror</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\allocators.h">
+      <Filter>Mirror\ThirdPart\rapidjson\include\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\cursorstreamwrapper.h">
+      <Filter>Mirror\ThirdPart\rapidjson\include\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\document.h">
+      <Filter>Mirror\ThirdPart\rapidjson\include\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\encodedstream.h">
+      <Filter>Mirror\ThirdPart\rapidjson\include\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\encodings.h">
+      <Filter>Mirror\ThirdPart\rapidjson\include\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\error\en.h">
+      <Filter>Mirror\ThirdPart\rapidjson\include\rapidjson\error</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\error\error.h">
+      <Filter>Mirror\ThirdPart\rapidjson\include\rapidjson\error</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\filereadstream.h">
+      <Filter>Mirror\ThirdPart\rapidjson\include\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\filewritestream.h">
+      <Filter>Mirror\ThirdPart\rapidjson\include\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\fwd.h">
+      <Filter>Mirror\ThirdPart\rapidjson\include\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\internal\biginteger.h">
+      <Filter>Mirror\ThirdPart\rapidjson\include\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\internal\clzll.h">
+      <Filter>Mirror\ThirdPart\rapidjson\include\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\internal\diyfp.h">
+      <Filter>Mirror\ThirdPart\rapidjson\include\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\internal\dtoa.h">
+      <Filter>Mirror\ThirdPart\rapidjson\include\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\internal\ieee754.h">
+      <Filter>Mirror\ThirdPart\rapidjson\include\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\internal\itoa.h">
+      <Filter>Mirror\ThirdPart\rapidjson\include\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\internal\meta.h">
+      <Filter>Mirror\ThirdPart\rapidjson\include\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\internal\pow10.h">
+      <Filter>Mirror\ThirdPart\rapidjson\include\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\internal\regex.h">
+      <Filter>Mirror\ThirdPart\rapidjson\include\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\internal\stack.h">
+      <Filter>Mirror\ThirdPart\rapidjson\include\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\internal\strfunc.h">
+      <Filter>Mirror\ThirdPart\rapidjson\include\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\internal\strtod.h">
+      <Filter>Mirror\ThirdPart\rapidjson\include\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\internal\swap.h">
+      <Filter>Mirror\ThirdPart\rapidjson\include\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\istreamwrapper.h">
+      <Filter>Mirror\ThirdPart\rapidjson\include\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\memorybuffer.h">
+      <Filter>Mirror\ThirdPart\rapidjson\include\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\memorystream.h">
+      <Filter>Mirror\ThirdPart\rapidjson\include\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\msinttypes\inttypes.h">
+      <Filter>Mirror\ThirdPart\rapidjson\include\rapidjson\msinttypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\msinttypes\stdint.h">
+      <Filter>Mirror\ThirdPart\rapidjson\include\rapidjson\msinttypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\ostreamwrapper.h">
+      <Filter>Mirror\ThirdPart\rapidjson\include\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\pointer.h">
+      <Filter>Mirror\ThirdPart\rapidjson\include\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\prettywriter.h">
+      <Filter>Mirror\ThirdPart\rapidjson\include\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\rapidjson.h">
+      <Filter>Mirror\ThirdPart\rapidjson\include\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\reader.h">
+      <Filter>Mirror\ThirdPart\rapidjson\include\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\schema.h">
+      <Filter>Mirror\ThirdPart\rapidjson\include\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\stream.h">
+      <Filter>Mirror\ThirdPart\rapidjson\include\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\stringbuffer.h">
+      <Filter>Mirror\ThirdPart\rapidjson\include\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\uri.h">
+      <Filter>Mirror\ThirdPart\rapidjson\include\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\writer.h">
+      <Filter>Mirror\ThirdPart\rapidjson\include\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\include\Impl\Dependency.h">
+      <Filter>Mirror\include\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\include\Impl\Function_Impl.h">
+      <Filter>Mirror\include\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\include\Impl\Impl_Internal.h">
+      <Filter>Mirror\include\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\include\Impl\Member_Impl.h">
+      <Filter>Mirror\include\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\include\Impl\TypeConverter.h">
+      <Filter>Mirror\include\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\include\Impl\TypeInfo_Impl.h">
+      <Filter>Mirror\include\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\include\Info\FunctionInfo.h">
+      <Filter>Mirror\include\Info</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\include\Info\MemberInfo.h">
+      <Filter>Mirror\include\Info</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\include\Info\Property.h">
+      <Filter>Mirror\include\Info</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\include\Info\TypeInfo.h">
+      <Filter>Mirror\include\Info</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\include\Serialization\Serialization_Binary.h">
+      <Filter>Mirror\include\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\include\Serialization\Serialization_Binary_Impl.h">
+      <Filter>Mirror\include\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\include\Serialization\Serialization_Json.h">
+      <Filter>Mirror\include\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\include\Serialization\Serialization_Json_Impl.h">
+      <Filter>Mirror\include\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\include\Storage\Storage_Internal.h">
+      <Filter>Mirror\include\Storage</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\include\Storage\TypeTuple.h">
+      <Filter>Mirror\include\Storage</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\include\Tool\TypeHash.h">
+      <Filter>Mirror\include\Tool</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\include\Tool\TypeTrait.h">
+      <Filter>Mirror\include\Tool</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\include\Tool\Util.h">
+      <Filter>Mirror\include\Tool</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\include\test.h">
+      <Filter>Mirror\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror\mirror.h">
+      <Filter>Mirror</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="GeneratedCode\GActor.gen.cpp">
+      <Filter>GeneratedCode</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedCode\GCharacter.gen.cpp">
+      <Filter>GeneratedCode</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedCode\GController.gen.cpp">
+      <Filter>GeneratedCode</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedCode\GInfo.gen.cpp">
+      <Filter>GeneratedCode</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedCode\GObject.gen.cpp">
+      <Filter>GeneratedCode</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedCode\GPlayer.gen.cpp">
+      <Filter>GeneratedCode</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedCode\GPlayerController.gen.cpp">
+      <Filter>GeneratedCode</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedCode\GWorld.gen.cpp">
+      <Filter>GeneratedCode</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedCode\GameSetting.gen.cpp">
+      <Filter>GeneratedCode</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedCode\WorldSetting.gen.cpp">
+      <Filter>GeneratedCode</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

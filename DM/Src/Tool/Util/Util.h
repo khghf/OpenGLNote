@@ -1,6 +1,5 @@
 ﻿#pragma once
 #include<string.h>
-#include<Core/Container/Array.h>
 namespace DM
 {
 	class Util
@@ -11,7 +10,7 @@ namespace DM
 		static std::string			ReadFile(const std::string& Path);
 
 
-		static Array<std::string>	GetAllFilePath(const std::string& FloderPath, bool GetSubFloderFile = false);
+		static std::vector<std::string>	GetAllFilePath(const std::string& FloderPath, bool GetSubFloderFile = false);
 		static std::string			GetSuffix(const std::string& str);
 		static std::string			GetFileName(const std::string& filePath, bool bWithSuffix);
 		static std::string			GetStrBehindLastChar(const std::string source, const char* ch);

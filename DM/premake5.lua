@@ -12,7 +12,9 @@ project"DM"
 		ThirdPartBaseDir.."json/**.hpp",
 		ThirdPartBaseDir.."json/**.cpp",
 		ThirdPartBaseDir.."entt/include/**.hpp",
+		"%{ThirdPartIncludeDir.GeneratedCode}/**.cpp",
 	}
+	
 	includedirs{
 		"%{ThirdPartIncludeDir.spdlog}",
 		"%{ThirdPartIncludeDir.GLFW}",
@@ -20,11 +22,11 @@ project"DM"
 		"%{ThirdPartIncludeDir.IMGUI}",
 		"%{ThirdPartIncludeDir.GLM}",
 		"%{ThirdPartIncludeDir.stb_image}",
+		"%{ThirdPartIncludeDir.rapidjson}",
 		"%{ThirdPartIncludeDir.json}",
 		"%{ThirdPartIncludeDir.entt}",
 		"%{ThirdPartIncludeDir.yaml_cpp}",
 		"%{ThirdPartIncludeDir.ImGuizmo}",
-		"%{ThirdPartIncludeDir.Reflection}",
 		"%{ThirdPartIncludeDir.GeneratedCode}",
 		-- "%{ThirdPartIncludeDir.VulkanSDK}",
 		"%{ThirdPartIncludeDir.shaderc}",
@@ -39,15 +41,16 @@ project"DM"
 		"yaml_cpp",
 		"ImGuizmo",
 		"opengl32.lib",
-		"Reflect",
+		-- "Reflect",
 		-- "shaderc",
 		"SPIRV-Cross",
-		"Editor",
+		-- "GeneratedCode",
+		-- "Editor",
 	}
-	filter"files:%{ThirdPartIncludeDir.ImGuizmo}/**.cpp"
-		flags{"NoPCH"}
+	
+	filter"files:../Intermediate/**.cpp"
+		enablepch"Off"
 	filter"system:windows"
-		cppdialect"C++17"
 		systemversion"latest"
 		defines{
 			"YAML_CPP_STATIC_DEFINE",--yaml静态库宏

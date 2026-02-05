@@ -1,7 +1,5 @@
-#pragma once
+﻿#pragma once
 #include<DMPCH.h>
-#include"../Container/Array.h"
-#include"../Container/UMap.h"
 #include"BaseDelegate.h"
 #include"DelegateHash.h"
 #include<Core/Log.h>
@@ -15,7 +13,7 @@ namespace DM
 	{
 	private:
 		using FunType = Ret(*)(Args...);
-		UMap<size_t, BaseDelegate<Ret(Args...)>>Delegates;
+		std::unordered_map<size_t, BaseDelegate<Ret(Args...)>>Delegates;
 		std::string_view Name;
 	public:
 		MultiDelegate() = default;
@@ -84,7 +82,7 @@ namespace DM
 				else
 				{
 					it = Delegates.erase(it);
-					LOG_CORE_INFO(Name,": found and removed invalid delegate");
+					LOG_CORE_INFO("{}: found and removed invalid delegate", Name);
 				}
 			}
 		}

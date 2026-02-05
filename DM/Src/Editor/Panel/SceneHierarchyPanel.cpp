@@ -1,4 +1,5 @@
-﻿#include "SceneHierarchyPanel.h"
+﻿#include<DMPCH.h>
+#include "SceneHierarchyPanel.h"
 #include <Imgui.h>
 #include <Imgui_internal.h>
 #include <FrameWork/GActor.h>
@@ -96,7 +97,7 @@ namespace DM
 	void SceneHierarchyPanel::DrawEntityNode(const GActor& entity)
 	{
 		ImGuiTreeNodeFlags flag =ImGuiTreeNodeFlags_OpenOnArrow| ImGuiTreeNodeFlags_SpanAvailWidth| ImGuiTreeNodeFlags_FramePadding|((m_SelectedEntity==entity?ImGuiTreeNodeFlags_Selected:0));
-		const auto& Tag = entity.GetComponent<TagComponent>().Tag;
+		const auto& Tag = entity.GetComponent<TagComponent>()->Tag;
 		bool opened = ImGui::TreeNodeEx((void*)(entity.m_Handle), flag, Tag.c_str());
 		if (ImGui::BeginPopupContextItem())
 		{
@@ -122,7 +123,7 @@ namespace DM
 		{
 			if (entity.HasComponent<TagComponent>())
 			{
-				auto& label = entity.GetComponent<TagComponent>().Tag;
+				auto label = entity.GetComponent<TagComponent>()->Tag;
 				char buffer[128];
 				memset(buffer, 0, 128);
 				strcpy_s(buffer, sizeof(buffer), label.c_str());
@@ -134,15 +135,15 @@ namespace DM
 			}
 			if (entity.HasComponent<TransformComponent>())
 			{
-				auto& transform = entity.GetComponent<TransformComponent>();
-				DrawVec3Control("Location", transform.Location);
-				DrawVec3Control("Rotation", transform.Rotation);
-				DrawVec3Control("Scale", transform.Scale,1.f);
+				auto transform = entity.GetComponent<TransformComponent>();
+				DrawVec3Control("Location", transform->Location);
+				DrawVec3Control("Rotation", transform->Rotation);
+				DrawVec3Control("Scale", transform->Scale,1.f);
 			}
 			if (entity.HasComponent<SpriteComponent>())
 			{
-				auto& sprite = entity.GetComponent<SpriteComponent>();
-				ImGui::ColorEdit4("Color",glm::value_ptr(sprite.Color));
+				auto sprite = entity.GetComponent<SpriteComponent>();
+				ImGui::ColorEdit4("Color",glm::value_ptr(sprite->Color));
 			}
 		}
 		ImGui::End();

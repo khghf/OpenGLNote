@@ -1,4 +1,5 @@
-﻿#include "EditorLayer.h"
+﻿#include<DMPCH.h>
+#include "EditorLayer.h"
 #include<imgui.h>
 #include"DM.h"
 #include"Panel/SceneHierarchyPanel.h"
@@ -93,12 +94,12 @@ namespace DM
 		m_ViewportFramebuffer->ClearColorAttachment(1, -2);
 		if (m_ActiveScene)
 		{
-			auto& group = m_ActiveScene->m_Registry.group<SpriteComponent, TransformComponent>();
+			const auto& group = m_ActiveScene->m_Registry.group<SpriteComponent, TransformComponent>();
 			if (m_ViewPort.bHovered)m_CameraController.OnUpdate(DeltaTime);
 			DM::Renderer2D::BeginScene(m_CameraController.GetCamera());
 			for (auto& entity : group)
 			{
-				auto& [sprite, transform] = group.get<SpriteComponent, TransformComponent>(entity);
+				const auto& [sprite, transform] = group.get<SpriteComponent, TransformComponent>(entity);
 				DM::Renderer2D::DrawQuad(sprite, transform);
 			}
 			DM::Renderer2D::EndScene();

@@ -1,7 +1,6 @@
-#pragma once
+﻿#pragma once
 #include<Tool/ISingletion.h>
 #include"AssetRegistry.h"
-#include<Core/Container/Array.h>
 namespace DM
 {
     class Asset;
@@ -18,7 +17,7 @@ namespace DM
         void LoadAsset();
         void PostLoadAsset();
         template<typename T>
-        void RegisterAsset(const Array<std::string>& Paths, AssetRegistry<T>& Registry);
+        void RegisterAsset(const std::vector<std::string>& Paths, AssetRegistry<T>& Registry);
     public:
         template<typename T>
         Ref<T>LoadAsset(const std::string& path);//加载的资产不会存储在管理器内部
@@ -29,10 +28,10 @@ namespace DM
         template<typename T>
         Ref<T>GetAsset(const char str[])const;
         template<typename T>
-        Array<Ref<T>>GetAllAsset()const;
+        std::vector<Ref<T>>GetAllAsset()const;
     };
     template<typename T>
-    inline void AssetManager::RegisterAsset(const Array<std::string>& Paths, AssetRegistry<T>& Registry)
+    inline void AssetManager::RegisterAsset(const std::vector<std::string>& Paths, AssetRegistry<T>& Registry)
     {
         if (Paths.size() == 0)return;
         for (const auto& path : Paths)
@@ -54,9 +53,9 @@ namespace DM
     template<typename T>
     inline Ref<T> AssetManager::GetAsset(const char str[]) const { std::string Str(str); return GetAsset<T>(Str); }
     template<>
-    inline Array<Ref<Texture2D>> AssetManager::GetAllAsset() const {return Texture2DRegistry.GetAllAsset();}
+    inline std::vector<Ref<Texture2D>> AssetManager::GetAllAsset() const {return Texture2DRegistry.GetAllAsset();}
     template<>
-    inline Array<Ref<Shader>> AssetManager::GetAllAsset() const { return ShaderRegistry.GetAllAsset(); }
+    inline std::vector<Ref<Shader>> AssetManager::GetAllAsset() const { return ShaderRegistry.GetAllAsset(); }
 }
 
 

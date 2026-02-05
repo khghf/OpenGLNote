@@ -1,6 +1,6 @@
 #pragma once
 #include "GController.h"
-#include<GPlayerController.gen.h>
+#include"GPlayerController.gen.h"
 namespace DM
 {
 	class CLASS() GPlayerController :public GController

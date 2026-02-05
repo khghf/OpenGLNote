@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{104FCF04-FC06-1152-650E-EAAD51E5AB42}</ProjectGuid>
+    <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Reflection</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(ProjectDir)..\..\bin\Debug-windows-x86_64\Reflection\</OutDir>
+    <IntDir>$(ProjectDir)..\..\bin-int\Debug-windows-x86_64\Reflection\</IntDir>
+    <TargetName>Reflection</TargetName>
+    <TargetExt>.dll</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(ProjectDir)..\..\bin\Release-windows-x86_64\Reflection\</OutDir>
+    <IntDir>$(ProjectDir)..\..\bin-int\Release-windows-x86_64\Reflection\</IntDir>
+    <TargetName>Reflection</TargetName>
+    <TargetExt>.dll</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>REFLECT_PROJECT;DM_PLATFORM_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>GeneratedCode;Mirror/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <ExternalWarningLevel>Level3</ExternalWarningLevel>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ImportLibrary>..\..\bin\Debug-windows-x86_64\Reflection\Reflection.lib</ImportLibrary>
+    </Link>
+    <PostBuildEvent>
+      <Command>IF EXIST ..\..\bin\Debug-windows-x86_64\Reflection\Reflection.dll\ (xcopy /Q /E /Y /I ..\..\bin\Debug-windows-x86_64\Reflection\Reflection.dll ..\..\bin\Debug-windows-x86_64\DM &gt; nul) ELSE (xcopy /Q /Y /I ..\..\bin\Debug-windows-x86_64\Reflection\Reflection.dll ..\..\bin\Debug-windows-x86_64\DM &gt; nul)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>REFLECT_PROJECT;DM_PLATFORM_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>GeneratedCode;Mirror;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Full</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <ExternalWarningLevel>Level3</ExternalWarningLevel>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <ImportLibrary>..\..\bin\Release-windows-x86_64\Reflection\Reflection.lib</ImportLibrary>
+    </Link>
+    <PostBuildEvent>
+      <Command>IF EXIST ..\..\bin\Release-windows-x86_64\Reflection\Reflection.dll\ (xcopy /Q /E /Y /I ..\..\bin\Release-windows-x86_64\Reflection\Reflection.dll ..\..\bin\Release-windows-x86_64\DM &gt; nul) ELSE (xcopy /Q /Y /I ..\..\bin\Release-windows-x86_64\Reflection\Reflection.dll ..\..\bin\Release-windows-x86_64\DM &gt; nul)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="Mirror\ReflectMarco.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\allocators.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\cursorstreamwrapper.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\document.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\encodedstream.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\encodings.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\error\en.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\error\error.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\filereadstream.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\filewritestream.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\fwd.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\internal\biginteger.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\internal\clzll.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\internal\diyfp.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\internal\dtoa.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\internal\ieee754.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\internal\itoa.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\internal\meta.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\internal\pow10.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\internal\regex.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\internal\stack.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\internal\strfunc.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\internal\strtod.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\internal\swap.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\istreamwrapper.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\memorybuffer.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\memorystream.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\msinttypes\inttypes.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\msinttypes\stdint.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\ostreamwrapper.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\pointer.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\prettywriter.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\rapidjson.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\reader.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\schema.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\stream.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\stringbuffer.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\uri.h" />
+    <ClInclude Include="Mirror\ThirdPart\rapidjson\include\rapidjson\writer.h" />
+    <ClInclude Include="Mirror\include\Impl\Dependency.h" />
+    <ClInclude Include="Mirror\include\Impl\Function_Impl.h" />
+    <ClInclude Include="Mirror\include\Impl\Impl_Internal.h" />
+    <ClInclude Include="Mirror\include\Impl\Member_Impl.h" />
+    <ClInclude Include="Mirror\include\Impl\TypeConverter.h" />
+    <ClInclude Include="Mirror\include\Impl\TypeInfo_Impl.h" />
+    <ClInclude Include="Mirror\include\Info\FunctionInfo.h" />
+    <ClInclude Include="Mirror\include\Info\MemberInfo.h" />
+    <ClInclude Include="Mirror\include\Info\Property.h" />
+    <ClInclude Include="Mirror\include\Info\TypeInfo.h" />
+    <ClInclude Include="Mirror\include\Serialization\Serialization_Binary.h" />
+    <ClInclude Include="Mirror\include\Serialization\Serialization_Binary_Impl.h" />
+    <ClInclude Include="Mirror\include\Serialization\Serialization_Json.h" />
+    <ClInclude Include="Mirror\include\Serialization\Serialization_Json_Impl.h" />
+    <ClInclude Include="Mirror\include\Storage\Storage_Internal.h" />
+    <ClInclude Include="Mirror\include\Storage\TypeTuple.h" />
+    <ClInclude Include="Mirror\include\Tool\TypeHash.h" />
+    <ClInclude Include="Mirror\include\Tool\TypeTrait.h" />
+    <ClInclude Include="Mirror\include\Tool\Util.h" />
+    <ClInclude Include="Mirror\include\mirror.h" />
+    <ClInclude Include="Mirror\include\test.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

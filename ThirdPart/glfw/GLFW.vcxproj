@@ -62,7 +62,7 @@
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
     <Link>
@@ -72,6 +72,8 @@
     <Lib>
       <AdditionalDependencies>gdi32.lib;user32.lib;kernel32.lib;shell32.lib;ole32.lib;advapi32.lib;imm32.lib;hid.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
+    <ProjectReference>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -86,7 +88,7 @@
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
     <Link>
@@ -97,6 +99,8 @@
     <Lib>
       <AdditionalDependencies>gdi32.lib;user32.lib;kernel32.lib;shell32.lib;ole32.lib;advapi32.lib;imm32.lib;hid.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
+    <ProjectReference>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="glfw\src\cocoa_joystick.h" />

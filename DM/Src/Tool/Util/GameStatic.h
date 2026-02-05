@@ -1,17 +1,8 @@
-#pragma once
+﻿#pragma once
 #include<string>
-#include<Core/Container/Array.h>
 #include<Core/MMM/Reference.h>
-#include<Reflect/ReflectMarco.h>
-#include<FrameWork/GObject.h>
-#include<GameStatic.gen.h>
 namespace DM
 {
-	enum  class ENUM()  test
-	{
-		val = 1,
-		val2 = 2
-	};
 	class Shader;
 	class Texture2D;
 	class GameStatic
@@ -28,7 +19,7 @@ namespace DM
 
 
 
-		template<typename tTy,typename sTy>
+		/*template<typename tTy,typename sTy>
 		static bool	IsChildOf(sTy&&source)
 		{
 			using s1 = std::remove_reference_t<sTy>;
@@ -37,6 +28,6 @@ namespace DM
 			reflect::RClass* rclass = GetRClass(typeid(s3).hash_code());
 			if (rclass == nullptr)return false;
 			return rclass->_IsChildOf<tTy>();
-		}
+		}*/
 	};
 }

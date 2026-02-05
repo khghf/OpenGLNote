@@ -6,7 +6,7 @@ namespace DM
 	class SceneHierarchyPanel:public Panel
 	{
 		friend class EditorLayer;
-		SceneHierarchyPanel(const Ref<Context>& context) { SetContext(context); };
+		SceneHierarchyPanel(const Ref<GWorld>& context) { SetContext(context); };
 	protected:
 		virtual void Render()override;
 		void DrawEntityNode(const GActor& entity);

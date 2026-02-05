@@ -6,7 +6,7 @@ namespace DM
 	class ContentBrowserPanel:public Panel
 	{
 		friend class EditorLayer;
-		ContentBrowserPanel(const Ref<Context>& context);
+		ContentBrowserPanel(const Ref<GWorld>& context);
 	protected:
 		virtual void Render() override;
 		std::filesystem::path CurPath;

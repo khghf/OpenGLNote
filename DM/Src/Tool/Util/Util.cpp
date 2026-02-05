@@ -96,7 +96,7 @@ namespace DM
 		return wide_str;
 	}
 #endif // _WIN32
-	Array<std::string> Util::GetAllFilePath(const std::string& FloderPath, bool GetSubFloderFile)
+	std::vector<std::string> Util::GetAllFilePath(const std::string& FloderPath, bool GetSubFloderFile)
 	{
 		std::vector<std::string>FilePaths;
 		fs::path Path = FloderPath;

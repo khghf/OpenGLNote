@@ -6,9 +6,6 @@
 #include<Core/Math/Vector.h>
 #include<Core/Math/Matrix.h>
 /////////////////Container
-#include<Core/Container/Array.h>
-#include<Core/Container/UMap.h>
-#include<Core/Container/USet.h>
 
 //////////////////input
 #include<Core/Input/Input.h>

@@ -1,12 +1,15 @@
 #pragma once
-#include<Reflect/reflection.h>
-#include<Reflect/ReflectMarco.h>
-#include<json/json.hpp>
+#include<Core/Reflection/Mirror/ReflectMarco.h>
+#include<Core/Reflection/Mirror/mirror.h>
+#include<Tool/Util/GameStatic.h>
 #include<entt/entt.hpp>
-#include"Tool/Util/GameStatic.h"
-#include<GObject.gen.h>
+#include<Core/MMM/Reference.h>
+#include<unordered_set>
+#include<Core/Log.h>
+#include"GObject.gen.h"
 namespace DM
 {
+	class GComponent;
 	class CLASS() GObject
 	{
 		REFLECT_BODY()
@@ -14,27 +17,21 @@ namespace DM
 		GObject();
 		virtual~GObject()=default;
 	public:
-		virtual void Start() ;
 		virtual void Update(float DeltaTime);
+		virtual void Destroy();
 		virtual void OnDestroy();
+
 		inline void EnableUpdate(const bool& bEnable) { bEnableUpdate = bEnable; }
 		inline bool IsEnableUpdate()const { return bEnableUpdate; }
 	private:
 		PROPERTY()
+			Ref<int>test;
+		/*PROPERTY()
+			std::unordered_set<std::pair<std::string, GComponent*>>_Components2;*/
+		PROPERTY()
 			bool bEnableUpdate;
-		PROPERTY()
-			int test1=100;
-		PROPERTY()
-			int test2=200;
-		PROPERTY()
-			std::string name;
-		PROPERTY()
-			std::vector<int> vec;
-		PROPERTY()
-			std::vector<float> vec2;
-		PROPERTY()
-			std::map<float,int> map;
-		PROPERTY()
-			bool bEnableUpdate2;
 	};
 }
+//REGISTER_TYPE(DM::GObject)
+//REGISTER_PRIVATE_MEMBER(DM::GObject, test)
+//REGISTER_PRIVATE_MEMBER(DM::GObject, bEnableUpdate)

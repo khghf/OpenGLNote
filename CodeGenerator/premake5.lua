@@ -1,0 +1,35 @@
+project "CodeGenerator"
+    kind"ConsoleApp"
+    language"C++"
+    staticruntime"off"
+    -- toolset"clang"
+    targetdir("../bin/"..outputdir.."/%{prj.name}")
+    objdir("../bin-int/"..outputdir.."/%{prj.name}")
+    files{
+        "Src/**.h",
+        "Src/**.cpp",
+        "LLVM/include/clang-c/index.h",
+    }
+    includedirs{
+        "LLVM/include",
+        "Src",
+        "%{ThirdPartIncludeDir.json}"
+    }
+    -- debugargs {
+    --     "--scan", "%{wks.basedir}/DM/Src",    
+    --     "--output", "../Reflect/GeneratedCode"    
+    -- }
+    debugdir ("./")
+
+    links{
+        "libclang.lib"
+    }
+    libdirs{
+        "LLVM/lib",
+    }
+    filter"configurations:Debug"
+		runtime"Debug"
+		symbols"on"
+	filter"configurations:Release"
+		runtime"Release"
+		optimize"on"
